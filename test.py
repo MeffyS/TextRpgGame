@@ -21,7 +21,7 @@ class Monster:
         self.experience = 0
         self.coins = 0
 
-# MONSTER WHICH PLAYER CAN FIGHT IN WELL
+# MONSTER WHICH PLAYER CAN FIGHT IN WELL!
 
 class Rat(Monster):
     def __init__(self, monster_name='Rat', health=0, attack_min=0, attack_max=0,experience=0, coins=0):
