@@ -1,0 +1,1 @@
+We should a fix bug with a stamine and campfire. If we have less than 15> we cannot use a campfire.

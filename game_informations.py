@@ -1,5 +1,8 @@
 import time
 from game_character import player
+from game_character import player_equipment
+from game_character import player_statistic
+from game_character import player_informations
 from change_equipment import changing_equipment
 from game_clear_function import clearConsole
 
@@ -15,25 +18,25 @@ class GameAttributes:
     pocket = {'HealthPotion':1,'Golden Coin':120,'ManaPotion':20,'Diamond':20}
     player_equipment = {
         'Bow': [('Magic', 3), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
-        'Earrings': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+        'Earrings': [('Stamina', 8), ('Experience', 2), ('Attack', 4)],
         'Helmet': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
         'Gloves': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
         'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
         'Boots': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
         
         }
-    player_inventory = [{'Gloves': [('Health', 2)]}, {'Helmet': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
+    player_inventory = [{'Gloves': [('Stamina', 2)]}, {'Helmet': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
     player_skills = []
 
 
-used_items_by_player = GameAttributes.player_equipment.items()
+used_items_by_player = player_equipment.player_equipment.items()
 equipment_name_count = GameAttributes.pocket.items()
 
 
 def main_equipment(move):
     summed_attributes_values = {}
     if move == "EQ":
-        if GameAttributes.player_equipment == {}:
+        if player_equipment.player_equipment == {}:
             print("Actually you dont have a items")
             print(summed_attributes_values)
         else:
@@ -44,13 +47,18 @@ def main_equipment(move):
                         continue
                     else:
                         summed_attributes_values[item] = count
+            try:
+                player.max_attack += summed_attributes_values['Attack']
+                player.defence += summed_attributes_values['Defence']
+                player.max_health += summed_attributes_values['Health']
+                player.max_mana += summed_attributes_values['Mana']
+                player.max_stamina += summed_attributes_values['Stamina']
+            except KeyError:
+                player_informations.informations()
+            for item, attribute in player_equipment.player_equipment.items():
+                print(item, attribute)    
+            player_equipment.player_equipment
             changing_equipment()
-            player.max_attack += summed_attributes_values['Attack']
-            player.defence += summed_attributes_values['Defence']
-            player.max_health += summed_attributes_values['Health']
-            player.max_mana += summed_attributes_values['Mana']
-            player.max_stamina += summed_attributes_values['Stamina']
-
 
 def your_equipment():
     print(f"In your pocket u have a:".center(100))

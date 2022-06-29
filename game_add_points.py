@@ -1,6 +1,7 @@
 from enum import IntEnum, Enum
 from game_character import player
 from game_clear_function import clearConsole
+from game_character import player_statistic
 
 
 class Points(Enum):
@@ -18,7 +19,7 @@ def player_stats(move):
         clearConsole()
         while True:
             print(f'{100 * "="}')
-            print(player.character_statistic())
+            print(player_statistic.statistic())
             print(f'{100 * "="}')
             choice = input("Which attribute you want upgrade?[1-7] ").upper()
 
@@ -33,7 +34,7 @@ def player_stats(move):
                     print(f"You dont have a points to upgrade. Your points [{player.getPoints()}]")
 
                 elif int(how_many_points) <= player.getPoints():
-                    print(player.character_statistic())
+                    print(player_statistic.statistic())
                     print(f'You have a {player.getPoints()} upgrade points')
 
                     if Points.HEALTH.name == choice or Points.HEALTH.value == choice:

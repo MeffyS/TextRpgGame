@@ -14,3 +14,4 @@ def map_size():
             continue
         else:
             break
+
