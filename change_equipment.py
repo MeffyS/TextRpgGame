@@ -10,14 +10,14 @@ def changing_equipment():
     print(f'{100 * "="}')
     print("Your character is currently wearing")
     print(f'{100 * "="}')
-    for items in player_equipment.player_equipment:
-        print(items, player_equipment.player_equipment[items])
+    for items in player_equipment.equipment:
+        print(items, player_equipment.equipment[items])
        
     while True:
         item_names = [
-            item for item in player_inventory.player_inventory for item in item]
+            item for item in player_inventory.inventory for item in item]
         eq_names = [
-            item for item in player_equipment.player_equipment]
+            item for item in player_equipment.equipment]
         print(f'{100 * "="}')    
         print('You wearing', eq_names)    
         print(f'{100 * "="}')
@@ -31,7 +31,7 @@ def changing_equipment():
         print(f'{100 * "="}')
         print('Items to change', item_names)
         print(f'{100 * "="}')
-        for player_inventory_item in player_inventory.player_inventory:
+        for player_inventory_item in player_inventory.inventory:
             for player_inventory_new_item, _ in player_inventory_item.items():
                 if choose_item_name == player_inventory_new_item:
                     player_one_type_inventory.append(player_inventory_item)
@@ -56,10 +56,10 @@ def changing_equipment():
                                 item_value = input("Enter a number")
                                 clearConsole()
                                 if int(item_value) <= len(player_one_type_inventory) and int(item_value) >= 0:
-                                    player_equipment.player_equipment[choose_item_name], player_one_type_inventory[int(item_value)][choose_item_name] = player_one_type_inventory[int(
-                                        item_value)][choose_item_name], player_equipment.player_equipment[choose_item_name]
+                                    player_equipment.equipment[choose_item_name], player_one_type_inventory[int(item_value)][choose_item_name] = player_one_type_inventory[int(
+                                        item_value)][choose_item_name], player_equipment.equipment[choose_item_name]
                                     print(f'{100 * "="}')    
-                                    print(f'{choose_item_name} {player_one_type_inventory[int(item_value)][choose_item_name]} CHANGED TO ➡ {choose_item_name} {player_equipment.player_equipment[choose_item_name]}')    
+                                    print(f'{choose_item_name} {player_one_type_inventory[int(item_value)][choose_item_name]} CHANGED TO ➡ {choose_item_name} {player_equipment.equipment[choose_item_name]}')    
                                     break
                                 elif item_value == "Q":
                                     break
@@ -90,16 +90,16 @@ def changing_equipment():
                     item_value = input("Enter a number")
                     clearConsole()
                     if item_value.isdigit():
-                        for item_num, item in enumerate(player_inventory.player_inventory):
+                        for item_num, item in enumerate(player_inventory.inventory):
                             if item == player_one_type_inventory[int(item_value)]:
                                 while True:
                                     choose_item = input(
                                         "Do u want add item to ur eq[Y][N]")
                                     clearConsole()
                                     if choose_item == "Y":
-                                        player_equipment.player_equipment[
+                                        player_equipment.equipment[
                                             choose_item_name] = player_one_type_inventory[int(item_value)][choose_item_name]
-                                        player_inventory.player_inventory.pop(
+                                        player_inventory.inventory.pop(
                                             item_num)
                                         print(f'{100 * "="}')    
                                         print(f'{choose_item_name},{player_one_type_inventory[int(item_value)][choose_item_name]} has been added')

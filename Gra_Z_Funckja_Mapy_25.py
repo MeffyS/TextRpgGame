@@ -1,6 +1,6 @@
 import pyttsx3
 
-from rozmiar_mapy import map_size as game_map
+from rozmiar_mapy import game_map_size
 from game_informations import GameAttributes
 from opcja_otwierania_skrzyni import stamina_regeneration
 from game_clear_function import clearConsole
@@ -52,7 +52,7 @@ clearConsole()
 
 if start_exit == 1:
 
-    game_map()
+    game_map_size()
     clearConsole()
     while True:
         if player.getStamina() > 0:
@@ -64,7 +64,7 @@ if start_exit == 1:
             if player.getStamina() > 0:
                 if f'{move.upper()}' == "N":
                     North_Moves()
-                    while GameAttributes.N == game_map.map:
+                    while GameAttributes.N == game_map_size.map:
                         print(f"{100 * '='}")
                         print(f"Choose a direction [S][D][K]. Commands:[info][chest][statistic][pocket][eq]Katakumby ".center(100))
                         print(f"{100 * '='}")
@@ -73,7 +73,7 @@ if start_exit == 1:
                         main_game_system(move)
                         if f'{move.upper()}' == "S":
                             South_Moves()
-                        if f'{move.upper()}' == "S" and GameAttributes.N < game_map.map:
+                        if f'{move.upper()}' == "S" and GameAttributes.N < game_map_size.map:
                             print(f'{100*"="}'.center(100))
                             print(f"Choose Direction [N][S][D]. Commands:[info][chest][statistic][pocket][eq] ".center(100))
                             print(f'{100*"="}'.center(100))
@@ -91,7 +91,7 @@ if start_exit == 1:
                             stamina_regeneration()
                 if f'{move.upper()}' == "S":
                     South_Moves()
-                    while GameAttributes.S == game_map.map:
+                    while GameAttributes.S == game_map_size.map:
                         if player.getStamina() > 0:
                             print(f"{100 * '='}")
                             print(f"Choose Direction [N][D][C] Commands:[info][chest][statistic][pocket][eq] ".center(100))
@@ -105,7 +105,7 @@ if start_exit == 1:
 
                             if f'{move.upper()}' == "N":
                                 North_Moves()
-                            if f'{move.upper()}' == "N" and GameAttributes.N < game_map.map:
+                            if f'{move.upper()}' == "N" and GameAttributes.N < game_map_size.map:
                                 print(f'{100*"="}'.center(100))
                                 print(f"Choose Direction [N][S][D] Commands:[info][chest][statistic][pocket][eq] ".center(100))
                                 print(f'{100*"="}'.center(100))

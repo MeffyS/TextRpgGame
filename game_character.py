@@ -125,12 +125,11 @@ class CharacterBackpack:
     coins = 0
     pocket = {'HealthPotion':1,'Golden Coin':120,'ManaPotion':20,'Diamond':20}
     chests = {}
-    
 
 
 class CharacterEquipment:
     
-    player_equipment = {
+    equipment = {
     'Bow': [('Magic', 3), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
     'Earrings': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     'Helmet': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
@@ -140,13 +139,9 @@ class CharacterEquipment:
     }
 
 
-
-
 class CharacterInventory:
 
-
-    player_inventory = [{'Sword': [('Stamina', 2)]}, {'Helmet': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
-
+    inventory = [{'Sword': [('Stamina', 2)]}, {'Helmet': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
 
 
 class CharacterStatistic:

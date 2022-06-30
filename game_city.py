@@ -5,7 +5,7 @@ import random
 
 from game_informations import GameAttributes
 from game_character import player
-from game_shop import merchant
+from game_merchant import Merchant
 from game_well import coin_well_draw
 from game_deposit import money_deposit
 from game_clear_function import clearConsole
@@ -258,7 +258,7 @@ def city(move):
                 elif use_service == "SHOP":
                     clearConsole()
                     print(f'Welcome, You just dropped by {CityServices.shop.value}. I can offer you some trading? Here are my goods:'.center(100))
-                    merchant(use_service)
+                    Merchant.merchant(use_service)
                 elif use_service == "WELL":
                     clearConsole()
                     coin_well_draw()

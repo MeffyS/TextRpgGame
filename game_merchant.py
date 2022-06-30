@@ -71,42 +71,45 @@ def sell_item(available_item_list, money, inventory):
 
 
 class Merchant:
-    print("==========MERCHANT==========")
-    for option in ShopOptions:
-        print(f"Enter [{option.value}] to [{option.name}]")
-    while True:
-        select_option = input(f"Enter a [BUY|SELL|LOOK|QUIT] or [1,2,3,4] ").upper()
-        if select_option in [
-            ShopOptions.BUY.name,
-            ShopOptions.SELL.name,
-            ShopOptions.BUY.value,
-            ShopOptions.SELL.value,
-        ]:
-            try:
-                if (
-                    select_option == ShopOptions.BUY.name
-                    or select_option == ShopOptions.BUY.value
+
+    def merchant(move):
+        if move == "SHOP":
+            print("==========MERCHANT==========")
+            for option in ShopOptions:
+                print(f"Enter [{option.value}] to [{option.name}]")
+            while True:
+                select_option = input(f"Enter a [BUY|SELL|LOOK|QUIT] or [1,2,3,4] ").upper()
+                if select_option in [
+                    ShopOptions.BUY.name,
+                    ShopOptions.SELL.name,
+                    ShopOptions.BUY.value,
+                    ShopOptions.SELL.value,
+                ]:
+                    try:
+                        if (
+                            select_option == ShopOptions.BUY.name
+                            or select_option == ShopOptions.BUY.value
+                        ):
+                            GA.Coins, GA.pocket = buy_item(shop_items, GA.Coins, GA.pocket)
+                            break
+                        else:
+                            GA.Coins, GA.pocket = sell_item(shop_items, GA.Coins, GA.pocket)
+                            break
+                    except ValueError:
+                        print(f"Entered value must be postive number")
+
+                elif (
+                    select_option == ShopOptions.LOOK.name
+                    or select_option == ShopOptions.LOOK.value
                 ):
-                    GA.Coins, GA.pocket = buy_item(shop_items, GA.Coins, GA.pocket)
+                    display_item_list()
+                elif (
+                    select_option == ShopOptions.QUIT.name
+                    or select_option == ShopOptions.QUIT.value
+                ):
                     break
                 else:
-                    GA.Coins, GA.pocket = sell_item(shop_items, GA.Coins, GA.pocket)
-                    break
-            except ValueError:
-                print(f"Entered value must be postive number")
-
-        elif (
-            select_option == ShopOptions.LOOK.name
-            or select_option == ShopOptions.LOOK.value
-        ):
-            display_item_list()
-        elif (
-            select_option == ShopOptions.QUIT.name
-            or select_option == ShopOptions.QUIT.value
-        ):
-            break
-        else:
-            print(f"You entered incorrect value [{select_option}]. Please try again")
+                    print(f"You entered incorrect value [{select_option}]. Please try again")
 
 
 print("INVENTORY", GA.pocket)

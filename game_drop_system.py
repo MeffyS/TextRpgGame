@@ -145,7 +145,7 @@ def inventory_add_item(inventory, item_name, item_attribute):
     add_to_inventory = input("Do you want add item to your inventory? ")
     if add_to_inventory == "Y":
         inventory.append({item_name:list(item_attribute)})
-        for item in player_inventory.inventory():
+        for item in player_inventory.inventory:
             print(item)
         print(f"ITEM HAS BEEN ADDED TO INVENTORY")
     else:
@@ -193,5 +193,5 @@ def draw_items(equipment, inventory, item_name, item_attribute):
 item_n,item_attr= item_draw()
 def drop_item():
     while True:
-        draw_items(player_equipment.equipment(),player_inventory.inventory(),item_n, item_attr)
+        draw_items(player_equipment.equipment,player_inventory.inventory,item_n, item_attr)
         break

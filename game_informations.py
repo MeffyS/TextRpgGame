@@ -29,14 +29,14 @@ class GameAttributes:
     player_skills = []
 
 
-used_items_by_player = player_equipment.player_equipment.items()
+used_items_by_player = player_equipment.equipment.items()
 equipment_name_count = GameAttributes.pocket.items()
 
 
 def main_equipment(move):
     summed_attributes_values = {}
     if move == "EQ":
-        if player_equipment.player_equipment == {}:
+        if player_equipment.equipment == {}:
             print("Actually you dont have a items")
             print(summed_attributes_values)
         else:
@@ -55,9 +55,9 @@ def main_equipment(move):
                 player.max_stamina += summed_attributes_values['Stamina']
             except KeyError:
                 player_informations.informations()
-            for item, attribute in player_equipment.player_equipment.items():
+            for item, attribute in player_equipment.equipment.items():
                 print(item, attribute)    
-            player_equipment.player_equipment
+            player_equipment.equipment
             changing_equipment()
 
 def your_equipment():
