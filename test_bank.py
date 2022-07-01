@@ -11,11 +11,11 @@ class BankOptions(Enum):
 
 class BankWithdraw:
 
-    def withdraw():
+    def withdraw(self):
         print(f"You choosed option WITHDRAW")
         withdraw = input(f"How many coins you want withdrawn?")
         if int(withdraw) > BankBalance.balance:
-            print(f"You dont have {int(withdraw)} in bank. In Your bank balance you got {BankBalance.balance}")
+            print(f"You dont have {int(withdraw)} in bank. In Your bank balance you got {game_bank_balance.balance}")
         elif int(withdraw) == 0:
             print(f"You cannot withdrawn 0 coins")
 
@@ -41,10 +41,10 @@ class Bank:
         print(f"[{option.value}] {option.name}")
     bank_choice = input("Please enter ur choice") 
     if bank_choice == BankOptions.DEPOSIT.name or int(bank_choice) == BankOptions.DEPOSIT.value:
-        print("DEPOST")
+        print("DEPOSiT")
         pass
     elif bank_choice == BankOptions.WITHDRAW.name or int(bank_choice) == BankOptions.WITHDRAW.value:
-        BankWithdraw.withdraw()
+        pass
 
     elif bank_choice == BankOptions.BALANCE.name or int(bank_choice) == BankOptions.BALANCE.value:
         pass
@@ -53,6 +53,4 @@ class Bank:
     elif bank_choice == BankOptions.QUIT.name or int(bank_choice) == BankOptions.QUIT.value:
         pass
 
-bank_withdraw = BankWithdraw()
-bank_balance = BankBalance()
 

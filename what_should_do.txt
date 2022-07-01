@@ -1,1 +1,2 @@
 We should a fix bug with a stamine and campfire. If we have less than 15> we cannot use a campfire.
+Fix golden coins becouse arent added to pocket

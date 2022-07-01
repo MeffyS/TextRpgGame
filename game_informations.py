@@ -1,8 +1,10 @@
+from telnetlib import GA
 import time
 from game_character import player
 from game_character import player_equipment
 from game_character import player_statistic
 from game_character import player_informations
+from game_character import CharacterBackpack
 from change_equipment import changing_equipment
 from game_clear_function import clearConsole
 
@@ -62,6 +64,7 @@ def main_equipment(move):
 
 def your_equipment():
     print(f"In your pocket u have a:".center(100))
+    print()
     for eq_item, count in equipment_name_count:
         print(f'{eq_item}:{count}'.center(100))
     while True:
@@ -165,7 +168,8 @@ def informations(info):
 
 def pocket(pocket):
     if pocket == 'pocket':
-        your_equipment()
+        # your_equipment()
+        print(GameAttributes.pocket)
 
 
 def direction_move():
