@@ -119,10 +119,11 @@ class CharacterLevelUp:
                 player_backpack.pocket['Golden Coin'] = 1
             else:
                 player_backpack.pocket['Golden Coin'] += 1
+                
 
 class CharacterBackpack:
 
-    coins = 0
+    coins = 12
     pocket = {'HealthPotion':1,'Golden Coin':120,'ManaPotion':20,'Diamond':20}
     chests = {}
 
@@ -137,12 +138,13 @@ class CharacterEquipment:
     'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     'Boots': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     }
+    
 
 
 class CharacterInventory:
 
     inventory = [{'Sword': [('Stamina', 2)]}, {'Helmet': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
-
+    
 
 class CharacterStatistic:
 
@@ -156,6 +158,7 @@ class CharacterInformation:
         character_info = (
             f"Character informations\n Health:[{player.health}],\n Mana:[{player.mana}]\n Stamina:[{player.stamina}] \
             \n Defence:[{player.defence}],\n Attack:[{player.max_attack}],\n Magic:[{player.magic}],\n Lucky:[{player.lucky}],\n  Experience:[{player.experience}]")
+        
         return character_info
 
 
