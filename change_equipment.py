@@ -97,10 +97,8 @@ def changing_equipment():
                                         "Do u want add item to ur eq[Y][N]")
                                     clearConsole()
                                     if choose_item == "Y":
-                                        player_equipment.equipment[
-                                            choose_item_name] = player_one_type_inventory[int(item_value)][choose_item_name]
-                                        player_inventory.inventory.pop(
-                                            item_num)
+                                        player_equipment.equipment[choose_item_name] = player_one_type_inventory[int(item_value)][choose_item_name]
+                                        player_inventory.inventory.pop(item_num)
                                         print(f'{100 * "="}')    
                                         print(f'{choose_item_name},{player_one_type_inventory[int(item_value)][choose_item_name]} has been added')
                                         

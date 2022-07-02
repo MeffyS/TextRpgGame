@@ -143,7 +143,7 @@ class CharacterEquipment:
 
 class CharacterInventory:
 
-    inventory = [{'Sword': [('Stamina', 2)]}, {'Helmet': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
+    inventory = [{'Sword': [('Stamina', 2)]},{'Sword': [('Stamina', 3)]},{'Sword': [('Stamina', 4)]}, {'Gloves': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
     
 
 class CharacterStatistic:
