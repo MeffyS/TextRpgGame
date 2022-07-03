@@ -7,6 +7,7 @@ from game_character import player_informations
 from game_character import CharacterBackpack
 from change_equipment import changing_equipment
 from game_clear_function import clearConsole
+from test_change_eq import PlayerChangeEquipment
 
 
 class GameAttributes:
@@ -60,7 +61,8 @@ def main_equipment(move):
             for item, attribute in player_equipment.equipment.items():
                 print(item, attribute)    
             player_equipment.equipment
-            changing_equipment()
+            player_eq = PlayerChangeEquipment()
+            player_eq.player_change_eq_options()
 
 def your_equipment():
     print(f"In your pocket u have a:".center(100))

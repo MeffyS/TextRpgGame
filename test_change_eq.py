@@ -12,6 +12,7 @@ class ChangeEqOptions(Enum):
 class PlayerChangeEquipment:
 
     item_name_list = [item_name for item in player_inventory.inventory for item_name,item_attribute in item.items()]
+    print(item_name_list)
 
     @staticmethod
     def inventory_items():
@@ -24,23 +25,29 @@ class PlayerChangeEquipment:
             print(number,(equipment_item, attributes))
 
     def change_of_items(self):
-        print(set(PlayerChangeEquipment.item_name_list))
-        item_name_list = []
+        print(list(set(PlayerChangeEquipment.item_name_list)))
+        one_type_item_list = []
         type_of_item = input("Any type of items you want change ")
-        for item in player_inventory.inventory:
-            for item_name, item_attribute in item.items():
-                if type_of_item == item_name:
-                    item_name_list.append(item)
-        for number, item in enumerate(item_name_list):
-            print(number, item)               
-        enter_item_number = input("Enter item number which you want change")         
-        if type_of_item in [item for item in player_equipment.equipment]:
-            if item in item_name_list:
-                player_equipment.equipment[type_of_item],item_name_list[int(enter_item_number)][type_of_item] = item_name_list[int(enter_item_number)][type_of_item],player_equipment.equipment[type_of_item]
+        if type_of_item in PlayerChangeEquipment.item_name_list:
+            for item in player_inventory.inventory:
+                for item_name, item_attribute in item.items():
+                    if type_of_item == item_name:
+                        one_type_item_list.append(item)
+            for number, item in enumerate(one_type_item_list):
+                print(number, item)               
+            enter_item_number = input("Enter item number which you want change")  
+            try:       
+                if type_of_item in [item for item in player_equipment.equipment]:
+                    if item in one_type_item_list:
+                        player_equipment.equipment[type_of_item],one_type_item_list[int(enter_item_number)][type_of_item] = one_type_item_list[int(enter_item_number)][type_of_item],player_equipment.equipment[type_of_item]
 
+                else:
+                    player_equipment.equipment[type_of_item] = one_type_item_list[int(enter_item_number)][type_of_item]
+                    player_inventory.inventory.pop(int(enter_item_number))
+            except IndexError:
+                print("You entered incorrect number")
         else:
-            player_equipment.equipment[type_of_item] = item_name_list[int(enter_item_number)][type_of_item]
-            player_inventory.inventory.pop(int(enter_item_number))
+            print("This item is not available in inventory")
 
     
     def player_change_eq_options(self):
@@ -62,6 +69,4 @@ class PlayerChangeEquipment:
                     print("You cannot enter a letters except [Q]")  
 
 
-a = PlayerChangeEquipment()
-a.player_change_eq_options()
 

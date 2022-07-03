@@ -48,7 +48,7 @@ skill_price = {
     'HealthRegeneration': 1000,
     'GreatHealthRegeneration': 3000,
     'UltraHealthRegeneration': 5000
-}
+}                                                                           
 
 
 class GamblingGames(Enum):
