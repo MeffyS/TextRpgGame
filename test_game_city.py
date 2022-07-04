@@ -287,28 +287,38 @@ class CityCampfire(Enum):
 
 class City:
 
-    def city():
+    
+    def city(self):
         services = input(f"Check list of available services in city[Service][Info][Q]").upper()
         if services == "SERVICE":
-            for service in CityNpcServices:
-                print(service.value.value, service.name)
-            print(CityNpc.Edward.value)
-            select_service = input("Enter service which you want to use")
-            if select_service == CityNpcServices.chest.name or int(select_service) == CityNpc.Edward.value:
-                print("CHEST")
-            elif select_service == CityNpcServices.campfire.name or int(select_service) == CityNpc.Fiora.value:
-                print("CAMPFIRE")
-            elif select_service == CityNpcServices.bank.name or int(select_service) == CityNpc.Marie.value:
-                print("BANK")
-            elif select_service == CityNpcServices.blacksmith.name or int(select_service) == CityNpc.Tom.value:
-                print("BLACKSMITH")
-            elif select_service == CityNpcServices.gambling.name or int(select_service) == CityNpc.Max.value:
-                CityGames.play_city_game()
-            elif select_service == CityNpcServices.shop.name or int(select_service) == CityNpc.Figo.value:
-                print("SHOP")
-            elif select_service == CityNpcServices.magic.name or int(select_service) == CityNpc.Amigo.value:
-                print("MAGIC")
+            while True:
+                try:
+                    for service in CityNpcServices:
+                        print(service.value.value, service.name)
+                    print(CityNpc.Edward.value)
+                    select_service = input("Enter service which you want to use")
+                    if select_service == CityNpcServices.chest.name or int(select_service) == CityNpc.Edward.value:
+                        print("CHEST")
+                    elif select_service == CityNpcServices.campfire.name or int(select_service) == CityNpc.Fiora.value:
+                        CityCampfire.campfire()
+                    elif select_service == CityNpcServices.bank.name or int(select_service) == CityNpc.Marie.value:
+                        print("BANK")
+                    elif select_service == CityNpcServices.blacksmith.name or int(select_service) == CityNpc.Tom.value:
+                        print("BLACKSMITH")
+                    elif select_service == CityNpcServices.gambling.name or int(select_service) == CityNpc.Max.value:
+                        CityGames.play_city_game()
+                    elif select_service == CityNpcServices.shop.name or int(select_service) == CityNpc.Figo.value:
+                        print("SHOP")
+                    elif select_service == CityNpcServices.magic.name or int(select_service) == CityNpc.Amigo.value:
+                        print("MAGIC")
+                except ValueError:
+                    if select_service == "Q":
+                        break
+                    else:
+                        print("Entered value must be a number, except [Q]")
+        
         
 
 
-CityCampfire.campfire()
+a = City()
+a.city()
