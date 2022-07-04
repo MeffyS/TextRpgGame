@@ -109,7 +109,7 @@ class GamblingGames(Enum):
                 while True:
                     try:
                         if i > 0:
-                            enter_number = input("Choose number [0-2000]")
+                            enter_number = input("Choose number [1-2000]")
                             if int(enter_number) > 2000:
                                 print(
                                     "The number cannot be greater than [2000]")
