@@ -1,2 +1,26 @@
 We should a fix bug with a stamine and campfire. If we have less than 15> we cannot use a campfire.
-Fix golden coins becouse arent added to pocket
+
+
+What is done:
+change_equipment => test_change_eq
+game_add_poins => Good
+game_character ==> good
+game_church ==> good
+game_city ==> test_game_city
+game_decorators ==> good
+game_deposit ==> test_bank
+game_player_attributes == > Moved to game_character
+game_well ==> GOod
+gold_chances_variables ==> good
+game_informations ==> test_game_informations
+well_monster ==> test_monster
+
+
+
+rozmiar_mapy ==> rename only
+game_moves ==> TO CHANGE
+game_stage_chest_open ==> TO CHANGE
+game_systen ==> To change
+Gra_Z_Funkcja_mapy_25 ==> To Change + rename
+opcja_otwierania_skrzyni ==> TO change + rename
+player_skills ==> small edit, 

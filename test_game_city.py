@@ -302,7 +302,7 @@ class City:
                     elif select_service == CityNpcServices.campfire.name or int(select_service) == CityNpc.Fiora.value:
                         CityCampfire.campfire()
                     elif select_service == CityNpcServices.bank.name or int(select_service) == CityNpc.Marie.value:
-                        b.bank()
+                        bank.bank()
                     elif select_service == CityNpcServices.blacksmith.name or int(select_service) == CityNpc.Tom.value:
                         print("BLACKSMITH")
                     elif select_service == CityNpcServices.gambling.name or int(select_service) == CityNpc.Max.value:
@@ -320,6 +320,5 @@ class City:
         
 
 
-a = City()
-b = NewBank()
-a.city()
+bank = NewBank()
+

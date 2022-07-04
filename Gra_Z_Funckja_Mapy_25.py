@@ -1,4 +1,4 @@
-import pyttsx3
+
 
 from rozmiar_mapy import game_map_size
 from game_informations import GameAttributes
@@ -11,38 +11,17 @@ from game_system import main_game_system
 from game_moves import North_Moves
 from game_moves import South_Moves
 from game_moves import Down_Moves
-from game_city import city
+from test_game_city import City
 
 
-engine = pyttsx3.init()
-rate = engine.getProperty("rate")
-engine.setProperty("rate", 150)
-
-# Bot writting
 
 
-def talk():
-    return engine.runAndWait()
-
-# Text for Bota
-
-
-def botText(text):
-    engine.say(f"{text}")
-
-
-# botText("Podaj nazwe użytkownika")
-# talk()
-# username = input("Podaj nazwę użytkownika")
-# botText(f"Witaj,{username}")
-# talk()
-# Zaczęcie gry
 print(f"Start[1]".center(100))
 print(f"Leave[0]".center(100))
 
 
 start_exit = int(input(f"".center(50)))
-
+username = input("Enter username ")
 
 clearConsole()
 
@@ -51,7 +30,6 @@ clearConsole()
 
 
 if start_exit == 1:
-
     game_map_size()
     clearConsole()
     while True:
@@ -101,7 +79,7 @@ if start_exit == 1:
                             clearConsole()
 
                             if f'{move.upper()}' == "C":
-                                city(move)
+                                City.city(move)
 
                             if f'{move.upper()}' == "N":
                                 North_Moves()

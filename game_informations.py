@@ -1,4 +1,4 @@
-from telnetlib import GA
+
 import time
 from game_character import player
 from game_character import player_equipment

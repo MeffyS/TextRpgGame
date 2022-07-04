@@ -1,4 +1,5 @@
 class Character:
+    
     def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=10, max_stamina=120, min_attack=50, max_attack=50, defence=1, magic=11, lucky=1, level=1, experience=97, points=20, skill_count=2):
         self.health = health
         self.max_health = max_health
@@ -156,8 +157,14 @@ class CharacterInformation:
 
     def informations(self):
         character_info = (
-            f"Character informations\n Health:[{player.health}],\n Mana:[{player.mana}]\n Stamina:[{player.stamina}] \
-            \n Defence:[{player.defence}],\n Attack:[{player.max_attack}],\n Magic:[{player.magic}],\n Lucky:[{player.lucky}],\n  Experience:[{player.experience}]")
+            f"player statistic \n Health:[{player.health}] \n Mana:[{player.mana}] \n Stamina:[{player.stamina}] \
+            \n Defence:[{player.defence}] \n Attack:[{player.max_attack}] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())
+        print(f"PLAYER INFORMATIONS")
+        print(f"USERNAME: ")
+        print(f"LEVEL: {player.level}")
+        print(f"EXPERIENCE: {player.experience}")
+        print(f"{100*'='}")
+        print(character_info)
         
         return character_info
 
