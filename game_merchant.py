@@ -1,5 +1,5 @@
-from game_informations import GameAttributes as GA
-from enum import Enum
+from game_character import player_backpack
+from enum import Enum, auto
 
 shop_items = {
     "ManaPotion": 50,
@@ -12,7 +12,7 @@ class ShopOptions(Enum):
     BUY = "1"
     SELL = "2"
     LOOK = "3"
-    QUIT = "4"
+    QUIT = "Q"
 
 
 def display_item_list():
@@ -72,45 +72,44 @@ def sell_item(available_item_list, money, inventory):
 
 class Merchant:
 
-    def merchant(move):
-        if move == "SHOP":
-            print("==========MERCHANT==========")
+    def merchant():
+        print("==========MERCHANT==========")
+        while True:
             for option in ShopOptions:
                 print(f"Enter [{option.value}] to [{option.name}]")
-            while True:
-                select_option = input(f"Enter a [BUY|SELL|LOOK|QUIT] or [1,2,3,4] ").upper()
-                if select_option in [
-                    ShopOptions.BUY.name,
-                    ShopOptions.SELL.name,
-                    ShopOptions.BUY.value,
-                    ShopOptions.SELL.value,
-                ]:
-                    try:
-                        if (
-                            select_option == ShopOptions.BUY.name
-                            or select_option == ShopOptions.BUY.value
-                        ):
-                            GA.Coins, GA.pocket = buy_item(shop_items, GA.Coins, GA.pocket)
-                            break
-                        else:
-                            GA.Coins, GA.pocket = sell_item(shop_items, GA.Coins, GA.pocket)
-                            break
-                    except ValueError:
-                        print(f"Entered value must be postive number")
+            select_option = input(f"Enter a [BUY|SELL|LOOK|QUIT] or [1,2,3,Q] ").upper()
+            if select_option in [
+                ShopOptions.BUY.name,
+                ShopOptions.SELL.name,
+                ShopOptions.BUY.value,
+                ShopOptions.SELL.value,
+            ]:
+                try:
+                    if (
+                        select_option == ShopOptions.BUY.name
+                        or select_option == ShopOptions.BUY.value
+                    ):
+                        player_backpack.coins, player_backpack.pocket = buy_item(shop_items, player_backpack.coins, player_backpack.pocket)
+                        break
+                    else:
+                        player_backpack.coins, player_backpack.pocket = sell_item(shop_items, player_backpack.coins, player_backpack.pocket)
+                        break
+                except ValueError:
+                    print(f"Entered value must be postive number")
 
-                elif (
-                    select_option == ShopOptions.LOOK.name
-                    or select_option == ShopOptions.LOOK.value
-                ):
-                    display_item_list()
-                elif (
-                    select_option == ShopOptions.QUIT.name
-                    or select_option == ShopOptions.QUIT.value
-                ):
-                    break
-                else:
-                    print(f"You entered incorrect value [{select_option}]. Please try again")
+            elif (
+                select_option == ShopOptions.LOOK.name
+                or select_option == ShopOptions.LOOK.value
+            ):
+                display_item_list()
+            elif (
+                select_option == ShopOptions.QUIT.name
+                or select_option == ShopOptions.QUIT.value
+            ):
+                break
+            else:
+                print(f"You entered incorrect value [{select_option}]. Please try again")
 
 
-print("INVENTORY", GA.pocket)
-print("MONEY", GA.Coins)
+print("INVENTORY", player_backpack.pocket)
+print("MONEY", player_backpack.coins)

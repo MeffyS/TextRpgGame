@@ -57,6 +57,7 @@ def player_stats(move):
                         player.points = player.getPoints() - how_many_points
                         print(f"Left {player.points} points")
                         clearConsole()
+                        
                     elif Points.DEFENCE.name == choice or Points.DEFENCE.value == choice:
                         player.defence = player.getDefence() + how_many_points
                         player.points = player.getPoints() - how_many_points

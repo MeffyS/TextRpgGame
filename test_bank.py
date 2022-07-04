@@ -86,8 +86,3 @@ class NewBank:
                 else:
                     print("You cannot enter a letters except [Q]")  
         
-
-b = NewBank()
-b.bank()
-print(player_backpack.coins)
-print(b.balance)

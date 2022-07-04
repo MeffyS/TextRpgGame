@@ -13,9 +13,3 @@ def church():
         print("Any good villager help you, and pulled out you from well ")
         print(f'{100*"="}')
         
-        # church_center = input("What do u want to do?[Q] ").upper()
-        # if church_center == "Q":
-        # move = 'C'
-        # player.health = player.max_health
-        # game_city.city(move)
-        

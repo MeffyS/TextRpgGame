@@ -91,7 +91,7 @@ class Ghost(Monster):
 
 
 def draw_monster():
-    monster_list = [Rat()]
+    monster_list = [Rat(),Bat(),Bug(),Spider(),Slime(),Ghost()]
 
     return random.choice(monster_list)
 

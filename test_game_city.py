@@ -4,7 +4,8 @@ import time
 from enum import Enum, auto
 from game_character import player_backpack
 from game_character import player
-from game_city import CityServices
+from game_merchant import Merchant
+from test_bank import NewBank
 
 
 class CityNpc(Enum):
@@ -265,16 +266,16 @@ class CityCampfire(Enum):
                                 break  
                             else:
                                 print("Entered value must be a number, except [Q]")
-                elif int(stamine_regen) == CityCampfire.campfire_half.value or stamine_regen == 'half':
+                elif stamine_regen == 'half' or int(stamine_regen) == CityCampfire.campfire_half.value:
                     for regeneration in range(int(stamine_to_regeneration/2))[::-1]:
                         time.sleep(0.5)
                         print(regeneration)
                     player.stamina += stamine_to_regeneration/2
-                elif int(stamine_regen) == CityCampfire.campfire_max.value or stamine_regen == 'max':
+                elif stamine_regen == 'max' or int(stamine_regen) == CityCampfire.campfire_max.value:
                     for regeneration in range(int(stamine_to_regeneration))[::-1]:
                         time.sleep(0.5)
                         print(regeneration)
-                elif int(stamine_regen) == CityCampfire.campfire_quit.value or stamine_regen == 'quit':
+                elif stamine_regen == 'quit' or int(stamine_regen) == CityCampfire.campfire_quit.value:
                     break
     
             except ValueError:
@@ -294,21 +295,20 @@ class City:
             while True:
                 try:
                     for service in CityNpcServices:
-                        print(service.value.value, service.name)
-                    print(CityNpc.Edward.value)
+                        print(f"[{service.value.value}] {service.name.upper()}")
                     select_service = input("Enter service which you want to use")
                     if select_service == CityNpcServices.chest.name or int(select_service) == CityNpc.Edward.value:
                         print("CHEST")
                     elif select_service == CityNpcServices.campfire.name or int(select_service) == CityNpc.Fiora.value:
                         CityCampfire.campfire()
                     elif select_service == CityNpcServices.bank.name or int(select_service) == CityNpc.Marie.value:
-                        print("BANK")
+                        b.bank()
                     elif select_service == CityNpcServices.blacksmith.name or int(select_service) == CityNpc.Tom.value:
                         print("BLACKSMITH")
                     elif select_service == CityNpcServices.gambling.name or int(select_service) == CityNpc.Max.value:
                         CityGames.play_city_game()
                     elif select_service == CityNpcServices.shop.name or int(select_service) == CityNpc.Figo.value:
-                        print("SHOP")
+                        Merchant.merchant()
                     elif select_service == CityNpcServices.magic.name or int(select_service) == CityNpc.Amigo.value:
                         print("MAGIC")
                 except ValueError:
@@ -321,4 +321,5 @@ class City:
 
 
 a = City()
+b = NewBank()
 a.city()

@@ -8,9 +8,6 @@ from game_character import player_level_up
 from game_clear_function import clearConsole
 
 
-
-
-
 def draw_coins_count(value):
     minimal_coins_count = (value - 0.9) * (GameAttributes.Floor)
     maximal_coins_count = (value + 100) * (GameAttributes.Floor)
