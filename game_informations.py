@@ -16,7 +16,7 @@ class GameAttributes:
     Floor = 1
     Moves = 0
     Coins = 6000
-    player_chests = {}
+    player_chests = {'pink':2}
     opened_chests = {}
     pocket = {'HealthPotion':1,'Golden Coin':120,'ManaPotion':20,'Diamond':20}
     player_equipment = {

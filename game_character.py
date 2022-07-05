@@ -126,7 +126,7 @@ class CharacterBackpack:
 
     coins = 12
     pocket = {'HealthPotion':1,'Golden Coin':120,'ManaPotion':20,'Diamond':20}
-    chests = {}
+    chests = {'pink':1, 'green':2}
 
 
 class CharacterEquipment:
@@ -154,6 +154,8 @@ class CharacterStatistic:
         return statistic_info
 
 class CharacterInformation:
+    game_floor = 1
+    opened_chests = {}
 
     def informations(self):
         character_info = (
@@ -163,6 +165,7 @@ class CharacterInformation:
         print(f"USERNAME: ")
         print(f"LEVEL: {player.level}")
         print(f"EXPERIENCE: {player.experience}")
+        print(f"FLOOR: {self.game_floor}")
         print(f"{100*'='}")
         print(character_info)
         

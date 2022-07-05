@@ -23,7 +23,7 @@ chance_on_coins = {
     coins_in_chest.yellow: 8,
     coins_in_chest.orange: 16,
     coins_in_chest.red: 32,
-    coins_in_chest.pink: 64,
+    coins_in_chest.pink: 641,
 
 }
 

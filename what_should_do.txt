@@ -14,12 +14,12 @@ game_well ==> GOod
 gold_chances_variables ==> good
 game_informations ==> test_game_informations
 well_monster ==> test_monster
-
+game_stage_chest_open ==> test_game_stage_chest_open
 
 
 rozmiar_mapy ==> rename only
 game_moves ==> TO CHANGE
-game_stage_chest_open ==> TO CHANGE
+
 game_systen ==> To change
 Gra_Z_Funkcja_mapy_25 ==> To Change + rename
 opcja_otwierania_skrzyni ==> TO change + rename
