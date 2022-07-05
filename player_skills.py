@@ -73,30 +73,6 @@ class GreatFireBallSkill(FireBallSkill):
             print(
                 f"You cannot use this skill becouse your mana is to low. {player.mana}/{self.mana}")
 
-
-class CityPortalSkill(PlayerSkill):
-
-    def __init__(self, mana=0):
-        super().__init__(mana)
-        self.mana = 200
-
-    @skill_name
-    def city_portal(self):
-        portal_city = 'C'
-        if player.mana >= self.mana:
-            player.mana -= self.mana
-            print(f'{100*"="}')
-            print(
-                f"The {self.__class__.__name__} has been used. Left mana:{player.mana}/{player.max_mana}. Click Q to back to fight".center(100))
-            print(f'{100*"="}')
-            city(portal_city)
-            
-            
-        else:
-            print(
-                f"You cannot use this skill becouse your mana is to low. {player.mana}/{self.mana}")
-
-
 class ThunderSkill(PlayerSkill):
     def __init__(self, mana=0, min_attack=0, max_attack=0):
         super().__init__(mana, min_attack, max_attack)
@@ -231,12 +207,6 @@ def used_skill(self, mob_health,mob_attack_min,mob_attack_max,mob_defence):
                         # draw_items()
                         break
                     break
-                elif what_do == "CT" or what_do == 'CITYTELEPORT' or what_do == '1':
-                    ct = CityPortalSkill()
-                    ct.city_portal()
-                    break
-                    
-                
                 elif what_do == "T" or what_do == 'THUNDERSKILL' or what_do == '2':
                     ts = ThunderSkill()
                     ts.thunder()

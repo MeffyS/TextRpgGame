@@ -50,9 +50,3 @@ class OpenChest:
             print('You dont have chests top open')
             print(f"Opened Chests: {opened_chests}")
 
-a = OpenChest()
-a.drawing_coins(1101)
-print(a.drawing_coins(23))
-
-
-a.chest_opening()

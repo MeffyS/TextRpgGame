@@ -6,6 +6,7 @@ from game_character import player_backpack
 from game_character import player
 from game_merchant import Merchant
 from test_bank import NewBank
+from game_well import coin_well_draw
 
 
 class CityNpc(Enum):
@@ -16,6 +17,7 @@ class CityNpc(Enum):
     Max = auto()
     Figo = auto()
     Amigo = auto()
+    Frank = auto()
 
 class CityNpcServices(Enum):
     chest = CityNpc.Edward
@@ -25,6 +27,7 @@ class CityNpcServices(Enum):
     gambling = CityNpc.Max
     shop = CityNpc.Figo
     magic = CityNpc.Amigo
+    well = CityNpc.Frank
 
 class CitySkills(Enum):
     FireBall = auto()
@@ -311,6 +314,8 @@ class City:
                         Merchant.merchant()
                     elif select_service == CityNpcServices.magic.name or int(select_service) == CityNpc.Amigo.value:
                         print("MAGIC")
+                    elif select_service == CityNpcServices.well.name or int(select_service) == CityNpc.Frank.value:
+                        coin_well_draw()
                 except ValueError:
                     if select_service == "Q":
                         break

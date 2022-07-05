@@ -143,28 +143,34 @@ def item_draw():
 
 def inventory_add_item(inventory, item_name, item_attribute):
     add_to_inventory = input("Do you want add item to your inventory? ")
-    if add_to_inventory == "Y":
-        inventory.append({item_name:list(item_attribute)})
-        for item in player_inventory.inventory:
-            print(item)
-        print(f"ITEM HAS BEEN ADDED TO INVENTORY")
-    else:
-        print({item_name:list(item_attribute)})
-        item = {item_name:list(item_attribute)}
-        del item
-
+    while True:
+        if add_to_inventory == "Y":
+            inventory.append({item_name:list(item_attribute)})
+            for item in player_inventory.inventory:
+                print(item)
+            print(f"ITEM HAS BEEN ADDED TO INVENTORY")
+            break
+        else:
+            print({item_name:list(item_attribute)})
+            item = {item_name:list(item_attribute)}
+            del item
+            break
 
 def add_item(equipment, inventory, item_name, item_attribute):
     print(f'You found a {item_name}, with attributes as {item_attribute}')
     add_to_equipment = input("Do you want add item to your equipment? ")
-    if add_to_equipment == "Y":
-        if item_name in equipment:
-            inventory_add_item(inventory, item_name, item_attribute)
+    while True:
+        if add_to_equipment == "Y":
+            if item_name in equipment:
+                inventory_add_item(inventory, item_name, item_attribute)
+                break
+            else:
+                equipment[item_name] = item_attribute
+                print(f"ITEM HAS BEEN ADDED TO EQUIPMENT")
+                break
         else:
-            equipment[item_name] = item_attribute
-            print(f"ITEM HAS BEEN ADDED TO EQUIPMENT")
-    else:
-        print("ITEM HAS BEEN DELETED")
+            print("ITEM HAS BEEN DELETED")
+            break
 
 def draw_items(equipment, inventory, item_name, item_attribute):
     drop = Enum("drop_or_nothing", ("DROP", "NOTHING"))
@@ -180,6 +186,7 @@ def draw_items(equipment, inventory, item_name, item_attribute):
     if search_monster_body == "Y":
         if draw_chance_on_drop == drop.DROP:
             add_item(equipment, inventory, item_name, item_attribute)
+
         else:
             print("The monster loot is nothing")
 
@@ -190,8 +197,10 @@ def draw_items(equipment, inventory, item_name, item_attribute):
 
 
 
-item_n,item_attr= item_draw()
+
 def drop_item():
     while True:
+        item_n,item_attr= item_draw()
         draw_items(player_equipment.equipment,player_inventory.inventory,item_n, item_attr)
         break
+

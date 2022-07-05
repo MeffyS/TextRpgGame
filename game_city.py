@@ -6,7 +6,6 @@ import random
 from game_informations import GameAttributes
 from game_character import player
 from game_merchant import Merchant
-from game_well import coin_well_draw
 from game_deposit import money_deposit
 from game_clear_function import clearConsole
 

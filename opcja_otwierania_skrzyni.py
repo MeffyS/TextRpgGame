@@ -4,6 +4,7 @@ from game_character import player
 import time
 from game_clear_function import clearConsole as clearConsole
 from game_stage_chest_open import chests_opening as game_open_stage
+from test_game_stage_chest_open import OpenChest
 
 
 def chest_opening(chest):
@@ -12,8 +13,8 @@ def chest_opening(chest):
         open_chest = input(
             "Do you want go to opening chest option? Yes/No ").upper()
         if open_chest == "YES":
-
-            game_open_stage()
+            open_chest = OpenChest()
+            open_chest.chest_opening()
 
         else:
             pass
