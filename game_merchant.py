@@ -2,9 +2,9 @@ from game_character import player_backpack
 from enum import Enum, auto
 
 shop_items = {
-    "ManaPotion": 50,
-    "HealthPotion": 100,
-    "StaminaPotion": 150,
+    "SmallManaPotion": 50,
+    "SmallHealthPotion": 100,
+    "SmallStaminaPotion": 150,
 }
 
 
@@ -89,10 +89,10 @@ class Merchant:
                         select_option == ShopOptions.BUY.name
                         or select_option == ShopOptions.BUY.value
                     ):
-                        player_backpack.coins, player_backpack.pocket = buy_item(shop_items, player_backpack.coins, player_backpack.pocket)
+                        player_backpack.coins, player_backpack.potion_pocket = buy_item(shop_items, player_backpack.coins, player_backpack.potion_pocket)
                         break
                     else:
-                        player_backpack.coins, player_backpack.pocket = sell_item(shop_items, player_backpack.coins, player_backpack.pocket)
+                        player_backpack.coins, player_backpack.potion_pocket = sell_item(shop_items, player_backpack.coins, player_backpack.potion_pocket)
                         break
                 except ValueError:
                     print(f"Entered value must be postive number")
@@ -111,5 +111,5 @@ class Merchant:
                 print(f"You entered incorrect value [{select_option}]. Please try again")
 
 
-print("INVENTORY", player_backpack.pocket)
+print("INVENTORY", player_backpack.potion_pocket)
 print("MONEY", player_backpack.coins)

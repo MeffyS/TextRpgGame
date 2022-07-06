@@ -1,5 +1,5 @@
 from game_informations import GameAttributes as GameAttributes
-
+from game_character import player_backpack
 import random
 import gold_chances_variables
 
@@ -26,10 +26,10 @@ def draw_chest_key_nothing(draw):
     elif gold_chances_variables.draw == gold_chances_variables.chest_key_or_nothing.KEY:
         print(f"You found catacombs key".center(100))
         print(f'{100*"="}'.center(100))
-        if gold_chances_variables.chest_key_or_nothing.KEY.name not in GameAttributes.pocket:
-            GameAttributes.pocket[gold_chances_variables.chest_key_or_nothing.KEY.name] = 1
+        if gold_chances_variables.chest_key_or_nothing.KEY.name not in player_backpack.dungeon_items:
+            player_backpack.dungeon_items[gold_chances_variables.chest_key_or_nothing.KEY.name] = 1
         else:
-            GameAttributes.pocket[gold_chances_variables.chest_key_or_nothing.KEY.name] += 1
+            player_backpack.dungeon_items[gold_chances_variables.chest_key_or_nothing.KEY.name] += 1
 
 
 

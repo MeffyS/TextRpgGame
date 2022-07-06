@@ -116,17 +116,21 @@ class CharacterLevelUp:
             print(f'{48*"="}({player.level}){48*"="}'.center(100))
             print(f"You have advanced to level {player.level}".center(100))
             print(f'{99*"="}'.center(100))
-            if 'Golden Coin' not in player_backpack.pocket:
-                player_backpack.pocket['Golden Coin'] = 1
+            if 'Golden Coin' not in player_backpack.city_items:
+                player_backpack.city_items['Golden Coin'] = 1
             else:
-                player_backpack.pocket['Golden Coin'] += 1
+                player_backpack.city_items['Golden Coin'] += 1
                 
 
 class CharacterBackpack:
-
     coins = 12
-    pocket = {'HealthPotion':1,'Golden Coin':120,'ManaPotion':20,'Diamond':20}
+    city_items = {}
+    blacksmith_items = {}
+    dungeon_items = {}
+    potion_pocket = {'HealthPotion':1,'ManaPotion':20,'StaminaPotion':15}
     chests = {'pink':1, 'green':2}
+    inventory = [{'Sword': [('Stamina', 2)]},{'Sword': [('Stamina', 3)]},{'Sword': [('Stamina', 4)]}, {'Gloves': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
+
 
 
 class CharacterEquipment:
@@ -139,12 +143,10 @@ class CharacterEquipment:
     'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     'Boots': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     }
-    
+
+    backpack = {'Golden Coin':120,'Diamond':20}
 
 
-class CharacterInventory:
-
-    inventory = [{'Sword': [('Stamina', 2)]},{'Sword': [('Stamina', 3)]},{'Sword': [('Stamina', 4)]}, {'Gloves': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
     
 
 class CharacterStatistic:
@@ -178,7 +180,6 @@ player_level_up = CharacterLevelUp()
 player_backpack = CharacterBackpack()
 player_statistic = CharacterStatistic()
 player_equipment = CharacterEquipment()
-player_inventory = CharacterInventory()
 player_informations = CharacterInformation()
 
 

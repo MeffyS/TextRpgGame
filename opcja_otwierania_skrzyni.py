@@ -1,11 +1,46 @@
 
 
-from game_character import player
+
+
 import time
+from enum import Enum, auto
+from game_character import player
 from game_clear_function import clearConsole as clearConsole
 from game_stage_chest_open import chests_opening as game_open_stage
 from test_game_stage_chest_open import OpenChest
 
+
+class ExporeOptions(Enum):
+    chest = auto()
+    pocket = auto()
+    campfire = auto()
+
+
+class ExploreChoice:
+    agree = 'Y'
+    disagree = 'N'
+
+    def open_chest(self):
+        while True:
+            explore_chest = input("Do you want open chest? [Y][N] ")
+            if explore_chest == self.agree:
+                open_chest = OpenChest()
+                open_chest.chest_opening()
+            elif explore_chest == self.disagree:
+                break
+            else:
+                print(f"Entered value {explore_chest} is inocorrect ")
+
+    def open_pocket(self):
+        while True:
+            explore_pocket = input("Do you want open pocket? [Y][N] ")
+            if explore_pocket == self.agree:
+                open_pocket = []
+    def use_campfire():
+        pass
+
+a = ExploreChoice()
+a.open_chest()
 
 def chest_opening(chest):
     if chest == "CHEST":  # chest

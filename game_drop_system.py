@@ -2,7 +2,7 @@ import random
 from enum import Enum
 from game_informations import GameAttributes
 from game_character import player_equipment
-from game_character import player_inventory
+from game_character import player_backpack
 
 
 class DropEqItems():
@@ -146,7 +146,7 @@ def inventory_add_item(inventory, item_name, item_attribute):
     while True:
         if add_to_inventory == "Y":
             inventory.append({item_name:list(item_attribute)})
-            for item in player_inventory.inventory:
+            for item in player_backpack.inventory:
                 print(item)
             print(f"ITEM HAS BEEN ADDED TO INVENTORY")
             break
@@ -201,6 +201,6 @@ def draw_items(equipment, inventory, item_name, item_attribute):
 def drop_item():
     while True:
         item_n,item_attr= item_draw()
-        draw_items(player_equipment.equipment,player_inventory.inventory,item_n, item_attr)
+        draw_items(player_equipment.equipment,player_backpack.inventory,item_n, item_attr)
         break
 

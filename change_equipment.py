@@ -1,7 +1,7 @@
 
 from game_clear_function import clearConsole
 import game_informations
-from game_character import player_inventory
+from game_character import player_backpack
 from game_character import player_equipment
 
 
@@ -15,7 +15,7 @@ def changing_equipment():
        
     while True:
         item_names = [
-            item for item in player_inventory.inventory for item in item]
+            item for item in player_backpack.inventory for item in item]
         eq_names = [
             item for item in player_equipment.equipment]
         print(f'{100 * "="}')    
@@ -31,7 +31,7 @@ def changing_equipment():
         print(f'{100 * "="}')
         print('Items to change', item_names)
         print(f'{100 * "="}')
-        for player_inventory_item in player_inventory.inventory:
+        for player_inventory_item in player_backpack.inventory:
             for player_inventory_new_item, _ in player_inventory_item.items():
                 if choose_item_name == player_inventory_new_item:
                     player_one_type_inventory.append(player_inventory_item)
@@ -90,7 +90,7 @@ def changing_equipment():
                     item_value = input("Enter a number")
                     clearConsole()
                     if item_value.isdigit():
-                        for item_num, item in enumerate(player_inventory.inventory):
+                        for item_num, item in enumerate(player_backpack.inventory):
                             if item == player_one_type_inventory[int(item_value)]:
                                 while True:
                                     choose_item = input(
@@ -98,7 +98,7 @@ def changing_equipment():
                                     clearConsole()
                                     if choose_item == "Y":
                                         player_equipment.equipment[choose_item_name] = player_one_type_inventory[int(item_value)][choose_item_name]
-                                        player_inventory.inventory.pop(item_num)
+                                        player_backpack.inventory.pop(item_num)
                                         print(f'{100 * "="}')    
                                         print(f'{choose_item_name},{player_one_type_inventory[int(item_value)][choose_item_name]} has been added')
                                         

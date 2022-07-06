@@ -1,7 +1,7 @@
 from enum import Enum, auto
-from game_character import player_inventory
+from game_character import player_backpack
 from game_character import player_equipment
-from game_character import CharacterInventory
+
 
 class ChangeEqOptions(Enum):
     INVENTORY = auto()
@@ -11,12 +11,12 @@ class ChangeEqOptions(Enum):
 
 class PlayerChangeEquipment:
 
-    item_name_list = [item_name for item in player_inventory.inventory for item_name,item_attribute in item.items()]
+    item_name_list = [item_name for item in player_backpack.inventory for item_name,item_attribute in item.items()]
     print(item_name_list)
 
     @staticmethod
     def inventory_items():
-        for number,inventory_item in enumerate(player_inventory.inventory):
+        for number,inventory_item in enumerate(player_backpack.inventory):
             print(f"{number},{inventory_item}")
 
     @staticmethod
@@ -29,7 +29,7 @@ class PlayerChangeEquipment:
         one_type_item_list = []
         type_of_item = input("Any type of items you want change ")
         if type_of_item in PlayerChangeEquipment.item_name_list:
-            for item in player_inventory.inventory:
+            for item in player_backpack.inventory:
                 for item_name, item_attribute in item.items():
                     if type_of_item == item_name:
                         one_type_item_list.append(item)
@@ -43,7 +43,7 @@ class PlayerChangeEquipment:
 
                 else:
                     player_equipment.equipment[type_of_item] = one_type_item_list[int(enter_item_number)][type_of_item]
-                    player_inventory.inventory.pop(int(enter_item_number))
+                    player_backpack.inventory.pop(int(enter_item_number))
             except IndexError:
                 print("You entered incorrect number")
         else:
