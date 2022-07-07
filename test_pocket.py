@@ -21,36 +21,50 @@ class PlayerPocket:
                 print(pocket_item_count, pocket_item)
             item_name = input("Enter a item or [Q] ")
             if item_name in player_backpack.potion_pocket:    
+
                 if item_name == str(PocketOptions.HealthPotion.value) or item_name == PocketOptions.HealthPotion.name:
-                    player_backpack.potion_pocket['HealthPotion'] -= 1
-                    player.health += (HP.health * player.level)
-                    print(f'+{HP.health * player.level} health points')
-                    if player_backpack.potion_pocket['HealthPotion'] == 0:
-                        player_backpack.potion_pocket.pop('HealthPotion')
-                    if player.health > player.max_health:
-                        player.health == player.max_health
+                    if player.mana > player.max_mana:
+                        player_backpack.potion_pocket['HealthPotion'] -= 1
+                        player.health += (HP.health * player.level)
+                        print(f'+{HP.health * player.level} health points')
+                        if player_backpack.potion_pocket['HealthPotion'] == 0:
+                            player_backpack.potion_pocket.pop('HealthPotion')
+                        if player.health > player.max_health:
+                            player.health == player.max_health
+                            break
+                    else:
+                        print("You are full health")  
 
                 elif item_name == str(PocketOptions.ManaPotion.value) or item_name == PocketOptions.ManaPotion.name:
-                    player_backpack.potion_pocket['ManaPotion'] -= 1
-                    player.mana += (MP.mana * player.level)
-                    print(f'+{MP.mana * player.level} mana points')
-                    if player_backpack.potion_pocket['ManaPotion'] == 0:
-                        player_backpack.potion_pocket.pop('ManaPotion')
                     if player.mana > player.max_mana:
-                        player.mana == player.max_mana    
+                        player_backpack.potion_pocket['ManaPotion'] -= 1
+                        player.mana += (MP.mana * player.level)
+                        print(f'+{MP.mana * player.level} mana points')
+                        if player_backpack.potion_pocket['ManaPotion'] == 0:
+                            player_backpack.potion_pocket.pop('ManaPotion')
+                        if player.mana > player.max_mana:
+                            player.mana == player.max_mana
+                            break
+                    else:
+                        print("You are full mana")    
 
                 elif item_name == str(PocketOptions.StaminaPotion.value) or item_name == PocketOptions.StaminaPotion.name:
-                    player_backpack.potion_pocket['StaminaPotion'] -= 1
-                    player.stamina += SP.stamine * player.level
-                    print(f'+ {SP.stamine} stamina points')
-                    if player_backpack.potion_pocket['StaminaPotion'] == 0:
-                        player_backpack.potion_pocket.pop('StaminaPotion')
-                    if player.stamina > player.max_stamina:
-                        player.stamina == player.max_stamina
+                    if player.stamina < player.max_stamina:
+                        player_backpack.potion_pocket['StaminaPotion'] -= 1
+                        player.stamina += SP.stamine * player.level
+                        print(f'+ {SP.stamine * player.level} stamina points')
+                        if player_backpack.potion_pocket['StaminaPotion'] == 0:
+                            player_backpack.potion_pocket.pop('StaminaPotion')
+                        if player.stamina > player.max_stamina:
+                            player.stamina == player.max_stamina
+                            break
+                    else:
+                        print("You are full stamina")
+
             elif item_name == 'Q':
                 break
             else:
                 print(f"You dont have {item_name} in your potion pocket")
 
-a = PlayerPocket()
-a.pocket()
+player_pocket = PlayerPocket()
+

@@ -2,7 +2,7 @@
 
 from rozmiar_mapy import game_map_size
 from game_informations import GameAttributes
-from opcja_otwierania_skrzyni import stamina_regeneration
+from campfire_rest import explore
 from game_clear_function import clearConsole
 from game_character import player
 from game_system import main_game_system
@@ -40,7 +40,7 @@ if start_exit == 1:
             move = input(f"".center(50)).upper()
             main_game_system(move)
             if player.getStamina() > 0:
-                if f'{move.upper()}' == "N":
+                if f'{move.upper()}' == "N":    
                     North_Moves()
                     while GameAttributes.N == game_map_size.map:
                         print(f"{100 * '='}")
@@ -63,10 +63,10 @@ if start_exit == 1:
                             if f'{move.upper()}' == "S":
                                 South_Moves()
                             elif player.getStamina() == 0:
-                                stamina_regeneration()
+                                explore.explore_menu()
 
                         elif player.getStamina() == 0:
-                            stamina_regeneration()
+                            explore.explore_menu()
                 if f'{move.upper()}' == "S":
                     South_Moves()
                     while GameAttributes.S == game_map_size.map:
@@ -93,19 +93,19 @@ if start_exit == 1:
                                 if f'{move.upper()}' == "N":
                                     North_Moves()
                                 elif player.getStamina() == 0:
-                                    stamina_regeneration()
+                                        explore.explore_menu()
                                 if f'{move.upper()}' == "S":
                                     South_Moves()
                         else:
-                            stamina_regeneration()
+                            explore.explore_menu()
 
                 elif player.getStamina() == 0:
-                    stamina_regeneration()
+                    explore.explore_menu()
             elif player.getStamina() == 0:
-                stamina_regeneration()
+                explore.explore_menu()
 
         elif player.getStamina() == 0:
-            stamina_regeneration()
+            explore.explore_menu()
 
 
 elif start_exit == 0:

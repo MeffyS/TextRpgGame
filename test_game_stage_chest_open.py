@@ -7,12 +7,26 @@ from game_character import player_level_up
 import gold_chances_variables as chance_on_gold
 
 class OpenChest:
+    agree = 'Y'
+    disagree = 'Q'
 
     def drawing_coins(self,coins):
         minimal_coins = (coins - (coins/10)) * (player_informations.game_floor)
         maximal_coins = (coins + random.randint(100,200)) * player_informations.game_floor
 
         return random.randint(math.ceil(minimal_coins), math.ceil(maximal_coins))
+
+    def open_chest(self):
+        while True:
+            explore_chest = input("Do you want open chest? [Y][Q] ")
+            if explore_chest == self.agree:
+                open_chest = OpenChest()
+                open_chest.chest_opening()
+            elif explore_chest == self.disagree:
+                break
+            else:
+                print(f"Entered value {explore_chest} is inocorrect ")
+
      
     def chest_opening(self):
         chest_sort = sorted(player_backpack.chests.items(),key=lambda x: x[1], reverse=True)
