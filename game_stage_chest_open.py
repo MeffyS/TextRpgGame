@@ -6,6 +6,7 @@ import gold_chances_variables
 from game_character import player
 from game_character import player_level_up
 from game_clear_function import clearConsole
+from test_game_stage_chest_open import OpenChest
 
 
 def draw_coins_count(value):

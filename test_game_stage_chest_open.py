@@ -16,16 +16,19 @@ class OpenChest:
 
         return random.randint(math.ceil(minimal_coins), math.ceil(maximal_coins))
 
-    def open_chest(self):
-        while True:
-            explore_chest = input("Do you want open chest? [Y][Q] ")
-            if explore_chest == self.agree:
-                open_chest = OpenChest()
-                open_chest.chest_opening()
-            elif explore_chest == self.disagree:
-                break
-            else:
-                print(f"Entered value {explore_chest} is inocorrect ")
+    @classmethod
+    def open_chest(cls,move):
+        if move == 'CHEST':
+
+            while True:
+                explore_chest = input("Do you want open chest? [Y][Q] ")
+                if explore_chest == cls.agree:
+                    open_chest = OpenChest()
+                    open_chest.chest_opening()
+                elif explore_chest == cls.disagree:
+                    break
+                else:
+                    print(f"Entered value {explore_chest} is inocorrect ")
 
      
     def chest_opening(self):
@@ -64,3 +67,4 @@ class OpenChest:
             print('You dont have chests top open')
             print(f"Opened Chests: {opened_chests}")
 
+chest = OpenChest()

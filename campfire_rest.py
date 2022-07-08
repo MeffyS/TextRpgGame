@@ -20,26 +20,26 @@ class ExploreChoice:
     agree = 'Y'
     disagree = 'Q'
 
-    def open_chest(self):
-        while True:
-            explore_chest = input("Do you want open chest? [Y][Q] ")
-            if explore_chest == self.agree:
-                open_chest = OpenChest()
-                open_chest.chest_opening()
-            elif explore_chest == self.disagree:
-                break
-            else:
-                print(f"Entered value {explore_chest} is inocorrect ")
 
-    def open_pocket(self):
+    def explore_menu(self):
+        print("You are exhausted. Use campfire to get stamine ")
         while True:
-            explore_pocket = input("Do you want open pocket? [Y][Q] ")
-            if explore_pocket == self.agree:
-                player_pocket.pocket()
-            elif explore_pocket == self.disagree:
+                for option in ExploreOptions:
+                    print(f"[{option.value}] {option.name}")
+                try:
+                    menu_choice = input("Enter choice ")
+                    if menu_choice == ExploreOptions.chest.name or menu_choice == ExploreOptions.chest.value:
+                        OpenChest.open_chest('CHEST')
+                    elif menu_choice == ExploreOptions.pocket.name or menu_choice == ExploreOptions.pocket.value:
+                        player_pocket.open_pocket()
+                    elif menu_choice == ExploreOptions.campfire.name or menu_choice == ExploreOptions.campfire.value:
+                        self.use_campfire()
+                except ValueError:
+                    if menu_choice == ExploreOptions.quit.name or menu_choice == ExploreOptions.quit.value:
+                        break
+                    else:
+                        print(f"Entered value cannot be a letter. Except [Q]")
                 break
-            else:
-                print("Entered value is incorrect, please try [Y][Q]")
 
     def use_campfire(self):
         while True:
@@ -77,26 +77,6 @@ class ExploreChoice:
                         print(f"Entered value cannot be a letter. Except [Q]")
             else:       
                 print('You dont need make a campfire')
-                break
-
-    def explore_menu(self):
-        print("You are exhausted. Use campfire to get stamine ")
-        while True:
-                for option in ExploreOptions:
-                    print(f"[{option.value}] {option.name}")
-                try:
-                    menu_choice = input("Enter choice ")
-                    if menu_choice == ExploreOptions.chest.name or menu_choice == ExploreOptions.chest.value:
-                        self.open_chest() 
-                    elif menu_choice == ExploreOptions.pocket.name or menu_choice == ExploreOptions.pocket.value:
-                        self.open_pocket()
-                    elif menu_choice == ExploreOptions.campfire.name or menu_choice == ExploreOptions.campfire.value:
-                        self.use_campfire()
-                except ValueError:
-                    if menu_choice == ExploreOptions.quit.name or menu_choice == ExploreOptions.quit.value:
-                        break
-                    else:
-                        print(f"Entered value cannot be a letter. Except [Q]")
                 break
 
 

@@ -1,3 +1,4 @@
+
 class Character:
     
     def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=10, max_stamina=120, min_attack=50, max_attack=50, defence=1, magic=11, lucky=1, level=12, experience=97, points=20, skill_count=2):
@@ -130,7 +131,6 @@ class CharacterBackpack:
     potion_pocket = {'HealthPotion':1,'ManaPotion':20,'StaminaPotion':15}
     chests = {'pink':1, 'green':2}
     inventory = [{'Sword': [('Stamina', 2)]},{'Sword': [('Stamina', 3)]},{'Sword': [('Stamina', 4)]}, {'Gloves': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
-
 
 
 class CharacterEquipment:
