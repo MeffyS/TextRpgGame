@@ -16,11 +16,11 @@ def draw_chest_key_nothing(draw):
         print(f"You found a chest in color {gold_chances_variables.chance_on_chest.name}".center(100))
         print(f'{100*"="}'.center(100))
 
-        if gold_chances_variables.chance_on_chest.name not in GameAttributes.player_chests:
-            GameAttributes.player_chests[gold_chances_variables.chance_on_chest.name] = 1
+        if gold_chances_variables.chance_on_chest.name not in player_backpack.chests:
+            player_backpack.chests[gold_chances_variables.chance_on_chest.name] = 1
 
         else:
-            GameAttributes.player_chests[gold_chances_variables.chance_on_chest.name] = GameAttributes.player_chests[
+            player_backpack.chests[gold_chances_variables.chance_on_chest.name] = player_backpack.chests[
                 gold_chances_variables.chance_on_chest.name] + 1
 
     elif gold_chances_variables.draw == gold_chances_variables.chest_key_or_nothing.KEY:

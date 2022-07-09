@@ -1,16 +1,12 @@
 
 
 from rozmiar_mapy import game_map_size
-from game_informations import GameAttributes
+from game_map import GameMoves
 from campfire_rest import explore
 from game_clear_function import clearConsole
 from game_character import player
 from game_system import main_game_system
 
-
-from game_moves import North_Moves
-from game_moves import South_Moves
-from game_moves import Down_Moves
 from test_game_city import City
 
 
@@ -35,44 +31,44 @@ if start_exit == 1:
     while True:
         if player.getStamina() > 0:
             print(f'{100*"="}'.center(100))
-            print(f"Choose a direction [N][S][D] Commends:[info][chest][statistic][pocket][eq] ".center(100))
+            print(f"Choose a direction [N][S][U] Commends:[info][chest][statistic][pocket][eq] ".center(100))
             print(f'{100*"="}'.center(100))
             move = input(f"".center(50)).upper()
             main_game_system(move)
             if player.getStamina() > 0:
                 if f'{move.upper()}' == "N":    
-                    North_Moves()
-                    while GameAttributes.N == game_map_size.map:
+                    GameMoves.north_moves()
+                    while GameMoves.north == game_map_size.map:
                         print(f"{100 * '='}")
-                        print(f"Choose a direction [S][D][K]. Commands:[info][chest][statistic][pocket][eq]Katakumby ".center(100))
+                        print(f"Choose a direction [S][U][K]. Commands:[info][chest][statistic][pocket][eq]Katakumby ".center(100))
                         print(f"{100 * '='}")
                         move = input(f"".center(50)).upper()
                         clearConsole()
                         main_game_system(move)
                         if f'{move.upper()}' == "S":
-                            South_Moves()
-                        if f'{move.upper()}' == "S" and GameAttributes.N < game_map_size.map:
+                            GameMoves.south_moves()
+                        if f'{move.upper()}' == "S" and GameMoves.north < game_map_size.map:
                             print(f'{100*"="}'.center(100))
-                            print(f"Choose Direction [N][S][D]. Commands:[info][chest][statistic][pocket][eq] ".center(100))
+                            print(f"Choose Direction [N][S][U]. Commands:[info][chest][statistic][pocket][eq] ".center(100))
                             print(f'{100*"="}'.center(100))
                             move = input(f"".center(50)).upper()
                             main_game_system(move)
 
                             if f'{move.upper()}' == "N":
-                                North_Moves()
+                                GameMoves.north_moves()
                             if f'{move.upper()}' == "S":
-                                South_Moves()
+                                GameMoves.south_moves()
                             elif player.getStamina() == 0:
                                 explore.explore_menu()
 
                         elif player.getStamina() == 0:
                             explore.explore_menu()
                 if f'{move.upper()}' == "S":
-                    South_Moves()
-                    while GameAttributes.S == game_map_size.map:
+                    GameMoves.south_moves()
+                    while GameMoves.south == game_map_size.map:
                         if player.getStamina() > 0:
                             print(f"{100 * '='}")
-                            print(f"Choose Direction [N][D][C] Commands:[info][chest][statistic][pocket][eq] ".center(100))
+                            print(f"Choose Direction [N][U][C] Commands:[info][chest][statistic][pocket][eq] ".center(100))
                             print(f"{100 * '='}")
                             move = input(f"".center(50)).upper()
                             main_game_system(move)
@@ -82,20 +78,20 @@ if start_exit == 1:
                                 City.city(move)
 
                             if f'{move.upper()}' == "N":
-                                North_Moves()
-                            if f'{move.upper()}' == "N" and GameAttributes.N < game_map_size.map:
+                               GameMoves.north_moves()
+                            if f'{move.upper()}' == "N" and GameMoves.north < game_map_size.map:
                                 print(f'{100*"="}'.center(100))
-                                print(f"Choose Direction [N][S][D] Commands:[info][chest][statistic][pocket][eq] ".center(100))
+                                print(f"Choose Direction [N][S][U] Commands:[info][chest][statistic][pocket][eq] ".center(100))
                                 print(f'{100*"="}'.center(100))
                                 move = input(f"".center(50)).upper()
                                 main_game_system(move)
 
                                 if f'{move.upper()}' == "N":
-                                    North_Moves()
+                                    GameMoves.north_moves()
                                 elif player.getStamina() == 0:
                                         explore.explore_menu()
                                 if f'{move.upper()}' == "S":
-                                    South_Moves()
+                                    GameMoves.south_moves()
                         else:
                             explore.explore_menu()
 

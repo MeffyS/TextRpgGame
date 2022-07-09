@@ -5,7 +5,6 @@ from game_character import player_equipment
 from game_character import player_statistic
 from game_character import player_informations
 from game_character import CharacterBackpack
-from change_equipment import changing_equipment
 from game_clear_function import clearConsole
 from test_change_eq import PlayerChangeEquipment
 
@@ -56,10 +55,9 @@ def main_equipment(move):
                 player.max_health += summed_attributes_values['Health']
                 player.max_mana += summed_attributes_values['Mana']
                 player.max_stamina += summed_attributes_values['Stamina']
-            except KeyError:
-                player_informations.informations()
-            for item, attribute in player_equipment.equipment.items():
-                print(item, attribute)    
+            except KeyError: 
+                pass
+
             player_equipment.equipment
             player_eq = PlayerChangeEquipment()
             player_eq.player_change_eq_options()

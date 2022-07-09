@@ -1,4 +1,6 @@
 from enum import Enum
+import random
+
 
 coins_in_chest = Enum('coins', ('gray', 'blue',
                                'green', 'yellow', 'orange', 'red', 'pink'))
@@ -41,3 +43,5 @@ chance_key = list(chance_on_chest_key_or_nothing.keys())
 
 chance_on_coins_value = list(chance_on_chest.values())
 chance_on_coins_key = list(chance_on_chest.keys())
+
+draw = random.choices(chance_key,chance_value)[0]

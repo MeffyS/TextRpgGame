@@ -1,7 +1,7 @@
 
 class Character:
     
-    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=10, max_stamina=120, min_attack=50, max_attack=50, defence=1, magic=11, lucky=1, level=12, experience=97, points=20, skill_count=2):
+    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=10, max_stamina=120, min_attack=50, max_attack=50, defence=1, magic=11, lucky=1, level=1, experience=97, points=20, skill_count=2):
         self.health = health
         self.max_health = max_health
         self.mana = mana
@@ -124,7 +124,7 @@ class CharacterLevelUp:
                 
 
 class CharacterBackpack:
-    coins = 12
+    coins = 1212
     city_items = {}
     blacksmith_items = {}
     dungeon_items = {}
@@ -159,19 +159,20 @@ class CharacterInformation:
     game_floor = 1
     opened_chests = {}
 
-    def informations(self):
-        character_info = (
-            f"player statistic \n Health:[{player.health}] \n Mana:[{player.mana}] \n Stamina:[{player.stamina}] \
-            \n Defence:[{player.defence}] \n Attack:[{player.max_attack}] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())
-        print(f"PLAYER INFORMATIONS")
-        print(f"USERNAME: ")
-        print(f"LEVEL: {player.level}")
-        print(f"EXPERIENCE: {player.experience}")
-        print(f"FLOOR: {self.game_floor}")
-        print(f"{100*'='}")
-        print(character_info)
-        
-        return character_info
+    def informations(self, move):
+        if move == 'INFO':
+            character_info = (
+                f"PLAYER ATTRIBUTES \n Health:[{player.health}] \n Mana:[{player.mana}] \n Stamina:[{player.stamina}] \
+                \n Defence:[{player.defence}] \n Attack:[{player.max_attack}] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())
+            print(f"PLAYER INFORMATIONS")
+            print(f"USERNAME: ")
+            print(f"LEVEL: {player.level}")
+            print(f"EXPERIENCE: {player.experience}")
+            print(f"FLOOR: {self.game_floor}")
+            print(f"{100*'='}")
+            print(character_info)
+            
+            return character_info
 
 
 

@@ -1,5 +1,7 @@
 We should a fix bug with a stamine and campfire. If we have less than 15> we cannot use a campfire.
 
+Creating Player System Commends:[info][chest][statistic][pocket][eq]
+
 
 
 What is done:

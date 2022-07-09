@@ -62,78 +62,81 @@ def coin_well_draw():
             print(f'{100 * "="}')
             coin = input("Do you want drop golden coin to inside of a well?[Y] ").upper()
             if coin == "Y":
-                if player_backpack.city_items['Golden Coin'] >= 1:
-                    if 'Golden Coin' in player_backpack.city_items:
-                        if well_draw == well_draw.POSITIVE_HEALTH:
-                            player.health += 50
-                            print("Your health has been increased about 50 points")
-                            print(player.health)
-                            player_backpack.city_items['Golden Coin'] -= 1
+                try:
+                    if player_backpack.city_items['Golden Coin'] >= 1:
+                        if 'Golden Coin' in player_backpack.city_items:
+                            if well_draw == well_draw.POSITIVE_HEALTH:
+                                player.health += 50
+                                print("Your health has been increased about 50 points")
+                                print(player.health)
+                                player_backpack.city_items['Golden Coin'] -= 1
 
-                        elif well_draw == well_draw.NOTHING:
-                            print("Your coin disappeared somewhere down the well")
-                            player_backpack.city_items['Golden Coin'] -= 1
+                            elif well_draw == well_draw.NOTHING:
+                                print("Your coin disappeared somewhere down the well")
+                                player_backpack.city_items['Golden Coin'] -= 1
 
-                        elif well_draw == well_draw.POSITIVE_COINS:
-                            print(GameAttributes.Coins)
-                            GameAttributes.Coins += (1*1000)
-                            print(GameAttributes.Coins)
-                            print("Your coins has beed insceased about 1000 coins")
-                            player_backpack.city_items['Golden Coin'] -= 1
+                            elif well_draw == well_draw.POSITIVE_COINS:
+                                print(GameAttributes.Coins)
+                                GameAttributes.Coins += (1*1000)
+                                print(GameAttributes.Coins)
+                                print("Your coins has beed insceased about 1000 coins")
+                                player_backpack.city_items['Golden Coin'] -= 1
 
-                        elif well_draw == well_draw.NEGATIVE_COINS:
-                            print(GameAttributes.Coins)
-                            GameAttributes.Coins -= (1*1000)
-                            print(GameAttributes.Coins)
-                            player_backpack.city_items['Golden Coin'] -= 1
-                            print("Your coins has been decreased about 1000 coins")
+                            elif well_draw == well_draw.NEGATIVE_COINS:
+                                print(GameAttributes.Coins)
+                                GameAttributes.Coins -= (1*1000)
+                                print(GameAttributes.Coins)
+                                player_backpack.city_items['Golden Coin'] -= 1
+                                print("Your coins has been decreased about 1000 coins")
 
-                        elif well_draw == well_draw.NEGATIVE_HEALTH:
-                            player.health -= 50
-                            print("Your health has been decreased about 50 points")
-                            print(player.health)
-                            player_backpack.city_items['Golden Coin'] -= 1
+                            elif well_draw == well_draw.NEGATIVE_HEALTH:
+                                player.health -= 50
+                                print("Your health has been decreased about 50 points")
+                                print(player.health)
+                                player_backpack.city_items['Golden Coin'] -= 1
 
-                        elif well_draw == well_draw.CHESTS:
-                            if 'pink' and 'red' and 'orange' and 'yellow' and 'green' and 'blue' and 'gray' not in GameAttributes.player_chests:
-                                for chest in coins_in_chest:
-                                    print(chest.name)
-                                    GameAttributes.player_chests[chest.name] = 1
-
-                            elif player_backpack.city_items['Golden Coin'] == 0:
-                                print(f'{100 * "="}')
-                                print("You dont have a golden coins in your inventory")
-                                print(f'{100 * "="}')
-                                break
-
-                            elif 'pink' or 'red' or 'orange' or 'yellow' or 'green' or 'blue' or 'gray' in GameAttributes.player_chests:
-                                for chest in coins_in_chest:
-                                    print(chest)
-                                    if chest.name in GameAttributes.player_chests:
-                                        GameAttributes.player_chests[chest.name] += 1
-                                        player_backpack.city_items['Golden Coin'] -= 1
-                                    elif chest.name not in GameAttributes.player_chests:
+                            elif well_draw == well_draw.CHESTS:
+                                if 'pink' and 'red' and 'orange' and 'yellow' and 'green' and 'blue' and 'gray' not in GameAttributes.player_chests:
+                                    for chest in coins_in_chest:
+                                        print(chest.name)
                                         GameAttributes.player_chests[chest.name] = 1
-                                        player_backpack.city_items['Golden Coin'] -= 1
 
-                            else:
-                                player_backpack.city_items['Golden Coin'] -= 1
-                                for chest in coins_in_chest:
-                                    print(chest.name)
-                                    GameAttributes.player_chests[chest.name] += 1
-                                    print(GameAttributes.player_chests)
+                                elif player_backpack.city_items['Golden Coin'] == 0:
+                                    print(f'{100 * "="}')
+                                    print("You dont have a golden coins in your inventory")
+                                    print(f'{100 * "="}')
+                                    break
 
-                            print(GameAttributes.player_chests)
+                                elif 'pink' or 'red' or 'orange' or 'yellow' or 'green' or 'blue' or 'gray' in GameAttributes.player_chests:
+                                    for chest in coins_in_chest:
+                                        print(chest)
+                                        if chest.name in GameAttributes.player_chests:
+                                            GameAttributes.player_chests[chest.name] += 1
+                                            player_backpack.city_items['Golden Coin'] -= 1
+                                        elif chest.name not in GameAttributes.player_chests:
+                                            GameAttributes.player_chests[chest.name] = 1
+                                            player_backpack.city_items['Golden Coin'] -= 1
 
-                        elif well_draw == well_draw.DEATH:
-                            if player_backpack.city_items['Golden Coin'] >= 1:
-                                player_backpack.city_items['Golden Coin'] -= 1
-                                well_regeneration()
+                                else:
+                                    player_backpack.city_items['Golden Coin'] -= 1
+                                    for chest in coins_in_chest:
+                                        print(chest.name)
+                                        GameAttributes.player_chests[chest.name] += 1
+                                        print(GameAttributes.player_chests)
 
-                else:
-                    print(f'{100 * "="}')
-                    print("You dont have a golden coins in your inventory")
-                    print(f'{100 * "="}')
+                                print(GameAttributes.player_chests)
+
+                            elif well_draw == well_draw.DEATH:
+                                if player_backpack.city_items['Golden Coin'] >= 1:
+                                    player_backpack.city_items['Golden Coin'] -= 1
+                                    well_regeneration()
+
+                    else:
+                        print(f'{100 * "="}')
+                        print("You dont have a golden coins in your inventory")
+                        print(f'{100 * "="}')
+                except KeyError:
+                    print("You dont have a golden coin")
             elif coin == "Q":
                 break
         else:
