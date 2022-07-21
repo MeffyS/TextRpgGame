@@ -1,6 +1,5 @@
 import time
 from game_character import player
-import game_city
 
 
 def church():

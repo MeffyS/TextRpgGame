@@ -30,9 +30,9 @@ def buy_item(available_item_list, money, inventory):
     else:
         if item_count > 0 and money >= available_item_list[item_name] * item_count:
             if item_name not in inventory:
-                inventory[item_name] += item_count
-            else:
                 inventory[item_name] = item_count
+            else:
+                inventory[item_name] += item_count
             money -= available_item_list[item_name] * item_count
         else:
             print(

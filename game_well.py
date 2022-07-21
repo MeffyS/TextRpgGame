@@ -3,7 +3,6 @@ import random
 import time
 from game_informations import GameAttributes
 from gold_chances_variables import coins_in_chest
-import game_city
 from game_clear_function import clearConsole
 import well_monster
 from game_character import player
@@ -51,7 +50,6 @@ def well_regeneration():
     elif well_action == "LEAVE":
         print(f'{100 * "="}')
         print("You leaving")
-        # game_city.city(well_action)
 
 
 def coin_well_draw():

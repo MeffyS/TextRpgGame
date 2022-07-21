@@ -104,11 +104,12 @@ class CityGames(Enum):
                                 elif int(player_number) == guess_number:
                                     print(f"!-{guess_number}-!-CONGRATULATIONS-!-{guess_number}-!")
                                     player_backpack.coins += (player_chances * int(coins))
-                                    print(f"You won {player_chances * int(coins)}")
+                                    print(f"You won {player_chances * int(coins)*2}")
                                     break
                                 else:
                                     print("!-!-!-YOU LOSE-!-!-!")
                                     player_backpack.coins -= int(coins)
+                                    break
                             except ValueError:
                                 if player_number == "Q":
                                     print("You cannot leave from guess number game. Continue")
@@ -216,15 +217,15 @@ class CityGames(Enum):
         print("Or you can just guess a number")
 
         while True:
-            print("[1] Guess Dice Number")
+            print("[1] Guess Number")
             print("[2] Guess High or Low")
-            print("[3] Guess Number")
+            print("[3] Guess Dice Number")
             print("[Q] Quit")
             game = input("Choose type of a dice game")
             try:
-                if int(game) == CityGames.Dice.value:
+                if int(game) == CityGames.Dice_Guess.value:
                     CityGames.dice_option_first()
-                elif int(game) == CityGames.Dice_Guess.value:
+                elif int(game) == CityGames.Dice.value :
                     CityGames.dice_option_second()
                 elif int(game) == CityGames.Guess.value: 
                     CityGames.guess_option()
