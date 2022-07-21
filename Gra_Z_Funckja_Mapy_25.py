@@ -40,7 +40,7 @@ if start_exit == 1:
                     GameMoves.north_moves()
                     while GameMoves.north == game_map_size.map:
                         print(f"{100 * '='}")
-                        print(f"Choose a direction [S][U][K]. Commands:[info][chest][statistic][pocket][eq]Katakumby ".center(100))
+                        print(f"Choose a direction [S][U][D]. Commands:[info][chest][statistic][pocket][eq] Dungeon ".center(100))
                         print(f"{100 * '='}")
                         move = input(f"".center(50)).upper()
                         clearConsole()

@@ -6,7 +6,6 @@ import random
 from game_informations import GameAttributes
 from game_character import player
 from game_merchant import Merchant
-from game_deposit import money_deposit
 from game_clear_function import clearConsole
 
 
@@ -263,7 +262,6 @@ def city(move):
                     coin_well_draw()
                 elif use_service == 'BANK':
                     clearConsole()
-                    money_deposit(use_service)
                 elif use_service == "MAGIC":
                     clearConsole()
                     print("HeEy,HeY, I'a,m sso sorry 'HICK' that I'a 'HICK' drunk, but i can 'HICK' show u some maghhic".center(100))
