@@ -71,8 +71,7 @@ def sell_item(available_item_list, money, inventory):
 
 
 class Merchant:
-
-    def merchant():
+    def merchant(self):
         print("==========MERCHANT==========")
         while True:
             for option in ShopOptions:
@@ -89,10 +88,21 @@ class Merchant:
                         select_option == ShopOptions.BUY.name
                         or select_option == ShopOptions.BUY.value
                     ):
-                        player_backpack.coins, player_backpack.potion_pocket = buy_item(shop_items, player_backpack.coins, player_backpack.potion_pocket)
+                        player_backpack.coins, player_backpack.potion_pocket = buy_item(
+                            shop_items,
+                            player_backpack.coins,
+                            player_backpack.potion_pocket,
+                        )
                         break
                     else:
-                        player_backpack.coins, player_backpack.potion_pocket = sell_item(shop_items, player_backpack.coins, player_backpack.potion_pocket)
+                        (
+                            player_backpack.coins,
+                            player_backpack.potion_pocket,
+                        ) = sell_item(
+                            shop_items,
+                            player_backpack.coins,
+                            player_backpack.potion_pocket,
+                        )
                         break
                 except ValueError:
                     print(f"Entered value must be postive number")
@@ -108,8 +118,13 @@ class Merchant:
             ):
                 break
             else:
-                print(f"You entered incorrect value [{select_option}]. Please try again")
+                print(
+                    f"You entered incorrect value [{select_option}]. Please try again"
+                )
 
 
 print("INVENTORY", player_backpack.potion_pocket)
 print("MONEY", player_backpack.coins)
+
+m = Merchant()
+

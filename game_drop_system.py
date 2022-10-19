@@ -195,8 +195,6 @@ def draw_items(equipment, inventory, item_name, item_attribute):
 
 
 
-
-
 def drop_item():
     while True:
         item_n,item_attr= item_draw()
