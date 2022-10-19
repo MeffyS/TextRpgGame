@@ -1,0 +1,29 @@
+We should a fix bug with a stamine and campfire. If we have less than 15> we cannot use a campfire.
+
+Creating Player System Commends:[info][chest][statistic][pocket][eq]
+
+
+
+What is done:
+change_equipment => test_change_eq
+game_add_poins => Good
+game_character ==> good
+game_church ==> good
+game_city ==> test_game_city
+game_decorators ==> good
+game_deposit ==> test_bank
+game_player_attributes == > Moved to game_character
+game_well ==> GOod
+gold_chances_variables ==> good
+game_informations ==> test_game_informations
+well_monster ==> test_monster
+game_stage_chest_open ==> test_game_stage_chest_open
+opcja_otwierania_skrzyni ==> campfire_rest
+game_systen ==> good
+
+
+
+rozmiar_mapy ==> rename only
+game_moves ==> TO CHANGE
+Gra_Z_Funkcja_mapy_25 ==> To Change + rename
+player_skills ==> small edit, 

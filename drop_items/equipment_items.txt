@@ -1,0 +1,11 @@
+Gloves 0
+Boots 1
+Helmet 2
+Shorts 3
+Chest 4
+Necklace 5
+Ring 6
+Earrings 7
+Sword 8
+Shield 9
+Nothing 10
