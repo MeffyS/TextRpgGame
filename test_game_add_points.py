@@ -18,18 +18,22 @@ attribute_dict = {}
 
 def add_points(attribute):
     while True:
-        points_count = input(f"How many {player.points} you want spend?")
+        points_count = input(f"How many [{player.points}] points you want spend?[Q]")
         try:
             if int(points_count) <= player.points and int(points_count) > 0:
                 player[attribute] += int(points_count)
+                player.points -= int(points_count)
                 return player[attribute]
             else:
                 print(
                     f"Invalid value points {points_count}. Your current status of points {player.points} "
                 )
         except ValueError:
-            print("Entered value cannot be a letter sequence")
-            continue
+            if points_count == 'Q' or 'q':
+                break
+            else:
+                print("Entered value cannot be a letter sequence")
+                continue
 
 
 def player_attributes(move):
