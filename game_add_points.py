@@ -6,7 +6,7 @@ from game_character import player_statistic
 
 
 class Points(Enum):
-    HEALTH = ["1", player.max_health]
+    HEALTH = [1, player.max_health]
     MANA = ["2", player.max_mana]
     STAMINA = ["3", player.max_stamina]
     DEFENCE = ["4", player.defence]
@@ -38,8 +38,12 @@ def player_stats(move):
                 or choice == Points.QUIT.name
             ):
                 break
-            if choice not in attribute_occurrence_name and choice not in attribute_occurrence_value[0][0]:
-                print(attribute_occurrence_value[int(choice)-1][0])
+            if (
+                choice not in attribute_occurrence_name
+                or choice not in attribute_occurrence_value[(int(choice))][0]
+            ):
+                print('Error')
+                print(type(attribute_occurrence_value[(int(choice))][0]))
 
             elif player.getPoints() > 0:
                 how_many_points = int(input(f"How many points you want add? "))
