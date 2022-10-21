@@ -25,7 +25,7 @@ def add_points(attribute):
         if player.points > 1:
             suffix = "s"
         points_count = input(
-            f"How many [{player.points}] point{suffix} you want spend to upgrade your {attribute.upper()} ?[Q] "
+            f"How many [{player.points}] point{suffix} you want spend to upgrade your {attribute.upper()}?[Q]: "
         )
         try:
             if int(points_count) <= player.points and int(points_count) > 0:
@@ -60,7 +60,7 @@ def player_attributes(move):
                 print(f"{number:<3}|{attr.value[2]:<9}|{attr.value[1]:<10}")
                 attribute_dict[attr.value[0]] = attr.name
 
-            attribute = input("Enter attribute which you want upgrade ")
+            attribute = input("Enter attribute which you want upgrade: ")
 
             if attribute == "Q" or attribute == "q":
                 break
