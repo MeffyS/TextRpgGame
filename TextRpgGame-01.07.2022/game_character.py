@@ -1,7 +1,7 @@
 
 class Character:
     
-    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=10, max_stamina=120, min_attack=50, max_attack=50, defence=1, magic=11, lucky=1, level=1, experience=97, points=20, skill_count=2):
+    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=10, max_stamina=120, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=97, points=20, skill_count=2):
         self.health = health
         self.max_health = max_health
         self.mana = mana
@@ -102,6 +102,12 @@ class Character:
     def setPoints(self, newPoints):
         self.points = newPoints
 
+    def __getitem__(self,key):
+        return getattr(self, key)
+    
+    def __setitem__(self, key, value):
+        setattr(self, key, value)
+ 
 class CharacterLevelUp:
 
     def level_up(self):
@@ -162,7 +168,7 @@ class CharacterInformation:
     def informations(self, move):
         if move == 'INFO':
             character_info = (
-                f"PLAYER ATTRIBUTES \n Health:[{player.health}] \n Mana:[{player.mana}] \n Stamina:[{player.stamina}] \
+                f"PLAYER ATTRIBUTES \n Health:[{player.max_health}] \n Mana:[{player.mana}] \n Stamina:[{player.stamina}] \
                 \n Defence:[{player.defence}] \n Attack:[{player.max_attack}] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())
             print(f"PLAYER INFORMATIONS")
             print(f"USERNAME: ")

@@ -70,3 +70,4 @@ def chests_opening():
             print(f'Opened Chests: {opened_count}')
             print(100*'=')
             break
+
