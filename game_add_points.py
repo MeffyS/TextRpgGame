@@ -1,4 +1,3 @@
-from ctypes.wintypes import POINT
 from enum import IntEnum, Enum
 from game_character import player
 from game_clear_function import clearConsole
@@ -114,7 +113,7 @@ def player_stats(move):
                 break
 
 
-player_stats("STATISTIC")
+
 
 # z = [x.name for x in Points]
 # print(z)

@@ -93,4 +93,4 @@ class PlayerChangeEquipment:
 
 
 p = PlayerChangeEquipment()
-p.player_change_eq_options()
+

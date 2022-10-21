@@ -168,7 +168,7 @@ class CharacterInformation:
     def informations(self, move):
         if move == 'INFO':
             character_info = (
-                f"PLAYER ATTRIBUTES \n Health:[{player.health}] \n Mana:[{player.mana}] \n Stamina:[{player.stamina}] \
+                f"PLAYER ATTRIBUTES \n Health:[{player.max_health}] \n Mana:[{player.mana}] \n Stamina:[{player.stamina}] \
                 \n Defence:[{player.defence}] \n Attack:[{player.max_attack}] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())
             print(f"PLAYER INFORMATIONS")
             print(f"USERNAME: ")

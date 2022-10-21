@@ -6,5 +6,6 @@ def game_informations():
     print("gamble coins, use bank system, and a lot more thigs")
     print("Sooo, click number [1] and let's go")
     print("Good luck and have with my game ;)")
+    
 
     pass
