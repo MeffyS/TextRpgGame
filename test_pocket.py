@@ -81,4 +81,4 @@ class PlayerPotionPocket:
                     print(f"You dont have {item_name} in your potion pocket")
 
 player_pocket = PlayerPotionPocket()
-player_pocket.open_pocket()
+

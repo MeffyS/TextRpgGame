@@ -104,5 +104,3 @@ class NewBank:
                     break
                 else:
                     print("You cannot enter a letters except [Q]")
-
-

@@ -1,119 +1,111 @@
-from enum import IntEnum, Enum
-from game_character import player
+from enum import Enum
+from operator import add
 from game_clear_function import clearConsole
-from game_character import player_statistic
+from game_character import player
 
 
 class Points(Enum):
-    HEALTH = [1, player.max_health]
-    MANA = ["2", player.max_mana]
-    STAMINA = ["3", player.max_stamina]
-    DEFENCE = ["4", player.defence]
-    ATTACK = ["5", player.max_attack]
-    MAGIC = ["6", player.magic]
-    LUCKY = ["7", player.lucky]
-    QUIT = ["8", "Q"]
+    MAX_HEALTH = [0, player.max_health, "HEALTH"]
+    MAX_MANA = [1, player.max_mana, "MANA"]
+    MAX_STAMINA = [2, player.max_stamina, "STAMINA"]
+    DEFENCE = [3, player.defence, "DEFENCE"]
+    ATTACK = [4, player.max_attack, "ATTACK"]
+    MAGIC = [5, player.magic, "MAGIC"]
+    LUCKY = [6, player.lucky, "LUCKY"]
+    QUIT = [7, "Q", "QUIT"]
 
 
-def player_stats(move):
+attribute_dict = {}
+
+
+def add_points(attribute):
+
+    while True:
+        suffix = ""
+        if player.points > 1:
+            suffix = "s"
+        points_count = input(
+            f"How many [{player.points}] point{suffix} you want spend to upgrade your {attribute.upper()}?[Q]: "
+        )
+        try:
+            if int(points_count) <= player.points and int(points_count) > 0:
+                player[attribute] += int(points_count)
+                player.points -= int(points_count)
+                Points[attribute.upper()].value[1] = player[attribute]
+                return player[attribute]
+            elif int(points_count) == 0:
+                break
+            else:
+                print(
+                    f"Invalid value points {points_count}. Your current status of points {player.points} "
+                )
+        except ValueError:
+            if points_count == "Q" or "q":
+                break
+            else:
+                print("Entered value cannot be a letter sequence")
+                continue
+
+
+def player_attributes(move):
     if move == "STATISTIC":
         clearConsole()
-        attribute_occurrence_name = [attribute.name for attribute in Points]
-        attribute_occurrence_value = [attribute.value for attribute in Points]
         while True:
-            print(f'{100 * "="}')
-            for point in Points:
-                print(f"[{point.value[0]}] [{point.name}][{point.value[1]}]")
+            suffix = ""
+            if player.points > 1:
+                suffix = "s"
+            print(f"You have [{player.points}] point{suffix} to add.")
+            for number, attr in enumerate(Points):
+                print(f"{number:<3}|{attr.value[2]:<9}|{attr.value[1]:<10}")
+                attribute_dict[attr.value[0]] = attr.name
 
-            print(f'{100 * "="}')
-            choice = input(
-                f"Which attribute you want upgrade? 1 - {len(Points)-1}"
-            ).upper()
+            attribute = input("Enter attribute which you want upgrade: ")
 
-            clearConsole()
-            if (
-                choice == "Q"
-                or choice == Points.QUIT.value
-                or choice == Points.QUIT.name
-            ):
-                break
-            if (
-                choice not in attribute_occurrence_name
-                or choice not in attribute_occurrence_value[(int(choice))][0]
-            ):
-                print('Error')
-                print(type(attribute_occurrence_value[(int(choice))][0]))
-
-            elif player.getPoints() > 0:
-                how_many_points = int(input(f"How many points you want add? "))
-                clearConsole()
-                if int(how_many_points) > player.getPoints():
-                    print(f'{100 * "="}')
-                    print(
-                        f"You dont have a points to upgrade. Your points [{player.getPoints()}]"
-                    )
-
-                elif int(how_many_points) <= player.getPoints():
-                    print(player_statistic.statistic())
-                    print(f"You have a {player.getPoints()} upgrade points")
-
-                    if Points.HEALTH.name == choice or Points.HEALTH.value == choice:
-                        player.health = player.getHealth() + how_many_points
-                        player.max_health = player.getMaxHealth() + how_many_points
-                        player.points = player.getPoints() - how_many_points
-                        print(f"Left {player.points} points")
-                        clearConsole()
-
-                    elif Points.MANA.name == choice or Points.MANA.value == choice:
-                        player.mana = player.getMana() + how_many_points
-                        player.max_mana = player.getMaxMana() + how_many_points
-                        player.points = player.getPoints() - how_many_points
-                        print(f"Left {player.points} points")
-                        clearConsole()
-
-                    elif (
-                        Points.STAMINA.name == choice or Points.STAMINA.value == choice
-                    ):
-                        player.stamina = player.getStamina() + how_many_points
-                        player.max_stamina = player.getMaxStamina() + how_many_points
-                        player.points = player.getPoints() - how_many_points
-                        print(f"Left {player.points} points")
-                        clearConsole()
-
-                    elif (
-                        Points.DEFENCE.name == choice or Points.DEFENCE.value == choice
-                    ):
-                        player.defence = player.getDefence() + how_many_points
-                        player.points = player.getPoints() - how_many_points
-                        print(f"Left {player.points} points")
-                        clearConsole()
-
-                    elif Points.ATTACK.name == choice or Points.ATTACK.value == choice:
-                        player.max_attack = player.getMaxAttack() + how_many_points
-                        player.points = player.getPoints() - how_many_points
-                        print(f"Left {player.points} points")
-                        clearConsole()
-
-                    elif Points.MAGIC.name == choice or Points.MAGIC.value == choice:
-                        player.magic = player.getMagic() + how_many_points
-                        player.points = player.getPoints() - how_many_points
-                        print(f"Left {player.points} points")
-                        clearConsole()
-
-                    elif Points.LUCKY.name == choice or Points.LUCKY.value == choice:
-                        player.lucky = player.getLucky() + how_many_points
-                        player.points = player.getPoints() - how_many_points
-                        print(f"Left {player.points} points")
-                        clearConsole()
-
-            else:
-                print(f'{100 * "="}')
-                print("You dont have a points to upgrade")
-                print(f'{100 * "="}')
+            if attribute == "Q" or attribute == "q":
                 break
 
+            if attribute == Points.MAX_HEALTH.value[2] or attribute == str(
+                Points.MAX_HEALTH.value[0]
+            ):
+                attribute = "max_health"
+                add_points(attribute)
 
+            elif attribute == Points.MAX_MANA.value[2] or attribute == str(
+                Points.MAX_MANA.value[0]
+            ):
+                attribute = "max_mana"
+                add_points(attribute)
 
+            elif attribute == Points.MAX_STAMINA.value[2] or attribute == str(
+                Points.MAX_STAMINA.value[0]
+            ):
+                attribute = "max_stamina"
+                add_points(attribute)
 
-# z = [x.name for x in Points]
-# print(z)
+            elif attribute == Points.DEFENCE.value[2] or attribute == str(
+                Points.DEFENCE.value[0]
+            ):
+                attribute = "defence"
+                add_points(attribute.lower())
+
+            elif attribute == Points.ATTACK.value[2] or attribute == str(
+                Points.ATTACK.value[0]
+            ):
+                attribute = "max_attack"
+                add_points(attribute)
+
+            elif attribute == Points.MAGIC.value[2] or attribute == str(
+                Points.MAGIC.value[0]
+            ):
+                attribute = "magic"
+                add_points(attribute.lower())
+
+            elif attribute == Points.LUCKY.value[2] or attribute == str(
+                Points.LUCKY.value[0]
+            ):
+                attribute = "lucky"
+                add_points(attribute.lower())
+            elif attribute == Points.QUIT.value[2] or attribute == str(
+                Points.QUIT.value[0]
+            ):
+                break

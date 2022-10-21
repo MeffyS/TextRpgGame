@@ -143,7 +143,7 @@ class CharacterEquipment:
     
     equipment = {
     'Bow': [('Magic', 3), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
-    'Earrings': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    'Earrings': [('Defence', 8123), ('Experience', 2), ('Attack', 4)],
     'Helmet': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     'Gloves': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
@@ -168,8 +168,8 @@ class CharacterInformation:
     def informations(self, move):
         if move == 'INFO':
             character_info = (
-                f"PLAYER ATTRIBUTES \n Health:[{player.max_health}] \n Mana:[{player.mana}] \n Stamina:[{player.stamina}] \
-                \n Defence:[{player.defence}] \n Attack:[{player.max_attack}] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())
+                f"PLAYER ATTRIBUTES \n Health:[{player.health}/{player.max_health}] \n Mana:[{player.mana}/{player.max_mana}] \n Stamina:[{player.stamina}/{player.stamina}] \
+                \n Defence:[{player.defence}] \n Attack:[MIN|{player.min_attack}/{player.max_attack}|MAX] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())
             print(f"PLAYER INFORMATIONS")
             print(f"USERNAME: ")
             print(f"LEVEL: {player.level}")

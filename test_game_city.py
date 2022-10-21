@@ -4,7 +4,7 @@ from enum import Enum, auto
 from game_character import player_backpack
 from game_character import player
 from game_merchant import Merchant
-from test_bank import NewBank
+from game_bank import NewBank
 from game_well import coin_well_draw
 
 

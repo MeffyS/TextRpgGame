@@ -1,7 +1,7 @@
 import time
 from enum import Enum, auto
 from game_character import player
-from test_game_stage_chest_open import OpenChest
+from game_stage_chest_open import OpenChest
 from test_pocket import player_pocket
 import random
 

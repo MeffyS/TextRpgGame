@@ -1,73 +1,88 @@
-from game_informations import GameAttributes
-import random
 import math
-from enum import Enum
-import gold_chances_variables
-from game_character import player
+import random
+
+from game_character import player_informations
+from game_character import player_backpack
 from game_character import player_level_up
-from game_clear_function import clearConsole
-from test_game_stage_chest_open import OpenChest
+import gold_chances_variables as chance_on_gold
 
 
-def draw_coins_count(value):
-    minimal_coins_count = (value - 0.9) * (GameAttributes.Floor)
-    maximal_coins_count = (value + 100) * (GameAttributes.Floor)
-    return random.randint(math.ceil(minimal_coins_count), math.ceil(maximal_coins_count))
+class OpenChest:
+    agree = "Y"
+    disagree = "Q"
+
+    def drawing_coins(self, coins):
+        minimal_coins = (coins - (coins / 10)) * (player_informations.game_floor)
+        maximal_coins = (
+            coins + random.randint(100, 200)
+        ) * player_informations.game_floor
+
+        return random.randint(math.ceil(minimal_coins), math.ceil(maximal_coins))
+
+    @classmethod
+    def open_chest(cls, move):
+        if move == "CHEST":
+
+            while True:
+                explore_chest = input("Do you want open chest? [Y][Q] ")
+                if explore_chest == cls.agree:
+                    open_chest = OpenChest()
+                    open_chest.chest_opening()
+                elif explore_chest == cls.disagree:
+                    break
+                else:
+                    print(f"Entered value {explore_chest} is incorrect ")
+
+    def chest_opening(self):
+        chest_sort = sorted(
+            player_backpack.chests.items(), key=lambda x: x[1], reverse=True
+        )
+        available_chests = []
+        [
+            available_chests.extend(
+                [chest, count_chest] for chest, count_chest in chest_sort
+            )
+        ]
+        opened_chests = []
+        [
+            opened_chests.extend([chest_opened, chest_opened_count])
+            for chest_opened, chest_opened_count in player_informations.opened_chests.items()
+        ]
+        if len(player_backpack.chests) > 0:
+            while True:
+                print(f"CHESTS: {player_backpack.chests}")
+                print(f"OPENED CHESTS: {player_informations.opened_chests}")
+                chest_color = input("Enter a color chest which you want open ")
+
+                if chest_color in player_backpack.chests:
+                    player_level_up.level_up()
+                    player_backpack.chests[chest_color] -= 1
+                    inventory_add_coins = self.drawing_coins(
+                        chance_on_gold.chance_on_coins[
+                            chance_on_gold.coins_in_chest[f"{chest_color}"]
+                        ]
+                    )
+                    player_backpack.coins += inventory_add_coins
+                    print(
+                        f"To your pocket {inventory_add_coins} coins has been added. You got {player_backpack.coins} coins"
+                    )
+                    if chest_color not in player_informations.opened_chests:
+                        player_informations.opened_chests[chest_color] = 1
+                    elif chest_color in player_informations.opened_chests:
+                        player_informations.opened_chests[chest_color] += 1
+                    if player_backpack.chests[chest_color] == 0:
+                        player_backpack.chests.pop(chest_color)
+                    if len(player_backpack.chests) == 0:
+                        break
+                elif chest_color == "Q":
+                    break
+                else:
+                    print(f"You dont have {chest_color!r} chest")
+        else:
+            print("You dont have chests to open")
+            print(f"Opened Chests: {opened_chests}")
 
 
-def chests_opening():
+chest = OpenChest()
 
-    while len(GameAttributes.player_chests) >= 0:
-        chests_sort = sorted( GameAttributes.player_chests.items(), key=lambda x: x[1], reverse=True)
-        chests_count = []
-        [chests_count.extend([chest,count]) for chest, count in chests_sort]
-            
-        opened_count = []
-        [opened_count.extend([chest, count]) for chest, count in GameAttributes.opened_chests.items()]
-        if len(GameAttributes.player_chests) > 0:
-            # clearConsole()    
-            print(100*'=')
-            print(f'Chests: {chests_count}')
-            print(100*'=')
-            print(f'Opened Chests: {opened_count}')
-            print(100*'=')
-            
-            chest_color = input(
-                "Enter a chest color to open it. Click [Q] to leave ")
-            
-            if chest_color == "Q":
-                # clearConsole()
-                break
-
-            elif chest_color not in GameAttributes.player_chests:
-                print(f"You dont have {chest_color} chest")
-
-            else:
-                player_level_up.level_up()
-                GameAttributes.player_chests[chest_color] -= 1
-                add_coins = draw_coins_count(
-                    gold_chances_variables.chance_on_coins[gold_chances_variables.coins_in_chest[f'{chest_color}']])
-                GameAttributes.Coins += add_coins
-                print(f'{add_coins} coins has been added to ur pocket')
-                player.experience = player.experience + \
-                    (math.ceil(add_coins * 0.2))
-                
-
-                # print('To you purse has beed added', add_coins, 'Coins')
-
-                if chest_color not in GameAttributes.opened_chests:
-                    GameAttributes.opened_chests[chest_color] = 1
-
-                elif chest_color in GameAttributes.opened_chests:
-                    GameAttributes.opened_chests[chest_color] = GameAttributes.opened_chests[chest_color] + 1
-
-                if GameAttributes.player_chests[chest_color] == 0:
-                    GameAttributes.player_chests.pop(chest_color)
-        elif len(GameAttributes.player_chests) == 0:
-            print(100*'=')
-            print(f'You have a 0 chest to open')
-            print(100*'=')
-            print(f'Opened Chests: {opened_count}')
-            print(100*'=')
-            break
 
