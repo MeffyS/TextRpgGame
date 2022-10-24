@@ -73,7 +73,7 @@ def main_equipment(move):
             player_eq.player_change_eq_options()
 
 
-x = main_equipment("EQ")
+# x = main_equipment("EQ")
 
 
 def your_equipment():
