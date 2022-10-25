@@ -24,6 +24,13 @@ class GameMoves:
     north = 0
     south = 0
 
+    def west_east_moves(self):
+        if player.stamina > 0:
+            player_level_up.level_up()
+            player.experience += 1
+            player.stamina -= 1
+            draw_chest_key_nothing(draw)
+
     def north_moves():
         if player.stamina > 0:
             clearConsole()
@@ -78,4 +85,5 @@ class GameMoves:
 
 
 up_move = GameMoves()
+moves = GameMoves()
 
