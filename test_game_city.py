@@ -397,4 +397,5 @@ class City:
 
 
 bank = NewBank()
+game_city = City()
 

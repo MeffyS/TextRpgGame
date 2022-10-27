@@ -8,6 +8,7 @@ from gold_chances_variables import draw
 from game_clear_function import clearConsole
 
 
+
 def game_map_size():
     while True:
         try:

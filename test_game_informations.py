@@ -3,7 +3,7 @@ def game_informations():
     print("This is advanced RPG game, created by Meffy")
     print("Here you will explore map, fight with mobs, using skills")
     print("upgrade equipment, open chest, visit dungeons and city")
-    print("gamble coins, use bank system, and a lot more thigs")
+    print("gamble coins, use bank system, and a lot more things")
     print("Sooo, click number [1] and let's go")
-    print("Good luck and have with my game ;)")
+    print("Good luck and have fun with my game ;)")
 
