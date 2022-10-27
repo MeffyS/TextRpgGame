@@ -23,7 +23,7 @@ def main_game_system(move):
     main_equipment(move)
 
 
-def game_stystem(self):
+def game_stystem():
     moves.west_east_moves()
     if player.stamina <= 0:
         explore.explore_menu()

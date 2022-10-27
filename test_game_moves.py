@@ -17,21 +17,21 @@ class GameDirections:
                 self.start_position()
             elif self.position > 0:
                 if self.east < game_map_size.map:
-                    enter_direction = input("Enter direction [E][U][W]")
+                    enter_direction = input("Enter direction [E][U][W][MENU]").upper()
                     self.east_direction_positive(enter_direction)
                 if self.east == game_map_size.map:
                     self.east_direction_negative()
 
             elif self.position < 0:
                 if self.west < game_map_size.map:
-                    enter_direction = input("Enter direction [E][U][W]")
+                    enter_direction = input("Enter direction [E][U][W][MENU]").upper()
                     self.west_direction_positive(enter_direction)
 
                 if self.west == game_map_size.map:
                     self.west_direction_negative()
 
     def start_position(self):
-        direction = input("Enter direction [E][U][W]")
+        direction = input("Enter direction [E][U][W][MENU]").upper()
         if direction == "E":
             self.east += 1
             self.west -= 1
@@ -42,12 +42,12 @@ class GameDirections:
             self.west += 1
             self.position -= 1
             game_stystem()
-        if direction == 'menu':
+        if direction == 'MENU':
             character_menu.player_menu(direction)
 
 
     def east_direction_negative(self):
-        direction = input("Enter direction [U][W][C]")
+        direction = input("Enter direction [U][W][C][Menu]").upper()
         if direction == "E":
             if self.east == self.position:
                 print("You can't go any further on EAST")
@@ -58,10 +58,10 @@ class GameDirections:
             self.position -= 1
             print("Position", self.position)
             game_stystem()
-        elif direction == 'menu':
+        elif direction == 'MENU':
             character_menu.player_menu(direction)
         else:
-            direction = input("Enter direction [U][W][C]")
+            direction = input("Enter direction [U][W][C][MENU]").upper()
 
     def east_direction_positive(self, direct):
         if direct == "E":
@@ -77,11 +77,11 @@ class GameDirections:
             self.position -= 1
             print("Position", self.position)
             game_stystem()
-        if direct == 'menu':
+        if direct == 'MENU':
             character_menu.player_menu(direct)
 
     def west_direction_negative(self):
-        direction = input("Enter direction [E][U][D]")
+        direction = input("Enter direction [E][U][D][MENU]").upper()
         if direction == "W":
             if self.west == abs(self.position):
                 print("You can't go any further on WEST")
@@ -94,11 +94,11 @@ class GameDirections:
             self.position += 1
             game_stystem()
 
-        elif direction == 'menu':
+        elif direction == 'MENU':
             character_menu.player_menu(direction)
 
         else:
-            direction = input("Enter direction [E][U][D]")
+            direction = input("Enter direction [E][U][D][Menu]").upper()
 
     def west_direction_positive(self, direct):
         if direct == "W":
@@ -111,7 +111,7 @@ class GameDirections:
             self.west -= 1
             self.position += 1
             game_stystem()
-        if direct == 'menu':
+        if direct == 'MENU':
             character_menu.player_menu(direct)
 
 

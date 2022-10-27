@@ -20,40 +20,45 @@ class CharacterMenuChoice(Enum):
     character_equipment = [5, "Character Equipment"]
     character_inventory = [6, "Character Inventory"]
     character_pocket = [7, "Character Pocket"]
-    character_menu_exit = [8, "Menu Exit"]
-
+    character_menu_exit = [8, "Quit", 'q']
 
 class CharacterMenu:
     def player_menu(self, menu):
-        if menu == "menu":
+        if menu == "MENU":
             print("PLAYER MENU")
             while True:
                 for option in CharacterMenuChoice:
-                    print(f"{option.value[0]} {option.value[1]}")
-                enter_option = input("Enter option")
-                if int(enter_option) == CharacterMenuChoice.character_information.value[0]:
-                    print(CharacterMenuChoice.character_information.value[1])
-                    player_informations.informations()
-                elif int(enter_option) == CharacterMenuChoice.character_statistic.value[0]:
-                    player_attributes("STATISTIC")
-                elif int(enter_option) == CharacterMenuChoice.character_backpack.value[0]:
-                    print(f"Coins: {player_backpack.coins:,} ")
-                    print(f"City Items: {player_backpack.quest_items}")
-                    print(f"Quest Items: {player_backpack.quest_items}")
-                    print(f"Blacksmith Items: {player_backpack.blacksmith_items}")
-                    print(f"Dungeon Items: {player_backpack.dungeon_items}")
-                elif int(enter_option) == CharacterMenuChoice.character_chest.value[0]:
-                    chest.chest_opening()
-                elif int(enter_option) == CharacterMenuChoice.character_equipment.value[0]:
-                    change_eq.player_change_eq_options()
-                elif int(enter_option) == CharacterMenuChoice.character_inventory.value[0]:
-                    for item in player_backpack.inventory:
-                        for name, attribute in item.items():
-                            print(name, attribute)
-                elif int(enter_option) == CharacterMenuChoice.character_pocket.value[0]:
-                    player_pocket.pocket('POCKET')
-                elif int(enter_option) == CharacterMenuChoice.character_menu_exit.value[0]:
-                    break
+                    print(f"[{option.value[0]}] {option.value[1]}")
+                try:
+                    enter_option = input("Enter option")
+                    if int(enter_option) == CharacterMenuChoice.character_information.value[0]:
+                        print(CharacterMenuChoice.character_information.value[1])
+                        player_informations.informations()
+                    elif int(enter_option) == CharacterMenuChoice.character_statistic.value[0]:
+                        player_attributes("STATISTIC")
+                    elif int(enter_option) == CharacterMenuChoice.character_backpack.value[0]:
+                        print(f"Coins: {player_backpack.coins:,} ")
+                        print(f"City Items: {player_backpack.quest_items}")
+                        print(f"Quest Items: {player_backpack.quest_items}")
+                        print(f"Blacksmith Items: {player_backpack.blacksmith_items}")
+                        print(f"Dungeon Items: {player_backpack.dungeon_items}")
+                    elif int(enter_option) == CharacterMenuChoice.character_chest.value[0]:
+                        chest.chest_opening()
+                    elif int(enter_option) == CharacterMenuChoice.character_equipment.value[0]:
+                        change_eq.player_change_eq_options()
+                    elif int(enter_option) == CharacterMenuChoice.character_inventory.value[0]:
+                        for item in player_backpack.inventory:
+                            for name, attribute in item.items():
+                                print(name, attribute)
+                    elif int(enter_option) == CharacterMenuChoice.character_pocket.value[0]:
+                        player_pocket.pocket('POCKET')
+                    elif int(enter_option) == CharacterMenuChoice.character_menu_exit.value[0]:
+                        break
+                except ValueError:
+                    if enter_option == 'Q' or enter_option == 'q':
+                        break
+                    else:
+                        print(f"Entered value must be a number {len(CharacterMenuChoice) - (len(CharacterMenuChoice)-1)} from to {len(CharacterMenuChoice)}, cannot be a {enter_option}")
 
 
 
