@@ -1,10 +1,9 @@
-
 from game_map import moves
 from rozmiar_mapy import game_map_size
 from game_character import player
 from campfire_rest import explore
 from game_system import game_stystem
-
+from player_menu import character_menu
 
 
 class GameDirections:
@@ -18,22 +17,21 @@ class GameDirections:
                 self.start_position()
             elif self.position > 0:
                 if self.east < game_map_size.map:
-                    enter_direction = input("Enter direction [E][U][W] NR 1")
+                    enter_direction = input("Enter direction [E][U][W]")
                     self.east_direction_positive(enter_direction)
                 if self.east == game_map_size.map:
                     self.east_direction_negative()
- 
+
             elif self.position < 0:
                 if self.west < game_map_size.map:
-                    enter_direction = input("Enter direction [E][U][W] NR 2")
+                    enter_direction = input("Enter direction [E][U][W]")
                     self.west_direction_positive(enter_direction)
 
                 if self.west == game_map_size.map:
                     self.west_direction_negative()
 
-
     def start_position(self):
-        direction = input("Enter direction [E][U][W] NR 0")
+        direction = input("Enter direction [E][U][W]")
         if direction == "E":
             self.east += 1
             self.west -= 1
@@ -44,11 +42,12 @@ class GameDirections:
             self.west += 1
             self.position -= 1
             game_stystem()
+        if direction == 'menu':
+            character_menu.player_menu(direction)
 
-        
 
     def east_direction_negative(self):
-        direction = input("Enter direction [U][W][C] NR 4")
+        direction = input("Enter direction [U][W][C]")
         if direction == "E":
             if self.east == self.position:
                 print("You can't go any further on EAST")
@@ -57,34 +56,37 @@ class GameDirections:
             self.east -= 1
             self.west += 1
             self.position -= 1
-            print('Position',self.position)
+            print("Position", self.position)
             game_stystem()
+        elif direction == 'menu':
+            character_menu.player_menu(direction)
         else:
-            direction = input("Enter direction [U][W][C] NR 5 nr 1")
+            direction = input("Enter direction [U][W][C]")
 
     def east_direction_positive(self, direct):
         if direct == "E":
             self.east += 1
             self.west -= 1
             self.position += 1
-            print('Position',self.position)
+            print("Position", self.position)
             game_stystem()
-            
+
         if direct == "W":
             self.east -= 1
             self.west += 1
             self.position -= 1
-            print('Position',self.position)
+            print("Position", self.position)
             game_stystem()
-
+        if direct == 'menu':
+            character_menu.player_menu(direct)
 
     def west_direction_negative(self):
-        direction = input("Enter direction [E][U][D] NR 6 nr 1")
+        direction = input("Enter direction [E][U][D]")
         if direction == "W":
             if self.west == abs(self.position):
                 print("You can't go any further on WEST")
                 print(f"WEST:{self.west}|{self.position}|{self.east}:EAST")
-                
+
         elif direction == "E":
             print(direction)
             self.east += 1
@@ -92,9 +94,11 @@ class GameDirections:
             self.position += 1
             game_stystem()
 
+        elif direction == 'menu':
+            character_menu.player_menu(direction)
+
         else:
-            direction = input("Enter direction [E][U][D] NR 6 nr 2")
-            
+            direction = input("Enter direction [E][U][D]")
 
     def west_direction_positive(self, direct):
         if direct == "W":
@@ -107,6 +111,8 @@ class GameDirections:
             self.west -= 1
             self.position += 1
             game_stystem()
+        if direct == 'menu':
+            character_menu.player_menu(direct)
 
 
 class GameMoves:
@@ -119,7 +125,7 @@ class GameMoves:
             explore.explore_menu()
 
 
-
 game_direction = GameDirections()
 game_start = GameMoves()
 
+game_start.game_moves("start")

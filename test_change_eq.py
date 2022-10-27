@@ -92,5 +92,5 @@ class PlayerChangeEquipment:
                     print("You cannot enter a letters except [Q]")
 
 
-p = PlayerChangeEquipment()
+change_eq = PlayerChangeEquipment()
 

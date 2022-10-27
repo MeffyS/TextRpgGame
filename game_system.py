@@ -10,6 +10,7 @@ from test_pocket import player_pocket
 from game_map import moves
 from game_character import player
 from campfire_rest import explore
+from player_menu import character_menu
 
 
 def main_game_system(move):
@@ -22,8 +23,9 @@ def main_game_system(move):
     main_equipment(move)
 
 
-def game_stystem():
+def game_stystem(self):
     moves.west_east_moves()
     if player.stamina <= 0:
         explore.explore_menu()
+
 
