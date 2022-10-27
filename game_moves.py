@@ -1,4 +1,3 @@
-from game_map import moves
 from rozmiar_mapy import game_map_size
 from game_character import player
 from campfire_rest import explore

@@ -18,7 +18,7 @@ class ShopOptions(Enum):
 def display_item_list():
     print("MERCHANT ITEMS")
     for number, (item, price) in enumerate(shop_items.items()):
-        print(f"[{number}] {item}:{price}")
+        print(f"[{number}] {item}: {price}")
 
 
 def buy_item(available_item_list, money, inventory):

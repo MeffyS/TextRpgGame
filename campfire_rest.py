@@ -85,7 +85,7 @@ class ExploreChoice:
 
                         break
                 except ValueError:
-                    if explore_campfire == "Q":
+                    if explore_campfire in ['Q','q']:
                         break
                     else:
                         print(f"Entered value cannot be a letter. Except [Q]")

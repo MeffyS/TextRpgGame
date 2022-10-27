@@ -8,13 +8,14 @@ from gold_chances_variables import draw
 from game_clear_function import clearConsole
 
 
-
 def game_map_size():
     while True:
         try:
-            game_map_size.map = int(input("Enter a map size in range [2-25]"))
-            if game_map_size.map < 2 or game_map_size.map > 25:
-                print("Incorrect mape size")
+            game_map_size.map = input("Enter a map size in range [2-25]")
+            if game_map_size.map in ['q','Q','0']:
+                break
+            if int(game_map_size.map) < 2 or int(game_map_size.map) > 25:
+                print("Incorrect map size")
             else:
                 break
         except ValueError:
@@ -61,7 +62,7 @@ class GameMoves:
                 if player_backpack.coins > player_informations.game_floor * 1000:
                     up_floor = input(
                         f"Do you want unlock up floor for {player_informations.game_floor * 1000} coins.[Y][Q] "
-                    )
+                    ).upper()
                     if up_floor == "Y":
                         player_backpack.coins -= player_informations.game_floor * 1000
                         player_informations.game_floor += 1
@@ -88,3 +89,4 @@ class GameMoves:
 up_move = GameMoves()
 moves = GameMoves()
 
+game_map_size()

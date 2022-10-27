@@ -136,7 +136,7 @@ class CharacterBackpack:
     city_items = {}
     blacksmith_items = {}
     dungeon_items = {}
-    potion_pocket = {'HealthPotion':1,'ManaPotion':20,'StaminaPotion':15}
+    potion_pocket = {'HealthPotion':1,'SmallManaPotion':20,'StaminaPotion':15}
     chests = {'pink':1, 'green':2}
     inventory = [{'Sword': [('Stamina', 2)]},{'Sword': [('Stamina', 3)]},{'Sword': [('Stamina', 4)]}, {'Gloves': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
 
