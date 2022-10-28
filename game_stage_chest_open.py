@@ -24,7 +24,7 @@ class OpenChest:
         if move == "CHEST":
 
             while True:
-                explore_chest = input("Do you want open chest? [Y][Q] ")
+                explore_chest = input("Do you want open chest? [Y][Q] ").upper()
                 if explore_chest == cls.agree:
                     open_chest = OpenChest()
                     open_chest.chest_opening()
@@ -74,7 +74,7 @@ class OpenChest:
                         player_backpack.chests.pop(chest_color)
                     if len(player_backpack.chests) == 0:
                         break
-                elif chest_color == "Q":
+                elif chest_color in ["Q",'q']:
                     break
                 else:
                     print(f"You dont have {chest_color!r} chest")
@@ -85,4 +85,4 @@ class OpenChest:
 
 chest = OpenChest()
 
-
+chest.open_chest("CHEST")
