@@ -1,6 +1,7 @@
 import math
 import random
 
+from game_character import player
 from game_character import player_informations
 from game_character import player_backpack
 from game_character import player_level_up
@@ -51,6 +52,7 @@ class OpenChest:
         if len(player_backpack.chests) > 0:
             while True:
                 print(f"CHESTS: {player_backpack.chests}")
+                print(player.experience)
                 print(f"OPENED CHESTS: {player_informations.opened_chests}")
                 chest_color = input("Enter a color chest which you want open ")
 
@@ -85,4 +87,4 @@ class OpenChest:
 
 chest = OpenChest()
 
-chest.open_chest("CHEST")
+# chest.open_chest("CHEST")

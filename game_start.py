@@ -22,3 +22,4 @@ while True:
         game_informations()
     elif choose_option == GameOptions.Leave.value[0] and GameOptions.Leave.value[1]:
         sys.exit()
+    
