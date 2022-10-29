@@ -143,5 +143,3 @@ class GameMoves:
 
 game_direction = GameDirections()
 game_start = GameMoves()
-
-game_start.game_moves("start")

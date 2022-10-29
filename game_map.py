@@ -88,5 +88,3 @@ class GameMoves:
 
 up_move = GameMoves()
 moves = GameMoves()
-
-game_map_size()

@@ -1,6 +1,5 @@
-# PLAYER SKILLS DECORATORS
-from game_generators import thunder_attack
 
+from game_generators import thunder_attack
 import well_monster
 import time
 from game_clear_function import clearConsole

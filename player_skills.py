@@ -182,7 +182,7 @@ def used_skill(self, mob_health,mob_attack_min,mob_attack_max,mob_defence):
             custom_skills.extend(fireball_skills_option)
             custom_skills.extend(health_skills_option)
 
-            # print("Which skill do u want to use", custom_skills)
+            
             print(f"{100 * '='}")
             print(f"CHOOSE SKILL".center(100))
             print(f"{100 * '='}")
@@ -203,7 +203,7 @@ def used_skill(self, mob_health,mob_attack_min,mob_attack_max,mob_defence):
                     print(f'The monster attack took YOU {monster_hit} health points. LEFT {player.health} monster Health Points'.center(100))
                     print(f"{100 * '='}")
                     if mob_health <= 0:
-                        # draw_items()
+                        
                         break
                     break
                 elif what_do == "T" or what_do == 'THUNDERSKILL' or what_do == '2':

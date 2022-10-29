@@ -1,5 +1,5 @@
 from game_character import player_backpack
-from enum import Enum, auto
+from enum import Enum
 
 shop_items = {
     "SmallManaPotion": 50,
@@ -121,10 +121,6 @@ class Merchant:
                 print(
                     f"You entered incorrect value [{select_option}]. Please try again"
                 )
-
-
-print("INVENTORY", player_backpack.potion_pocket)
-print("MONEY", player_backpack.coins)
 
 m = Merchant()
 

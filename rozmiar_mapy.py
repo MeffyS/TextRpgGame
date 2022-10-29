@@ -1,5 +1,3 @@
-from game_clear_function import clearConsole
-
 def game_map_size():
     while True:
         try:

@@ -127,7 +127,7 @@ def fight(self, *args, **kwargs):
             player.min_attack = player.max_attack
             print("You are dead")
             break
-            # church()
+            
 
 
 def draw_monster(self):

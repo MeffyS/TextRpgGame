@@ -3,7 +3,7 @@ import time
 
 from game_character import Character
 
-# PLAYER SKILLS
+
 
 player = Character()
 

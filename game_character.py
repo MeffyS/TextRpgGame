@@ -169,7 +169,6 @@ class CharacterInformation:
     opened_chests = {}
 
     def informations(self):
-        # if move == 'INFO':
         character_info = (
             f"PLAYER ATTRIBUTES \n Health:[{player.health}/{player.max_health}] \n Mana:[{player.mana}/{player.max_mana}] \n Stamina:[{player.stamina}/{player.stamina}] \
             \n Defence:[{player.defence}] \n Attack:[MIN|{player.min_attack}/{player.max_attack}|MAX] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())

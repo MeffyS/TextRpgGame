@@ -1,4 +1,4 @@
-import time
+
 from game_character import player
 from game_character import player_equipment
 from game_clear_function import clearConsole
@@ -71,9 +71,6 @@ def main_equipment(move):
             player_equipment.equipment
             player_eq = PlayerChangeEquipment()
             player_eq.player_change_eq_options()
-
-
-# x = main_equipment("EQ")
 
 
 def your_equipment():
@@ -175,16 +172,9 @@ def informations(info):
 
         print(f'{100*"="}')
 
-        # print(
-        #     f'\n[Coins {GameAttributes.Coins}],\n[Floor {GameAttributes.Floor}],\n[Moves {GameAttributes.Moves}]')
-        # print(
-        #     f'[Chests {GameAttributes.player_chests}],[Left chests:{sum(GameAttributes.player_chests.values())}]')
-        # print("Opened chests", GameAttributes.opened_chests)
-
 
 def pocket(pocket):
     if pocket == "pocket":
-        # your_equipment()
         print(GameAttributes.pocket)
 
 

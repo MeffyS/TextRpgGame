@@ -17,7 +17,6 @@ class PlayerChangeEquipment:
         for item in player_backpack.inventory
         for item_name, item_attribute in item.items()
     ]
-    print(item_name_list)
 
     @staticmethod
     def inventory_items():
