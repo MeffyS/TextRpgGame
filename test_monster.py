@@ -173,7 +173,7 @@ class FightWithMonster:
         monster = draw_monster()
         print(f"You will fight with, {monster.monster_name}")
         while True:
-            fight = input(f"Hit monster [A], Pocket[P], Escape [Q]")
+            fight = input(f"Hit monster [A], Pocket[P], Escape [Q] ")
             if fight == "A":
                 player_hit = random.randint(player.min_attack, player.max_attack)
                 monster_hit = random.randint(monster.attack_min, monster.attack_max)

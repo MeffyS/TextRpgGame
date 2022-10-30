@@ -25,14 +25,14 @@ class GameDirections:
                     self.start_position()
                 elif self.position > 0:
                     if self.east < game_map_size.map:
-                        enter_direction = input("Enter direction [W][U][E][MENU] NR 1").upper()
+                        enter_direction = input("Enter direction [W][U][E][MENU] ").upper()
                         self.east_direction_positive(enter_direction)
                     if self.east == game_map_size.map:
                         self.east_direction_negative()
 
                 elif self.position < 0:
                     if self.west < game_map_size.map:
-                        enter_direction = input("Enter direction [W][U][E][MENU] NR 2").upper()
+                        enter_direction = input("Enter direction [W][U][E][MENU] ").upper()
                         self.west_direction_positive(enter_direction)
 
                     if self.west == game_map_size.map:
@@ -42,7 +42,7 @@ class GameDirections:
 
     def start_position(self):
         
-        direction = input("Enter direction [W][U][E][MENU] NR 3").upper()
+        direction = input("Enter direction [W][U][E][MENU] ").upper()
         if direction == "E":
             self.east += 1
             self.west -= 1
@@ -60,7 +60,7 @@ class GameDirections:
 
 
     def east_direction_negative(self):
-        direction = input("Enter direction [W][U][C][MENU NR 4]").upper()
+        direction = input("Enter direction [W][U][C][MENU] ").upper()
         if direction == "E":
             if self.east == self.position:
                 print("You can't go any further on EAST")
@@ -75,7 +75,7 @@ class GameDirections:
         elif direction == 'C':
              game_city.city()
         else:
-            direction = input("Enter direction [W][U][C][MENU] NR 5").upper()
+            direction = input("Enter direction [W][U][C][MENU] ").upper()
 
 
 
@@ -95,7 +95,7 @@ class GameDirections:
 
 
     def west_direction_negative(self):
-        direction = input("Enter direction [D][U][E][MENU] NR 6").upper()
+        direction = input("Enter direction [D][U][E][MENU] ").upper()
         if direction == "W":
             if self.west == abs(self.position):
                 print("You can't go any further on WEST")
@@ -112,7 +112,7 @@ class GameDirections:
             character_menu.player_menu(direction)
 
         else:
-            direction = input("Enter direction [D][U][E][MENU] NR 7").upper()
+            direction = input("Enter direction [D][U][E][MENU] ").upper()
 
     def west_direction_positive(self, direct):
         if direct == "W" :

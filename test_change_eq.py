@@ -42,7 +42,7 @@ class PlayerChangeEquipment:
                             one_type_item_list.append(item)
                 for number, item in enumerate(one_type_item_list):
                     print(number, item)
-                enter_item_number = input("Enter item number which you want change")
+                enter_item_number = input("Enter item number which you want change ")
                 try:
                     if type_of_item in [item for item in player_equipment.equipment]:
                         if item in one_type_item_list:

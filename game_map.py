@@ -11,7 +11,7 @@ from game_clear_function import clearConsole
 def game_map_size():
     while True:
         try:
-            game_map_size.map = input("Enter a map size in range [2-25]")
+            game_map_size.map = input("Enter a map size in range [2-25] ")
             if game_map_size.map in ['q','Q','0']:
                 break
             if int(game_map_size.map) < 2 or int(game_map_size.map) > 25:

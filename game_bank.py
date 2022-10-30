@@ -44,7 +44,7 @@ class NewBank:
     def withdraw(self):
         print(f"You choosed option WITHDRAW")
         print(f"Your coins balance in bank is [{self.balance:,}]")
-        withdraw = input(f"How many coins you want withdrawn?").upper()
+        withdraw = input(f"How many coins you want withdrawn? ").upper()
         
         try:
             if int(withdraw) > self.balance:
@@ -80,7 +80,7 @@ class NewBank:
         while True:
             for option in BankOptions:
                 print(f"[{option.value}] {option.name}")
-            bank_choice = input("Please enter ur choice").upper()
+            bank_choice = input("Please enter ur choice ").upper()
             try:
                 if (
                     bank_choice == BankOptions.DEPOSIT.name

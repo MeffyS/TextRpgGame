@@ -17,7 +17,7 @@ while True:
     choose_option = input("Start[1], About[2], Leave[3] ")
     if choose_option == GameOptions.Start.value[0] and GameOptions.Start.value[1]:
         game_start.game_moves(choose_option)
-        
+
     elif choose_option == GameOptions.About.value[0] and GameOptions.About.value[1]:
         game_informations()
     elif choose_option == GameOptions.Leave.value[0] and GameOptions.Leave.value[1]:

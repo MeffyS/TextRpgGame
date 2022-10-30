@@ -9,14 +9,14 @@ from game_well import coin_well_draw
 
 
 class CityNpc(Enum):
-    Edward = auto()
-    Fiora = auto()
-    Marie = auto()
-    Tom = auto()
-    Max = auto()
-    Figo = auto()
-    Amigo = auto()
-    Frank = auto()
+    Edward = '1'
+    Fiora = '2'
+    Marie = '3'
+    Tom = '4'
+    Max = '5'
+    Figo = '6'
+    Amigo = '7'
+    Frank = '8'
 
 
 class CityNpcServices(Enum):
@@ -77,7 +77,7 @@ class CityGames(Enum):
         player_chances = 10
         guess_number = random.randint(1, 2000)
         while True:
-            coins = input("How many coins u want bet? ")
+            coins = input("How many coins u want bet? ").upper()
             try:
                 if int(coins) == 0:
                     print("You cannot bet 0 coins")
@@ -92,7 +92,7 @@ class CityGames(Enum):
                         if guess_number > 0 and player_chances > 0:
                             try:
                                 player_number = input(
-                                    "Choose number in the range of [1-2000]"
+                                    "Choose number in the range of [1-2000] "
                                 )
                                 if int(player_number) > 2000:
                                     print("Guessing number cannot be greater than 2000")
@@ -122,7 +122,7 @@ class CityGames(Enum):
                                     player_backpack.coins -= int(coins)
                                     break
                             except ValueError:
-                                if player_number == "Q":
+                                if player_number in ["Q",'q']:
                                     print(
                                         "You cannot leave from guess number game. Continue"
                                     )
@@ -171,7 +171,7 @@ class CityGames(Enum):
                                 player_backpack.coins -= int(coins)
                                 break
                         except ValueError:
-                            if player_number == "Q":
+                            if player_number in ["Q",'q']:
                                 print(
                                     "You cannot leave from guess number game. Continue"
                                 )
@@ -189,7 +189,7 @@ class CityGames(Enum):
         while True:
             try:
                 dice_draw = random.randint(1, 6)
-                coins = input("How many coins u want bet?")
+                coins = input("How many coins u want bet? ")
                 if int(coins) == 0:
                     print("You cannot bet 0 coins")
                 elif int(coins) < 0:
@@ -228,7 +228,7 @@ class CityGames(Enum):
                                 print(player_backpack.coins)
                                 break
                         elif player_number not in ["Low", "High"]:
-                            if player_number == "Q":
+                            if player_number in ["Q",'q']:
                                 print(
                                     "You cannot leave from guess number game. Continue"
                                 )
@@ -257,7 +257,7 @@ class CityGames(Enum):
             print("[2] Guess High or Low")
             print("[3] Guess Dice Number")
             print("[Q] Quit")
-            game = input("Choose type of a dice game").upper()
+            game = input("Choose type of a dice game ").upper()
             try:
                 if game == CityGames.DICE_GUESS.value:
                     CityGames.dice_option_first()
@@ -272,10 +272,10 @@ class CityGames(Enum):
 
 
 class CityCampfire(Enum):
-    campfire_count = auto()
-    campfire_half = auto()
-    campfire_max = auto()
-    campfire_quit = "Q"
+    CAMPFIRE_COUNT = auto()
+    CAMPFIRE_HALF = auto()
+    CAMPFIRE_MAX = auto()
+    CAMPFIRE_QUIT = "Q"
 
     def campfire():
         stamine_to_regeneration = player.max_stamina - player.stamina
@@ -283,14 +283,14 @@ class CityCampfire(Enum):
             for campfire in CityCampfire:
                 print(f'[{campfire.value}] to use a {campfire.name.replace("_"," ")}')
             try:
-                stamine_regen = input("Choose number which you want regenerate")
+                stamine_regen = input("Choose number which you want regenerate ").upper()
                 if (
-                    stamine_regen == "count"
-                    or int(stamine_regen) == CityCampfire.campfire_count.value
+                    stamine_regen == "COUNT"
+                    or int(stamine_regen) == CityCampfire.CAMPFIRE_COUNT.value
                 ):
                     while True:
                         stamine_count = input(
-                            f"Enter stamine count. You can regenerate {stamine_to_regeneration} points"
+                            f"Enter stamine count. You can regenerate {stamine_to_regeneration} points "
                         )
                         try:
                             if int(stamine_count) < 0:
@@ -312,23 +312,23 @@ class CityCampfire(Enum):
                             else:
                                 print("Entered value must be a number, except [Q]")
                 elif (
-                    stamine_regen == "half"
-                    or int(stamine_regen) == CityCampfire.campfire_half.value
+                    stamine_regen == "HALF"
+                    or int(stamine_regen) == CityCampfire.CAMPFIRE_HALF.value
                 ):
                     for regeneration in range(int(stamine_to_regeneration / 2))[::-1]:
                         time.sleep(0.5)
                         print(regeneration)
                     player.stamina += stamine_to_regeneration / 2
                 elif (
-                    stamine_regen == "max"
-                    or int(stamine_regen) == CityCampfire.campfire_max.value
+                    stamine_regen == "MAX"
+                    or int(stamine_regen) == CityCampfire.CAMPFIRE_MAX.value
                 ):
                     for regeneration in range(int(stamine_to_regeneration))[::-1]:
                         time.sleep(0.5)
                         print(regeneration)
                 elif (
-                    stamine_regen == "quit"
-                    or int(stamine_regen) == CityCampfire.campfire_quit.value
+                    stamine_regen == "QUIT"
+                    or int(stamine_regen) == CityCampfire.CAMPFIRE_QUIT.value
                 ):
                     break
 
@@ -343,52 +343,52 @@ class City:
     def city(self):
         print('welcome in elvarion city!'.upper())
         services = input(
-            f"Check list of available services in city[SERVICE][INFO][Q]"
+            f"Check list of available services in city[SERVICE][INFO][Q] "
         ).upper()
         if services == "SERVICE":
             while True:
                 try:
                     for service in CityNpcServices:
                         print(f"[{service.value.value}] {service.name.upper()}")
-                    select_service = input("Enter service which you want to use")
+                    select_service = input("Enter service which you want to use ").upper()
                     if (
                         select_service == CityNpcServices.CHEST.name
-                        or int(select_service) == CityNpc.Edward.value
+                        or select_service == CityNpc.Edward.value
                     ):
                         print("CHEST")
                     elif (
                         select_service == CityNpcServices.CAMPFIRE.name
-                        or int(select_service) == CityNpc.Fiora.value
+                        or select_service == CityNpc.Fiora.value
                     ):
                         CityCampfire.campfire()
                     elif (
                         select_service == CityNpcServices.BANK.name
-                        or int(select_service) == CityNpc.Marie.value
+                        or select_service == CityNpc.Marie.value
                     ):
                         bank.bank()
                     elif (
                         select_service == CityNpcServices.BLACKSMITH.name
-                        or int(select_service) == CityNpc.Tom.value
+                        or select_service == CityNpc.Tom.value
                     ):
                         print("BLACKSMITH")
                     elif (
                         select_service == CityNpcServices.GAMBLING.name
-                        or int(select_service) == CityNpc.Max.value
+                        or select_service == CityNpc.Max.value
                     ):
                         CityGames.play_city_game()
                     elif (
                         select_service == CityNpcServices.SHOP.name
-                        or int(select_service) == CityNpc.Figo.value
+                        or select_service == CityNpc.Figo.value
                     ):
                         Merchant.merchant()
                     elif (
                         select_service == CityNpcServices.MAGIC.name
-                        or int(select_service) == CityNpc.Amigo.value
+                        or select_service == CityNpc.Amigo.value
                     ):
                         print("MAGIC")
                     elif (
                         select_service == CityNpcServices.WELL.name
-                        or int(select_service) == CityNpc.Frank.value
+                        or select_service == CityNpc.Frank.value
                     ):
                         coin_well_draw()
                 except ValueError:

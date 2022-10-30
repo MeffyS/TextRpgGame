@@ -30,7 +30,7 @@ class CharacterMenu:
                 for option in CharacterMenuChoice:
                     print(f"[{option.value[0]}] {option.value[1]}")
                 try:
-                    enter_option = input("Enter option")
+                    enter_option = input("Enter option ")
                     if int(enter_option) == CharacterMenuChoice.character_information.value[0]:
                         print(CharacterMenuChoice.character_information.value[1])
                         player_informations.informations()

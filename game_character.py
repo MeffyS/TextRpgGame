@@ -1,7 +1,7 @@
 
 class Character:
     
-    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=12, max_stamina=1200, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=97, points=20, skill_count=2):
+    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=3, max_stamina=100, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=97, points=20, skill_count=2):
         self.health = health
         self.max_health = max_health
         self.mana = mana
