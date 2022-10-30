@@ -20,14 +20,14 @@ class CityNpc(Enum):
 
 
 class CityNpcServices(Enum):
-    chest = CityNpc.Edward
-    campfire = CityNpc.Fiora
-    bank = CityNpc.Marie
-    blacksmith = CityNpc.Tom
-    gambling = CityNpc.Max
-    shop = CityNpc.Figo
-    magic = CityNpc.Amigo
-    well = CityNpc.Frank
+    CHEST = CityNpc.Edward
+    CAMPFIRE = CityNpc.Fiora
+    BANK = CityNpc.Marie
+    BLACKSMITH = CityNpc.Tom
+    GAMBLING = CityNpc.Max
+    SHOP = CityNpc.Figo
+    MAGIC = CityNpc.Amigo
+    WELL = CityNpc.Frank
 
 
 class CitySkills(Enum):
@@ -65,11 +65,12 @@ class CityInformations:
     upgrade items"""
 
 
+
 class CityGames(Enum):
-    Guess = auto()
-    Dice = auto()
-    Dice_Guess = auto()
-    Quit = "Q"
+    GUESS = '1'
+    DICE = '2'
+    DICE_GUESS = '3'
+    QUIT = "Q"
 
     @staticmethod
     def guess_option():
@@ -77,7 +78,6 @@ class CityGames(Enum):
         guess_number = random.randint(1, 2000)
         while True:
             coins = input("How many coins u want bet? ")
-            print(guess_number)
             try:
                 if int(coins) == 0:
                     print("You cannot bet 0 coins")
@@ -102,7 +102,7 @@ class CityGames(Enum):
                                     print("Guessing number cannot be lower than 0")
                                 elif int(player_number) > guess_number:
                                     print(
-                                        f"Rolled number is lower than {player_number}. Left chances {player_chances-1}/{player_chances}"
+                                        f"Rolled number is lower than {player_number}. Left chances {player_chances-1}/10"
                                     )
                                     player_chances -= 1
                                 elif int(player_number) < guess_number:
@@ -128,6 +128,8 @@ class CityGames(Enum):
                                     )
                                 else:
                                     print("Entered number cannot be a letter")
+                        else:
+                            break
             except ValueError:
                 if coins == "Q":
                     break
@@ -255,19 +257,18 @@ class CityGames(Enum):
             print("[2] Guess High or Low")
             print("[3] Guess Dice Number")
             print("[Q] Quit")
-            game = input("Choose type of a dice game")
+            game = input("Choose type of a dice game").upper()
             try:
-                if int(game) == CityGames.Dice_Guess.value:
+                if game == CityGames.DICE_GUESS.value:
                     CityGames.dice_option_first()
-                elif int(game) == CityGames.Dice.value:
+                elif game == CityGames.DICE.value:
                     CityGames.dice_option_second()
-                elif int(game) == CityGames.Guess.value:
+                elif game == CityGames.GUESS.value:
                     CityGames.guess_option()
-            except ValueError:
-                if game == "Q":
+                elif game == CityGames.QUIT.value:
                     break
-                else:
-                    print("Entered number cannot be a letter, except [Q]")
+            except ValueError:
+                print(f"Entered {game!r} is not correct")
 
 
 class CityCampfire(Enum):
@@ -340,8 +341,9 @@ class CityCampfire(Enum):
 
 class City:
     def city(self):
+        print('welcome in elvarion city!'.upper())
         services = input(
-            f"Check list of available services in city[Service][Info][Q]"
+            f"Check list of available services in city[SERVICE][INFO][Q]"
         ).upper()
         if services == "SERVICE":
             while True:
@@ -350,42 +352,42 @@ class City:
                         print(f"[{service.value.value}] {service.name.upper()}")
                     select_service = input("Enter service which you want to use")
                     if (
-                        select_service == CityNpcServices.chest.name
+                        select_service == CityNpcServices.CHEST.name
                         or int(select_service) == CityNpc.Edward.value
                     ):
                         print("CHEST")
                     elif (
-                        select_service == CityNpcServices.campfire.name
+                        select_service == CityNpcServices.CAMPFIRE.name
                         or int(select_service) == CityNpc.Fiora.value
                     ):
                         CityCampfire.campfire()
                     elif (
-                        select_service == CityNpcServices.bank.name
+                        select_service == CityNpcServices.BANK.name
                         or int(select_service) == CityNpc.Marie.value
                     ):
                         bank.bank()
                     elif (
-                        select_service == CityNpcServices.blacksmith.name
+                        select_service == CityNpcServices.BLACKSMITH.name
                         or int(select_service) == CityNpc.Tom.value
                     ):
                         print("BLACKSMITH")
                     elif (
-                        select_service == CityNpcServices.gambling.name
+                        select_service == CityNpcServices.GAMBLING.name
                         or int(select_service) == CityNpc.Max.value
                     ):
                         CityGames.play_city_game()
                     elif (
-                        select_service == CityNpcServices.shop.name
+                        select_service == CityNpcServices.SHOP.name
                         or int(select_service) == CityNpc.Figo.value
                     ):
                         Merchant.merchant()
                     elif (
-                        select_service == CityNpcServices.magic.name
+                        select_service == CityNpcServices.MAGIC.name
                         or int(select_service) == CityNpc.Amigo.value
                     ):
                         print("MAGIC")
                     elif (
-                        select_service == CityNpcServices.well.name
+                        select_service == CityNpcServices.WELL.name
                         or int(select_service) == CityNpc.Frank.value
                     ):
                         coin_well_draw()
@@ -394,8 +396,10 @@ class City:
                         break
                     else:
                         print("Entered value must be a number, except [Q]")
+        if services == "INFO":
+            print(CityInformations.informations)
 
 
 bank = NewBank()
 game_city = City()
-
+# game_city.city()

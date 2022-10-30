@@ -71,7 +71,9 @@ def sell_item(available_item_list, money, inventory):
 
 
 class Merchant:
-    def merchant(self):
+
+    @staticmethod
+    def merchant():
         print("==========MERCHANT==========")
         while True:
             for option in ShopOptions:
@@ -123,4 +125,5 @@ class Merchant:
                 )
 
 m = Merchant()
+# m.merchant()
 

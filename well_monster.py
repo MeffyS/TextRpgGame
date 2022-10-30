@@ -15,8 +15,9 @@ from game_drop_system import drop_item as drop
 
 
 def monster():
-    monster_file_part_one = 'D:/PythonGra/TextRpgGame-01.07.2022/nazwa_potwora_1.txt'
-    monster_file_part_two = 'D:/PythonGra/TextRpgGame-01.07.2022/nazwa_potwora_2.txt'
+    monster_file_part_one = 'D:/PythonGra/TextRpgGame-01.07.2022/nazwa_potwora/nazwa_potwora_1.txt'
+    monster_file_part_two = 'D:/PythonGra/TextRpgGame-01.07.2022/nazwa_potwora/nazwa_potwora_2.txt'
+    
 
     with open(monster_file_part_one) as file, open(monster_file_part_two) as file2:
         file_one_contents = file.readlines()

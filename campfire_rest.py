@@ -7,10 +7,10 @@ import random
 
 
 class ExploreOptions(Enum):
-    chest = "1"
-    pocket = "2"
-    campfire = "3"
-    quit = "Q"
+    CHEST = "1"
+    POCKET = "2"
+    CAMPFIRE = "3"
+    QUIT = "Q"
 
 
 class ExploreChoice:
@@ -23,30 +23,32 @@ class ExploreChoice:
             for option in ExploreOptions:
                 print(f"[{option.value}] {option.name}")
             try:
-                menu_choice = input("Enter choice ")
-                if (
-                    menu_choice == ExploreOptions.chest.name
-                    or menu_choice == ExploreOptions.chest.value
-                ):
-                    OpenChest.open_chest("CHEST")
-                elif (
-                    menu_choice == ExploreOptions.pocket.name
-                    or menu_choice == ExploreOptions.pocket.value
-                ):
-                    player_pocket.open_pocket()
-                elif (
-                    menu_choice == ExploreOptions.campfire.name
-                    or menu_choice == ExploreOptions.campfire.value
-                ):
-                    self.use_campfire()
+                while True:
+                    menu_choice = input("Choose option ").upper()
+                    if (
+                        menu_choice == ExploreOptions.CHEST.name
+                        or menu_choice == ExploreOptions.CHEST.value
+                    ):
+                        OpenChest.open_chest("CHEST")
+                    elif (
+                        menu_choice == ExploreOptions.POCKET.name
+                        or menu_choice == ExploreOptions.POCKET.value
+                    ):
+                        player_pocket.open_pocket()
+                    elif (
+                        menu_choice == ExploreOptions.CAMPFIRE.name
+                        or menu_choice == ExploreOptions.CAMPFIRE.value
+                    ):
+                        self.use_campfire()
+                    elif (
+                        menu_choice == ExploreOptions.QUIT.name
+                        or menu_choice == ExploreOptions.QUIT.value
+                    ): 
+                        break
+                    else:
+                        print(f'{menu_choice!r} is not correct value')
             except ValueError:
-                if (
-                    menu_choice == ExploreOptions.quit.name
-                    or menu_choice == ExploreOptions.quit.value
-                ):
-                    break
-                else:
-                    print(f"Entered value cannot be a letter. Except [Q]")
+                print(f"Entered value cannot be a letter. Except [Q]")
             break
 
     def use_campfire(self):
@@ -63,7 +65,7 @@ class ExploreChoice:
                     elif int(explore_campfire) > 100:
                         print("Entered value cannot be greater than 100")
                     else:
-                        for regeneration in range(1, int(explore_campfire) + 1):
+                        for _ in range(1, int(explore_campfire) + 1):
                             print(
                                 f"STAMINE REGENERATION {player.stamina}/{player.max_stamina}"
                             )

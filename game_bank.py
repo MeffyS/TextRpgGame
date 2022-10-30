@@ -17,7 +17,8 @@ class NewBank:
     def deposit(self):
         print(f"You choosed option DEPOSIT")
         while True:
-            deposit = input(f"How many coins you want deposit?")
+            print(f"Your coins balance is [{player_backpack.coins:,}]")
+            deposit = input(f"How many coins you want deposit? ").upper()
             try:
                 if int(deposit) > player_backpack.coins:
                     print(
@@ -42,7 +43,9 @@ class NewBank:
 
     def withdraw(self):
         print(f"You choosed option WITHDRAW")
-        withdraw = input(f"How many coins you want withdrawn?")
+        print(f"Your coins balance in bank is [{self.balance:,}]")
+        withdraw = input(f"How many coins you want withdrawn?").upper()
+        
         try:
             if int(withdraw) > self.balance:
                 print(
@@ -60,7 +63,7 @@ class NewBank:
                 )
         except ValueError:
             if withdraw == "Q":
-                print("exit")
+                pass
             else:
                 print("You cannot enter a letters, except [Q] ")
 
@@ -77,7 +80,7 @@ class NewBank:
         while True:
             for option in BankOptions:
                 print(f"[{option.value}] {option.name}")
-            bank_choice = input("Please enter ur choice")
+            bank_choice = input("Please enter ur choice").upper()
             try:
                 if (
                     bank_choice == BankOptions.DEPOSIT.name
@@ -104,3 +107,4 @@ class NewBank:
                     break
                 else:
                     print("You cannot enter a letters except [Q]")
+
