@@ -10,6 +10,8 @@ class GameOptions(Enum):
     Leave = ["3", "leave"]
 
 
+
+
 for option in GameOptions:
     print(f"Click {option.value[0]} to [{option.name}]")
 

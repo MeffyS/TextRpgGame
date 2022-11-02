@@ -8,6 +8,8 @@ from gold_chances_variables import draw
 from game_clear_function import clearConsole
 
 
+
+
 def game_map_size():
     while True:
         try:
@@ -60,7 +62,7 @@ class GameMoves:
         while True:
             if move == "U":
                 if player_backpack.coins > player_informations.game_floor * 1000:
-                    up_floor = input(
+                    up_floor =  (
                         f"Do you want unlock up floor for {player_informations.game_floor * 1000} coins.[Y][Q] "
                     ).upper()
                     if up_floor == "Y":
@@ -85,6 +87,6 @@ class GameMoves:
             f"NORTH: [ {GameMoves.north} ] || FLOOR:{player_informations.game_floor}:FLOOR || [ {GameMoves.south} ] :SOUTH"
         )
 
-
 up_move = GameMoves()
 moves = GameMoves()
+

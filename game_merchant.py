@@ -1,5 +1,6 @@
 from game_character import player_backpack
 from enum import Enum
+from items import SMP, SHP, SSP, MP, HP, SP, GMP, GHP, GSP
 
 shop_items = {
     "SmallManaPotion": 50,
@@ -7,6 +8,28 @@ shop_items = {
     "SmallStaminaPotion": 150,
 }
 
+
+class ShopItems(Enum):
+    SMALL_MANA_POTION = ["1", "Small Mana Potion", SMP.mana, SMP.price]
+    SMALL_HEALTH_POTION = ["2", "Small Health Potion", SHP.health, SHP.price]
+    SMALL_STAMINA_POTION = ["3", "Small Stamina Potion", SSP.stamine, SSP.price]
+    MANA_POTION = ["4", "Mana Potion", MP.mana, MP.price]
+    HEALTH_POTION = ["5", "Health Potion", HP.health, HP.price]
+    STAMINA_POTION = ["6", "Stamina Potion", SP.stamine, SP.price]
+    GREAT_MANA_POTION = ["7", "Great Mana Potion", GMP.mana, GMP.price]
+    GREAT_HEALTH_POTION = ["8", "Great Health Potion", GHP.health, GHP.price]
+    GREAT_STAMINA_POTION = ["9", "Great Stamina Potion", GSP.stamine, GSP.price]
+    EXIT = ["Q", "Quit", "X", "X"]
+
+
+for _, item in ShopItems.__members__.items():
+    if item.value[2] in ShopItems.EXIT.value or item.value[3] in ShopItems.EXIT.value:
+        print(f"ENTER NUMBER: [{item.value[0]}] TO EXIT [{item.value[1]}]")
+
+    else:
+        print(
+            f"ENTER NUMBER: [{item.value[0]}] TO BUY [{item.value[1]}]. COST ITEM: [{item.value[3]}]. REGENERATION [{item.value[2]}] POINTS"
+        )
 
 class ShopOptions(Enum):
     BUY = "1"
@@ -71,7 +94,6 @@ def sell_item(available_item_list, money, inventory):
 
 
 class Merchant:
-
     @staticmethod
     def merchant():
         print("==========MERCHANT==========")
@@ -124,6 +146,8 @@ class Merchant:
                     f"You entered incorrect value [{select_option}]. Please try again"
                 )
 
+
 m = Merchant()
 # m.merchant()
 
+# si = ShopItems()
