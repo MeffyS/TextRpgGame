@@ -22,14 +22,12 @@ class ShopItems(Enum):
     EXIT = ["Q", "Quit", "X", "X"]
 
 
-for _, item in ShopItems.__members__.items():
-    if item.value[2] in ShopItems.EXIT.value or item.value[3] in ShopItems.EXIT.value:
-        print(f"ENTER NUMBER: [{item.value[0]}] TO EXIT [{item.value[1]}]")
-
-    else:
-        print(
-            f"ENTER NUMBER: [{item.value[0]}] TO BUY [{item.value[1]}]. COST ITEM: [{item.value[3]}] COINS. REGENERATION [{item.value[2]}] POINTS"
-        )
+# while True:
+#     item_number = input("Enter a item number which one you want to buy ")
+#     for item in ShopItems.__members__.values():
+#         if item_number in item.value[0]:
+#             item_count = input(f'How many {item.value[1]!r} you want buy? ')
+#     break
 
 
 class ShopOptions(Enum):
@@ -41,8 +39,45 @@ class ShopOptions(Enum):
 
 def display_item_list():
     print("MERCHANT ITEMS")
-    for number, (item, price) in enumerate(shop_items.items()):
-        print(f"[{number}] {item}: {price}")
+    for item in ShopItems.__members__.values():
+        if (
+            item.value[2] in ShopItems.EXIT.value
+            or item.value[3] in ShopItems.EXIT.value
+        ):
+            print(f"ENTER NUMBER: [{item.value[0]}] TO EXIT [{item.value[1]}]")
+        else:
+            print(
+                f"ENTER NUMBER: [{item.value[0]}] TO BUY [{item.value[1]}]. COST ITEM: [{item.value[3]}] COINS. REGENERATION [{item.value[2]}] POINTS"
+            )
+
+
+print(player_backpack.coins)
+
+
+def new_buy_item(available_item_list, money, inventory):
+    display_item_list()
+    while True:
+        item_number = input("Enter a item number which one you want to buy ")
+        for item in available_item_list.__members__.values():
+            if item_number in item.value[0]:
+                item_count = input(f"How many {item.value[1]!r} you want buy? ")
+                if int(item_count) > 0 and money >= item.value[3] * int(item_count):
+                    if item.value[1] not in inventory:
+                        inventory[item.value[1]] = int(item_count)
+                    else:
+                        inventory[item.value[1]] += int(item_count)
+                    money -= item.value[3] * int(item_count)
+                else:
+                    print(
+                        f"You dont have a money. {money:,}/{(item.value[3] * int(item_count)):,}"
+                    )
+                return int(money), inventory
+
+
+player_backpack.coins, player_backpack.potion_pocket = new_buy_item(
+    ShopItems, player_backpack.coins, player_backpack.potion_pocket
+)
+print(player_backpack.coins)
 
 
 def buy_item(available_item_list, money, inventory):
@@ -114,7 +149,7 @@ class Merchant:
                         or select_option == ShopOptions.BUY.value
                     ):
                         player_backpack.coins, player_backpack.potion_pocket = buy_item(
-                            shop_items,
+                            ShopItems,
                             player_backpack.coins,
                             player_backpack.potion_pocket,
                         )
