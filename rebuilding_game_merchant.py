@@ -9,7 +9,7 @@ shop_items = {
 }
 
 
-class ShopItems(Enum):
+class PotionShop(Enum):
     SMALL_MANA_POTION = ["1", "Small Mana Potion", SMP.mana, SMP.price]
     SMALL_HEALTH_POTION = ["2", "Small Health Potion", SHP.health, SHP.price]
     SMALL_STAMINA_POTION = ["3", "Small Stamina Potion", SSP.stamine, SSP.price]
@@ -37,12 +37,12 @@ class ShopOptions(Enum):
     QUIT = "Q"
 
 
-def display_item_list():
+def display_buy_item_list():
     print("MERCHANT ITEMS")
-    for item in ShopItems.__members__.values():
+    for item in PotionShop.__members__.values():
         if (
-            item.value[2] in ShopItems.EXIT.value
-            or item.value[3] in ShopItems.EXIT.value
+            item.value[2] in PotionShop.EXIT.value
+            or item.value[3] in PotionShop.EXIT.value
         ):
             print(f"ENTER NUMBER: [{item.value[0]}] TO EXIT [{item.value[1]}]")
         else:
@@ -51,44 +51,84 @@ def display_item_list():
             )
 
 
+def display_sell_item_list():
+    print("ITEMS ON SELL")
+    for item_number, item in enumerate(player_backpack.potion_pocket):
+        print(item_number, item)
+
+
+# display_sell_item_list()
+
+
+def new_sell_item(available_item_list, money, inventory):
+    display_sell_item_list()
+    enter_number = input("Enter a item number which you want sell ")
+    for item_number, item in enumerate(player_backpack.potion_pocket):
+        print(item_number, item)
+        if int(enter_number) == item_number:
+            # print("Enter", enter_number, "x", item)
+            for n in available_item_list.__members__.values():
+                if n.value[1] == item:
+                    inventory[item] -= 1
+                    money += n.value[3]
+            return money, inventory
+
+
 print(player_backpack.coins)
+# while True:
+#     item_name = input("Any potion do you want sell?")
+#     a = available_item_list.__members__.keys()
+#     print(a["SMALL_HEALTH_POTION"])
+
+# index = available_item_list.index(item_name)
+# item_name = input("Any potion do you want sell?")
+# for item in available_item_list.__members__.values():
+#     print(item.value)
+#     index = item.index(item.value[0])
+
+# break
+
+
+player_backpack.coins, player_backpack.potion_pocket = new_sell_item(
+    PotionShop, player_backpack.coins, player_backpack.potion_pocket
+)
+print(player_backpack.coins)
+print(player_backpack.potion_pocket)
 
 
 def new_buy_item(available_item_list, money, inventory):
-    display_item_list()
+    display_buy_item_list()
     while True:
         item_number = input("Enter a item number which one you want to buy ")
         for item in available_item_list.__members__.values():
             if item_number in item.value[0]:
-                    while True:
-                        item_count = input(f"How many {item.value[1]!r} you want buy? ")
-                        try:
-                            if int(item_count) > 0 and money >= item.value[3] * int(item_count):
-                                if item.value[1] not in inventory:
-                                    inventory[item.value[1]] = int(item_count)
-                                else:
-                                    inventory[item.value[1]] += int(item_count)
-                                money -= item.value[3] * int(item_count)
-                            elif int(item_count) < 0:
-                                print(f'Entered value {item_count!r} cannot be negative')
+                while True:
+                    item_count = input(f"How many {item.value[1]!r} you want buy? ")
+                    try:
+                        if int(item_count) > 0 and money >= item.value[3] * int(
+                            item_count
+                        ):
+                            if item.value[1] not in inventory:
+                                inventory[item.value[1]] = int(item_count)
                             else:
-                                print(
-                                    f"You dont have a money. {money:,}/{(item.value[3] * int(item_count)):,}"
-                                )
-                        except ValueError:
-                            print(f"Entered value {item_count!r} is not correct. Please try enter a number.")
-                            continue
-                        return int(money), inventory
-
-
-player_backpack.coins, player_backpack.potion_pocket = new_buy_item(
-    ShopItems, player_backpack.coins, player_backpack.potion_pocket
-)
-print(player_backpack.coins)
+                                inventory[item.value[1]] += int(item_count)
+                            money -= item.value[3] * int(item_count)
+                        elif int(item_count) < 0:
+                            print(f"Entered value {item_count!r} cannot be negative")
+                        else:
+                            print(
+                                f"You dont have a money. {money:,}/{(item.value[3] * int(item_count)):,}"
+                            )
+                    except ValueError:
+                        print(
+                            f"Entered value {item_count!r} is not correct. Please try enter a number."
+                        )
+                        continue
+                    return int(money), inventory
 
 
 def buy_item(available_item_list, money, inventory):
-    display_item_list()
+    display_sell_item_list()
     item_name = input(f"Enter item name which you want ")
     item_count = int(input(f"Enter how many items you want "))
     if item_name not in available_item_list:
@@ -156,7 +196,7 @@ class Merchant:
                         or select_option == ShopOptions.BUY.value
                     ):
                         player_backpack.coins, player_backpack.potion_pocket = buy_item(
-                            ShopItems,
+                            PotionShop,
                             player_backpack.coins,
                             player_backpack.potion_pocket,
                         )
@@ -178,7 +218,7 @@ class Merchant:
                 select_option == ShopOptions.LOOK.name
                 or select_option == ShopOptions.LOOK.value
             ):
-                display_item_list()
+                display_buy_item_list()
             elif (
                 select_option == ShopOptions.QUIT.name
                 or select_option == ShopOptions.QUIT.value
