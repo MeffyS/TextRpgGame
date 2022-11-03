@@ -148,7 +148,7 @@ class Merchant:
                 )
 
 
-m = Merchant()
+# m = Merchant()
 # m.merchant()
 
 # si = ShopItems()

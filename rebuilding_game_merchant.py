@@ -2,12 +2,6 @@ from game_character import player_backpack
 from enum import Enum
 from items import SMP, SHP, SSP, MP, HP, SP, GMP, GHP, GSP
 
-shop_items = {
-    "SmallManaPotion": 50,
-    "SmallHealthPotion": 100,
-    "SmallStaminaPotion": 150,
-}
-
 
 class PotionShop(Enum):
     SMALL_MANA_POTION = ["1", "Small Mana Potion", SMP.mana, SMP.price]
@@ -22,19 +16,17 @@ class PotionShop(Enum):
     EXIT = ["Q", "Quit", "X", "X"]
 
 
-# while True:
-#     item_number = input("Enter a item number which one you want to buy ")
-#     for item in ShopItems.__members__.values():
-#         if item_number in item.value[0]:
-#             item_count = input(f'How many {item.value[1]!r} you want buy? ')
-#     break
-
-
 class ShopOptions(Enum):
     BUY = "1"
     SELL = "2"
     LOOK = "3"
     QUIT = "Q"
+
+
+def display_sell_item_list():
+    print("ITEMS IN YOUR POTION POCKET")
+    for item_number, item in enumerate(player_backpack.potion_pocket.items()):
+        print(f"[{item_number}] {item[0]}. Potion count [{item[1]}]")
 
 
 def display_buy_item_list():
@@ -51,49 +43,60 @@ def display_buy_item_list():
             )
 
 
-def display_sell_item_list():
-    print("ITEMS ON SELL")
-    for item_number, item in enumerate(player_backpack.potion_pocket):
-        print(item_number, item)
-
-
-# display_sell_item_list()
 
 
 def new_sell_item(available_item_list, money, inventory):
     display_sell_item_list()
-    enter_number = input("Enter a item number which you want sell ")
-    for item_number, item in enumerate(player_backpack.potion_pocket):
-        print(item_number, item)
-        if int(enter_number) == item_number:
-            # print("Enter", enter_number, "x", item)
-            for n in available_item_list.__members__.values():
-                if n.value[1] == item:
-                    inventory[item] -= 1
-                    money += n.value[3]
+    while True:
+        if len(player_backpack.potion_pocket) > 0:
+            enter_number = input("Enter a item number which you want sell ")
+            try:
+                if enter_number == "Q":
+                    return money, inventory
+                if int(enter_number) < 0:
+                    print("Entered value cannot have a negative value")
+
+                if int(enter_number) <= len(player_backpack.potion_pocket) - 1:
+                    for item_number, item_name in enumerate(player_backpack.potion_pocket):
+                        if int(enter_number) == item_number:
+                            for potion in available_item_list.__members__.values():
+                                if potion.value[1] == item_name:
+                                    while True:
+                                        enter_count = input(
+                                            f"You entered {potion.value[1]}. How many {potion.value[1]} you want to sell: "
+                                        )
+                                        if enter_count == "Q":
+                                            return money, inventory
+                                        if (
+                                            int(enter_count) <= int(inventory[item_name])
+                                            and int(enter_count) > 0
+                                        ):
+                                            if not enter_count.isdigit():
+                                                print("Entered value must be a just digit")
+                                            if enter_count.isdigit():
+                                                inventory[item_name] -= int(enter_count)
+                                                money += round(potion.value[3] / 2) * int(
+                                                    enter_count
+                                                )
+
+                                            if inventory[item_name] == 0:
+                                                del inventory[item_name]
+
+                                        else:
+                                            print(
+                                                f"Entered value cannot be higher than {int(inventory[item_name])}"
+                                            )
+                                        return money, inventory
+            except ValueError:
+                print("You can only enter [Q] to Quit, or choose number")
+        else:
+            print('Your pocket is actually empty'.upper())
             return money, inventory
 
 
-print(player_backpack.coins)
-# while True:
-#     item_name = input("Any potion do you want sell?")
-#     a = available_item_list.__members__.keys()
-#     print(a["SMALL_HEALTH_POTION"])
-
-# index = available_item_list.index(item_name)
-# item_name = input("Any potion do you want sell?")
-# for item in available_item_list.__members__.values():
-#     print(item.value)
-#     index = item.index(item.value[0])
-
-# break
-
-
-player_backpack.coins, player_backpack.potion_pocket = new_sell_item(
-    PotionShop, player_backpack.coins, player_backpack.potion_pocket
-)
-print(player_backpack.coins)
-print(player_backpack.potion_pocket)
+# player_backpack.coins, player_backpack.potion_pocket = new_sell_item(
+#     PotionShop, player_backpack.coins, player_backpack.potion_pocket
+# )
 
 
 def new_buy_item(available_item_list, money, inventory):
@@ -127,55 +130,6 @@ def new_buy_item(available_item_list, money, inventory):
                     return int(money), inventory
 
 
-def buy_item(available_item_list, money, inventory):
-    display_sell_item_list()
-    item_name = input(f"Enter item name which you want ")
-    item_count = int(input(f"Enter how many items you want "))
-    if item_name not in available_item_list:
-        print(f"You cannot buy {item_name} becouse is not available in merchant")
-    else:
-        if item_count > 0 and money >= available_item_list[item_name] * item_count:
-            if item_name not in inventory:
-                inventory[item_name] = item_count
-            else:
-                inventory[item_name] += item_count
-            money -= available_item_list[item_name] * item_count
-        else:
-            print(
-                f"You dont have a money. {money:,}/{(available_item_list[item_name] * item_count):,}"
-            )
-    return int(money), inventory
-
-
-def sell_item(available_item_list, money, inventory):
-    display_item_list()
-    item_name = input(f"Enter item name which you want ")
-    item_count = int(input(f"Enter how many items you want "))
-    if item_name not in inventory and item_name not in available_item_list:
-        print(f"{item_name} is not available in your inventory and merchant")
-    elif item_name not in inventory and item_name in available_item_list:
-        print(f"{item_name} is not available in your inventory")
-    elif item_name in inventory and item_name not in available_item_list:
-        print(f"{item_name} is not on sell")
-    else:
-        if (
-            item_name in inventory
-            and item_name in available_item_list
-            and item_count > inventory[item_name]
-            or item_count < 0
-        ):
-            print(
-                f"[{item_name}] cannot be selling becouse you entered to incorrect count {item_count}"
-            )
-        else:
-            inventory[item_name] -= item_count
-            money += (available_item_list[item_name] * item_count) / 2
-            if inventory[item_name] == 0:
-                del inventory[item_name]
-
-    return int(money), inventory
-
-
 class Merchant:
     @staticmethod
     def merchant():
@@ -195,22 +149,25 @@ class Merchant:
                         select_option == ShopOptions.BUY.name
                         or select_option == ShopOptions.BUY.value
                     ):
-                        player_backpack.coins, player_backpack.potion_pocket = buy_item(
+                        (
+                            player_backpack.coins,
+                            player_backpack.potion_pocket,
+                        ) = new_buy_item(
                             PotionShop,
                             player_backpack.coins,
                             player_backpack.potion_pocket,
                         )
-                        break
+                        # break
                     else:
                         (
                             player_backpack.coins,
                             player_backpack.potion_pocket,
-                        ) = sell_item(
-                            shop_items,
+                        ) = new_sell_item(
+                            PotionShop,
                             player_backpack.coins,
                             player_backpack.potion_pocket,
                         )
-                        break
+                        # break
                 except ValueError:
                     print(f"Entered value must be postive number")
 
@@ -230,7 +187,6 @@ class Merchant:
                 )
 
 
-m = Merchant()
-# m.merchant()
-
 # si = ShopItems()
+if __name__ == "__main__":
+    pass
