@@ -60,18 +60,25 @@ def new_buy_item(available_item_list, money, inventory):
         item_number = input("Enter a item number which one you want to buy ")
         for item in available_item_list.__members__.values():
             if item_number in item.value[0]:
-                item_count = input(f"How many {item.value[1]!r} you want buy? ")
-                if int(item_count) > 0 and money >= item.value[3] * int(item_count):
-                    if item.value[1] not in inventory:
-                        inventory[item.value[1]] = int(item_count)
-                    else:
-                        inventory[item.value[1]] += int(item_count)
-                    money -= item.value[3] * int(item_count)
-                else:
-                    print(
-                        f"You dont have a money. {money:,}/{(item.value[3] * int(item_count)):,}"
-                    )
-                return int(money), inventory
+                    while True:
+                        item_count = input(f"How many {item.value[1]!r} you want buy? ")
+                        try:
+                            if int(item_count) > 0 and money >= item.value[3] * int(item_count):
+                                if item.value[1] not in inventory:
+                                    inventory[item.value[1]] = int(item_count)
+                                else:
+                                    inventory[item.value[1]] += int(item_count)
+                                money -= item.value[3] * int(item_count)
+                            elif int(item_count) < 0:
+                                print(f'Entered value {item_count!r} cannot be negative')
+                            else:
+                                print(
+                                    f"You dont have a money. {money:,}/{(item.value[3] * int(item_count)):,}"
+                                )
+                        except ValueError:
+                            print(f"Entered value {item_count!r} is not correct. Please try enter a number.")
+                            continue
+                        return int(money), inventory
 
 
 player_backpack.coins, player_backpack.potion_pocket = new_buy_item(
