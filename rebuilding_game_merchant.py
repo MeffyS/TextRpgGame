@@ -53,6 +53,8 @@ def new_sell_item(available_item_list, money, inventory):
             try:
                 if enter_number == "Q":
                     return money, inventory
+                if int(enter_number) > len(player_backpack.potion_pocket) - 1:
+                    print("Entered value is too high")
                 if int(enter_number) < 0:
                     print("Entered value cannot have a negative value")
 
@@ -74,19 +76,22 @@ def new_sell_item(available_item_list, money, inventory):
                                             if not enter_count.isdigit():
                                                 print("Entered value must be a just digit")
                                             if enter_count.isdigit():
-                                                inventory[item_name] -= int(enter_count)
-                                                money += round(potion.value[3] / 2) * int(
-                                                    enter_count
-                                                )
-
+                                                if inventory[item_name] > 0:
+                                                    inventory[item_name] -= int(enter_count)
+                                                    money += round(potion.value[3] / 2) * int(
+                                                        enter_count
+                                                    )
                                             if inventory[item_name] == 0:
                                                 del inventory[item_name]
+                                                return money, inventory
+                                            elif inventory[item_name] > 0:
+                                                break
+                                                
 
                                         else:
                                             print(
                                                 f"Entered value cannot be higher than {int(inventory[item_name])}"
                                             )
-                                        return money, inventory
             except ValueError:
                 print("You can only enter [Q] to Quit, or choose number")
         else:
@@ -94,20 +99,29 @@ def new_sell_item(available_item_list, money, inventory):
             return money, inventory
 
 
-# player_backpack.coins, player_backpack.potion_pocket = new_sell_item(
-#     PotionShop, player_backpack.coins, player_backpack.potion_pocket
-# )
-
 
 def new_buy_item(available_item_list, money, inventory):
     display_buy_item_list()
     while True:
         item_number = input("Enter a item number which one you want to buy ")
         for item in available_item_list.__members__.values():
+            if item_number == 'Q':
+                return int(money), inventory
+            if not item_number.isdigit():
+                print('Entered number must be a positive digit')
+                break
+            if int(item_number) > len(available_item_list.__members__.values())-1:
+                print('Entered number is to high')
+                break
+            if int(item_number) == 0:
+                print('Entered number cannot be 0')
+                break
             if item_number in item.value[0]:
                 while True:
                     item_count = input(f"How many {item.value[1]!r} you want buy? ")
                     try:
+                        if item_count == 'Q':
+                            return int(money), inventory
                         if int(item_count) > 0 and money >= item.value[3] * int(
                             item_count
                         ):
@@ -118,6 +132,7 @@ def new_buy_item(available_item_list, money, inventory):
                             money -= item.value[3] * int(item_count)
                         elif int(item_count) < 0:
                             print(f"Entered value {item_count!r} cannot be negative")
+                            continue
                         else:
                             print(
                                 f"You dont have a money. {money:,}/{(item.value[3] * int(item_count)):,}"
