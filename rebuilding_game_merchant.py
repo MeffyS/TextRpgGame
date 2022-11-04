@@ -25,12 +25,14 @@ class ShopOptions(Enum):
 
 def display_sell_item_list():
     print("ITEMS IN YOUR POTION POCKET")
+    print(f"PLAYER COINS: {player_backpack.coins}")
     for item_number, item in enumerate(player_backpack.potion_pocket.items()):
         print(f"[{item_number}] {item[0]}. Potion count [{item[1]}]")
 
 
 def display_buy_item_list():
     print("MERCHANT ITEMS")
+    print(f"PLAYER COINS: {player_backpack.coins}")
     for item in PotionShop.__members__.values():
         if (
             item.value[2] in PotionShop.EXIT.value
@@ -151,6 +153,7 @@ class Merchant:
     def merchant():
         print("==========MERCHANT==========")
         while True:
+            print(f"PLAYER COINS: {player_backpack.coins}")
             for option in ShopOptions:
                 print(f"Enter [{option.value}] to [{option.name}]")
             select_option = input(f"Enter a [BUY|SELL|LOOK|QUIT] or [1,2,3,Q] ").upper()
