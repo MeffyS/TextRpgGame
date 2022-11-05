@@ -3,7 +3,7 @@ import time
 from enum import Enum, auto
 from game_character import player_backpack
 from game_character import player
-from rebuilding_game_merchant import Merchant
+from game_merchant import Merchant
 from game_bank import NewBank
 from game_well import coin_well_draw
 
@@ -391,6 +391,8 @@ class City:
                         or select_service == CityNpc.Frank.value
                     ):
                         coin_well_draw()
+                    elif select_service == "Q":
+                        break
                 except ValueError:
                     if select_service == "Q":
                         break

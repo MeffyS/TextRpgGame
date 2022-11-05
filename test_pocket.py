@@ -94,3 +94,5 @@ class PlayerPotionPocket:
 
 player_pocket = PlayerPotionPocket()
 
+if __name__ == '__main__':
+    player_pocket.pocket('POCKET')

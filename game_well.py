@@ -1,7 +1,6 @@
 from enum import Enum
 import random
 import time
-from game_informations import GameAttributes
 from gold_chances_variables import coins_in_chest
 from game_clear_function import clearConsole
 import well_monster
@@ -20,8 +19,8 @@ chance_well_drop = {
     well_drop.NOTHING: 0,
     well_drop.POSITIVE_HEALTH: 0,
     well_drop.NEGATIVE_HEALTH: 0,
-    well_drop.CHESTS: 0,
-    well_drop.DEATH: 10,
+    well_drop.CHESTS: 100,
+    well_drop.DEATH: 0,
 
 
 }
@@ -74,16 +73,16 @@ def coin_well_draw():
                                 player_backpack.city_items['Golden Coin'] -= 1
 
                             elif well_draw == well_draw.POSITIVE_COINS:
-                                print(GameAttributes.Coins)
-                                GameAttributes.Coins += (1*1000)
-                                print(GameAttributes.Coins)
+                                print(player_backpack.coins)
+                                player_backpack.coins += (1*1000)
+                                print(player_backpack.coins)
                                 print("Your coins has beed insceased about 1000 coins")
                                 player_backpack.city_items['Golden Coin'] -= 1
 
                             elif well_draw == well_draw.NEGATIVE_COINS:
-                                print(GameAttributes.Coins)
-                                GameAttributes.Coins -= (1*1000)
-                                print(GameAttributes.Coins)
+                                print(player_backpack.coins)
+                                player_backpack.coins -= (1*1000)
+                                print(player_backpack.coins)
                                 player_backpack.city_items['Golden Coin'] -= 1
                                 print("Your coins has been decreased about 1000 coins")
 
@@ -94,35 +93,35 @@ def coin_well_draw():
                                 player_backpack.city_items['Golden Coin'] -= 1
 
                             elif well_draw == well_draw.CHESTS:
-                                if 'pink' and 'red' and 'orange' and 'yellow' and 'green' and 'blue' and 'gray' not in GameAttributes.player_chests:
+                                print(f'OLD CHEST COUNT: {player_backpack.new_chests}')
+                                
+                                if 'pink' and 'red' and 'orange' and 'yellow' and 'green' and 'blue' and 'gray' not in player_backpack.new_chests:
                                     for chest in coins_in_chest:
                                         print(chest.name)
-                                        GameAttributes.player_chests[chest.name] = 1
+                                        player_backpack.new_chests[chest.name] = 1
 
-                                elif player_backpack.city_items['Golden Coin'] == 0:
-                                    print(f'{100 * "="}')
+                                elif player_backpack.city_items['Golden Coin'] == 1:
                                     print("You dont have a golden coins in your inventory")
                                     print(f'{100 * "="}')
                                     break
 
-                                elif 'pink' or 'red' or 'orange' or 'yellow' or 'green' or 'blue' or 'gray' in GameAttributes.player_chests:
+                                elif 'pink' or 'red' or 'orange' or 'yellow' or 'green' or 'blue' or 'gray' in player_backpack.new_chests:
                                     for chest in coins_in_chest:
-                                        print(chest)
-                                        if chest.name in GameAttributes.player_chests:
-                                            GameAttributes.player_chests[chest.name] += 1
-                                            player_backpack.city_items['Golden Coin'] -= 1
-                                        elif chest.name not in GameAttributes.player_chests:
-                                            GameAttributes.player_chests[chest.name] = 1
-                                            player_backpack.city_items['Golden Coin'] -= 1
+                                        print(chest.name)
+                                        
+                                        if chest.name in player_backpack.new_chests:
+                                            player_backpack.new_chests[chest.name] += 1
+                                        elif chest.name not in player_backpack.new_chests:
+                                            player_backpack.new_chests[chest.name] = 1
+                                    player_backpack.city_items['Golden Coin'] -= 1
 
                                 else:
                                     player_backpack.city_items['Golden Coin'] -= 1
                                     for chest in coins_in_chest:
                                         print(chest.name)
-                                        GameAttributes.player_chests[chest.name] += 1
-                                        print(GameAttributes.player_chests)
+                                        player_backpack.new_chests[chest.name] += 1
+                                print(f'NEW CHEST COUNT: {player_backpack.new_chests}')
 
-                                print(GameAttributes.player_chests)
 
                             elif well_draw == well_draw.DEATH:
                                 if player_backpack.city_items['Golden Coin'] >= 1:
@@ -143,3 +142,6 @@ def coin_well_draw():
 def well_leave(leave):
     print(f'{100 * "="}')
     print( "Except for the bad smell,I can't see anything else here. Leaving")
+
+if __name__ == '__main__':
+    coin_well_draw()

@@ -6,7 +6,7 @@ from game_character import player_level_up
 
 from game_clear_function import clearConsole
 import game_well
-import game_player_atributes
+# import game_player_atributes
 
 from game_informations import your_equipment
 from game_informations import GameAttributes

@@ -1,7 +1,7 @@
 
 class Character:
     
-    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=3, max_stamina=100, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=97, points=20, skill_count=2):
+    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=13, max_stamina=100, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=97, points=20, skill_count=2):
         self.health = health
         self.max_health = max_health
         self.mana = mana
@@ -133,12 +133,12 @@ class CharacterLevelUp:
 class CharacterBackpack:
     coins = 1212
     quest_items = {}
-    city_items = {}
+    city_items = {'Golden Coin': 20}
     blacksmith_items = {}
     dungeon_items = {}
     potion_pocket = {'Health Potion':1}
     chests = {'pink':1, 'green':22}
-    new_chests = {'pink':5,'green':30}
+    new_chests = {}
     inventory = [{'Sword': [('Stamina', 2)]},{'Sword': [('Stamina', 3)]},{'Sword': [('Stamina', 4)]}, {'Gloves': [('Attack', 5)]}, {'Gloves': [('Attack', 30), ('Defence', 30), ('Health', 30), ('Mana', 30), ('Stamina', 30)]}]
 
 
