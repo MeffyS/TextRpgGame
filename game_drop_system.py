@@ -143,7 +143,7 @@ def item_draw():
 def inventory_add_item(inventory, item_name, item_attribute):
 
     while True:
-        add_to_inventory = input("Do you want add item to your inventory? ")
+        add_to_inventory = input("Do you want add item to your inventory?[Y][Q] ")
         if add_to_inventory == "Y":
             inventory.append({item_name:list(item_attribute)})
             for item in player_backpack.inventory:
@@ -162,7 +162,7 @@ def add_item(equipment, inventory, item_name, item_attribute):
     print(f'You found a {item_name}, with attributes as {item_attribute}')
     
     while True:
-        add_to_equipment = input("Do you want add item to your equipment? ")
+        add_to_equipment = input("Do you want add item to your equipment?[Y][Q] ")
         if add_to_equipment == "Y":
             if item_name in equipment:
                 inventory_add_item(inventory, item_name, item_attribute)
@@ -196,6 +196,8 @@ def draw_items(equipment, inventory, item_name, item_attribute):
 
             else:
                 print("The monster loot is nothing")
+        elif search_monster_body == "Q":
+            break
         else:
             continue
         break

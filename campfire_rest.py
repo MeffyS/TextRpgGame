@@ -4,7 +4,7 @@ from enum import Enum
 
 from game_character import player
 from game_stage_chest_open import OpenChest
-from test_pocket import player_pocket
+from game_player_pocket import player_pocket
 
 
 

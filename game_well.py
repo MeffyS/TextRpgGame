@@ -7,7 +7,7 @@ from gold_chances_variables import coins_in_chest
 from game_clear_function import clearConsole
 from game_character import player
 from game_character import player_backpack
-from test_monster import monster_fight
+from game_well_monster import monster_fight
 
 
 

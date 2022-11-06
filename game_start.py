@@ -1,7 +1,7 @@
 import sys
 
 from enum import Enum
-from test_game_informations import game_informations
+from game_informations import game_informations
 from game_moves import game_start
 
 

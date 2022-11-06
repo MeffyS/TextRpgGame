@@ -1,4 +1,4 @@
-from test_change_eq import change_eq
+from game_player_change_eq import change_eq
 from game_map import moves
 from game_character import player
 from campfire_rest import explore

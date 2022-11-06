@@ -3,7 +3,7 @@ import random
 from game_character import player
 from game_character import player_backpack
 from game_character import player_level_up
-from test_pocket import player_pocket
+from game_player_pocket import player_pocket
 from game_drop_system import drop_item
 from game_church import church
 
@@ -208,11 +208,13 @@ class FightWithMonster:
                 player_pocket.pocket(fight)
             elif fight == "Q":
                 player_escape = input(
-                    "Do u want escape? You lose 50 points of stamine [Q] "
+                    "Do u want escape? You lose 50 points of stamine [Y][Q] "
                 )
-                if player_escape == "Q":
+                if player_escape == "Y":
                     player.stamina -= 50
                     break
+                elif player_escape == "Q":
+                    continue
             else:
                 print("Choose other value")
         return player.health

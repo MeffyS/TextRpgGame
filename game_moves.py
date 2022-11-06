@@ -3,7 +3,7 @@ from game_character import player
 from campfire_rest import explore
 from game_system import game_stystem
 from player_menu import character_menu
-from test_game_city import game_city
+from game_city import game_city
 
 
 def game_coordinates(self):

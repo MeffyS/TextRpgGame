@@ -2,7 +2,7 @@ import time
 
 from game_generators import thunder_attack
 from game_clear_function import clearConsole
-from test_monster import FightWithMonster
+from game_well_monster import FightWithMonster
 
 
 def skill_name(function):
