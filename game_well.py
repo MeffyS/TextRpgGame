@@ -2,13 +2,12 @@ import random
 import time
 from enum import Enum
 
-import well_monster
 import game_church
 from gold_chances_variables import coins_in_chest
 from game_clear_function import clearConsole
 from game_character import player
 from game_character import player_backpack
-
+from test_monster import monster_fight
 
 
 
@@ -43,14 +42,17 @@ def well_regeneration():
     print(f'{100 * "="}')
     print(f"You woke up, You are inside well. What do you want to do?".center(100))
     print(f'{100 * "="}')
-    print(f"Explore? Leave?[Explore][Leave]".center(100))
-    well_action = input(f"".center(50)).upper()
-    clearConsole()
-    if well_action == "EXPLORE":
-        well_monster.draw_monster(well_action)
-    elif well_action == "LEAVE":
-        print(f'{100 * "="}')
-        print("You leaving")
+    print(f"Explore? Leave?[Explore][Q]".center(100))
+    while True:
+        well_action = input(f"".center(50)).upper()
+        if well_action == "EXPLORE":
+            monster_fight.fight()
+            break
+        elif well_action == "Q":
+            print(f'{100 * "="}')
+            print("You leaving")
+        else:
+            print(f"Explore or Quit?[Explore][Q]".center(100))
 
 
 def coin_well_draw():
@@ -59,7 +61,7 @@ def coin_well_draw():
         if player.health > 0:
             well_draw = random.choices(chance_well_drop_keys, chance_well_drop_values)[0]
             print(f'{100 * "="}')
-            coin = input("Do you want drop golden coin to inside of a well?[Y] ").upper()
+            coin = input("Do you want drop golden coin to inside of a well?[Y][Q] ").upper()
             if coin == "Y":
                 try:
                     if player_backpack.city_items['Golden Coin'] >= 1:

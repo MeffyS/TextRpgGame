@@ -170,6 +170,7 @@ def draw_monster():
 
 
 class FightWithMonster:
+    monster1 = draw_monster()
     def fight(self):
         monster = draw_monster()
         print(f"You will fight with, {monster.monster_name}")
@@ -184,6 +185,7 @@ class FightWithMonster:
                 print(
                     f"You lose {monster_hit}. Left {player.health}/{player.max_health}"
                 )
+
                 if monster.health <= 0 and player.health <= 0:
                     print("You are dead. Monster is dead")
                     break
@@ -213,7 +215,8 @@ class FightWithMonster:
                     break
             else:
                 print("Choose other value")
+        return player.health
 
 
-a = FightWithMonster()
-a.fight()
+monster_fight = FightWithMonster()
+

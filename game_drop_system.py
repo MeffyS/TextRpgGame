@@ -1,6 +1,5 @@
 import random
 from enum import Enum
-
 from game_character import player_equipment
 from game_character import player_backpack
 
@@ -142,24 +141,28 @@ def item_draw():
 
 
 def inventory_add_item(inventory, item_name, item_attribute):
-    add_to_inventory = input("Do you want add item to your inventory? ")
+
     while True:
+        add_to_inventory = input("Do you want add item to your inventory? ")
         if add_to_inventory == "Y":
             inventory.append({item_name:list(item_attribute)})
             for item in player_backpack.inventory:
                 print(item)
             print(f"ITEM HAS BEEN ADDED TO INVENTORY")
             break
-        else:
-            print({item_name:list(item_attribute)})
+        elif add_to_inventory == 'Q':
+            print(f'{item_name}:{list(item_attribute)} HAS BEEN DELETED')
             item = {item_name:list(item_attribute)}
             del item
             break
+        else:
+            continue
 
 def add_item(equipment, inventory, item_name, item_attribute):
     print(f'You found a {item_name}, with attributes as {item_attribute}')
-    add_to_equipment = input("Do you want add item to your equipment? ")
+    
     while True:
+        add_to_equipment = input("Do you want add item to your equipment? ")
         if add_to_equipment == "Y":
             if item_name in equipment:
                 inventory_add_item(inventory, item_name, item_attribute)
@@ -168,9 +171,11 @@ def add_item(equipment, inventory, item_name, item_attribute):
                 equipment[item_name] = item_attribute
                 print(f"ITEM HAS BEEN ADDED TO EQUIPMENT")
                 break
-        else:
-            print("ITEM HAS BEEN DELETED")
+        elif add_to_equipment == 'Q':
             break
+        else:
+            continue   
+
 
 def draw_items(equipment, inventory, item_name, item_attribute):
     drop = Enum("drop_or_nothing", ("DROP", "NOTHING"))
@@ -182,17 +187,18 @@ def draw_items(equipment, inventory, item_name, item_attribute):
     drop_chance_value = list(drop_chance.values())
     
     draw_chance_on_drop = random.choices(drop_chance_key,drop_chance_value)[0]
-    search_monster_body = input("Do u want search monster body?[Y][Q] ").upper()
-    if search_monster_body == "Y":
-        if draw_chance_on_drop == drop.DROP:
-            add_item(equipment, inventory, item_name, item_attribute)
+    
+    while True:
+        search_monster_body = input("Do u want search monster body?[Y][Q] ")
+        if search_monster_body == "Y":
+            if draw_chance_on_drop == drop.DROP:
+                add_item(equipment, inventory, item_name, item_attribute)
 
+            else:
+                print("The monster loot is nothing")
         else:
-            print("The monster loot is nothing")
-
-    else:
-        print("Leaving...")
-
+            continue
+        break
 
 
 

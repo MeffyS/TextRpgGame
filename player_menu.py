@@ -6,7 +6,6 @@ from game_character import (
 )
 from game_add_points import player_attributes
 from game_stage_chest_open import chest
-from campfire_rest import explore
 from test_change_eq import change_eq
 from test_pocket import player_pocket
 

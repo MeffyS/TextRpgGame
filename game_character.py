@@ -1,7 +1,7 @@
 
 class Character:
     
-    def __init__(self, health=200, max_health=2500, mana=200, max_mana=3500, stamina=13, max_stamina=100, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=97, points=20, skill_count=2):
+    def __init__(self, health=200, max_health=2500, mana=200, max_mana=3500, stamina=13, max_stamina=100, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=1, points=20, skill_count=2):
         self.health = health
         self.max_health = max_health
         self.mana = mana
@@ -145,8 +145,8 @@ class CharacterBackpack:
 class CharacterEquipment:
     
     equipment = {
-    'Bow': [('Magic', 30000), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
-    'Earrings': [('Defence', 8123), ('Experience', 2), ('Attack', 4)],
+    'Bow': [('Magic', 3), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
+    'Earrings': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     'Helmet': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     'Gloves': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
