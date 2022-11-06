@@ -145,12 +145,12 @@ class CharacterBackpack:
 class CharacterEquipment:
     
     equipment = {
-    # 'Bow': [('Magic', 30000), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
-    # 'Earrings': [('Defence', 8123), ('Experience', 2), ('Attack', 4)],
-    # 'Helmet': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
-    # 'Gloves': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
-    # 'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
-    # 'Boots': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    'Bow': [('Magic', 30000), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
+    'Earrings': [('Defence', 8123), ('Experience', 2), ('Attack', 4)],
+    'Helmet': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    'Gloves': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    'Boots': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     }
 
     backpack = {'Golden Coin':120,'Diamond':20}

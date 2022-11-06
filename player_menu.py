@@ -12,6 +12,7 @@ from test_change_eq import change_eq
 from test_pocket import player_pocket
 
 
+
 class CharacterMenuChoice(Enum):
     character_information = [1, "Character Informations"]
     character_statistic = [2, "Character Statistics"]
@@ -27,6 +28,7 @@ class CharacterMenu:
         if menu == "MENU":
             print("PLAYER MENU")
             while True:
+                change_eq.main_equipment()
                 for option in CharacterMenuChoice:
                     print(f"[{option.value[0]}] {option.value[1]}")
                 try:

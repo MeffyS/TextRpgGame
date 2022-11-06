@@ -17,16 +17,18 @@ class GameDirections:
     west = 0  # -
 
     def start_direction(self):
-
+        game_coordinates(self)
         while True:
+
             if player.stamina > 0:
-                game_coordinates(self)
                 if self.position == 0:
                     self.start_position()
+                    game_coordinates(self)
                 elif self.position > 0:
                     if self.east < game_map_size.map:
                         enter_direction = input("Enter direction [W][U][E][MENU] ").upper()
                         self.east_direction_positive(enter_direction)
+                        game_coordinates(self)
                     if self.east == game_map_size.map:
                         self.east_direction_negative()
 
@@ -34,14 +36,15 @@ class GameDirections:
                     if self.west < game_map_size.map:
                         enter_direction = input("Enter direction [W][U][E][MENU] ").upper()
                         self.west_direction_positive(enter_direction)
+                        game_coordinates(self)
 
                     if self.west == game_map_size.map:
                         self.west_direction_negative()
+                        
             else:
                 game_stystem()
 
     def start_position(self):
-        
         direction = input("Enter direction [W][U][E][MENU] ").upper()
         if direction == "E":
             self.east += 1
@@ -60,6 +63,7 @@ class GameDirections:
 
 
     def east_direction_negative(self):
+
         direction = input("Enter direction [W][U][C][MENU] ").upper()
         if direction == "E":
             if self.east == self.position:
@@ -70,6 +74,7 @@ class GameDirections:
             self.west += 1
             self.position -= 1
             game_stystem()
+            game_coordinates(self)
         elif direction == 'MENU':
             character_menu.player_menu(direction)
         elif direction == 'C':
@@ -106,6 +111,7 @@ class GameDirections:
             self.west -= 1
             self.position += 1
             game_stystem()
+            game_coordinates(self)
 
 
         elif direction == 'MENU':
