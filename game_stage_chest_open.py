@@ -1,11 +1,11 @@
 import math
 import random
 
+import gold_chances_variables as chance_on_gold
 from game_character import player
 from game_character import player_informations
 from game_character import player_backpack
 from game_character import player_level_up
-import gold_chances_variables as chance_on_gold
 
 
 class OpenChest:

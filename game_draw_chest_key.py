@@ -1,6 +1,7 @@
-from game_character import player_backpack
 import random
+
 import gold_chances_variables
+from game_character import player_backpack
 
 
 def draw_chest_key_nothing(draw):

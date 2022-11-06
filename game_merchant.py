@@ -1,5 +1,6 @@
-from game_character import player_backpack
 from enum import Enum
+
+from game_character import player_backpack
 from items import SMP, SHP, SSP, MP, HP, SP, GMP, GHP, GSP
 
 
@@ -45,8 +46,6 @@ def display_buy_item_list():
             )
 
 
-
-
 def new_sell_item(available_item_list, money, inventory):
     display_sell_item_list()
     while True:
@@ -61,7 +60,9 @@ def new_sell_item(available_item_list, money, inventory):
                     print("Entered value cannot have a negative value")
 
                 if int(enter_number) <= len(player_backpack.potion_pocket) - 1:
-                    for item_number, item_name in enumerate(player_backpack.potion_pocket.items()):
+                    for item_number, item_name in enumerate(
+                        player_backpack.potion_pocket.items()
+                    ):
                         if int(enter_number) == item_number:
                             for potion in available_item_list.__members__.values():
                                 if potion.value[1] == item_name[0]:
@@ -72,57 +73,71 @@ def new_sell_item(available_item_list, money, inventory):
                                         if enter_count == "Q":
                                             return money, inventory
                                         if int(enter_count) > item_name[1]:
-                                            print(f'Entered value cannot be higher than {item_name[1]}')
+                                            print(
+                                                f"Entered value cannot be higher than {item_name[1]}"
+                                            )
                                         if int(enter_count) <= 0:
-                                            print('Entered value cannot be lower than 1')
+                                            print(
+                                                "Entered value cannot be lower than 1"
+                                            )
                                         if (
-                                            int(enter_count) <= int(inventory[item_name[0]])
+                                            int(enter_count)
+                                            <= int(inventory[item_name[0]])
                                             and int(enter_count) > 0
                                         ):
                                             if not enter_count.isdigit():
-                                                print("Entered value must be a just digit")
+                                                print(
+                                                    "Entered value must be a just digit"
+                                                )
                                             if enter_count.isdigit():
                                                 if inventory[item_name[0]] > 0:
-                                                    inventory[item_name[0]] -= int(enter_count)
-                                                    money += round(potion.value[3] / 2) * int(
+                                                    inventory[item_name[0]] -= int(
                                                         enter_count
                                                     )
-                                                    print(f"You sold {int(enter_count)} {potion.value[1]} for {round(potion.value[3] / 2) * int(enter_count)} coins")
+                                                    money += round(
+                                                        potion.value[3] / 2
+                                                    ) * int(enter_count)
+                                                    print(
+                                                        f"You sold {int(enter_count)} {potion.value[1]} for {round(potion.value[3] / 2) * int(enter_count)} coins"
+                                                    )
                                             if inventory[item_name[0]] == 0:
                                                 del inventory[item_name[0]]
                                                 return money, inventory
                                             elif inventory[item_name[0]] > 0:
                                                 break
-                                                
+
             except ValueError:
                 print("You can only enter [Q] to Quit, or choose number")
         else:
-            print('Your pocket is actually empty'.upper())
+            print("Your pocket is actually empty".upper())
             return money, inventory
-
 
 
 def new_buy_item(available_item_list, money, inventory):
     display_buy_item_list()
     while True:
-        item_number = input("Enter a item number which one you want to buy [Q] ").upper()
+        item_number = input(
+            "Enter a item number which one you want to buy [Q] "
+        ).upper()
         for item in available_item_list.__members__.values():
-            if item_number == 'Q':
+            if item_number == "Q":
                 return int(money), inventory
             if not item_number.isdigit():
-                print('Entered number must be a positive digit or [Q]')
+                print("Entered number must be a positive digit or [Q]")
                 break
-            if int(item_number) > len(available_item_list.__members__.values())-1:
-                print('Entered number is to high')
+            if int(item_number) > len(available_item_list.__members__.values()) - 1:
+                print("Entered number is to high")
                 break
             if int(item_number) == 0:
-                print('Entered number cannot be 0')
+                print("Entered number cannot be 0")
                 break
             if item_number in item.value[0]:
                 while True:
-                    item_count = input(f"How many {item.value[1]!r} you want buy? [Q] ").upper()
+                    item_count = input(
+                        f"How many {item.value[1]!r} you want buy? [Q] "
+                    ).upper()
                     try:
-                        if item_count == 'Q':
+                        if item_count == "Q":
                             return int(money), inventory
                         if int(item_count) > 0 and money >= item.value[3] * int(
                             item_count
@@ -132,7 +147,9 @@ def new_buy_item(available_item_list, money, inventory):
                             else:
                                 inventory[item.value[1]] += int(item_count)
                             money -= item.value[3] * int(item_count)
-                            print(f"You bought {item_count} {item.value[1]} for {int(item_count)*item.value[3]} coins")
+                            print(
+                                f"You bought {item_count} {item.value[1]} for {int(item_count)*item.value[3]} coins"
+                            )
                         elif int(item_count) < 0:
                             print(f"Entered value {item_count!r} cannot be negative")
                             continue

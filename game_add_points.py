@@ -1,5 +1,5 @@
 from enum import Enum
-from operator import add
+
 from game_clear_function import clearConsole
 from game_character import player
 

@@ -1,7 +1,8 @@
 
-from game_generators import thunder_attack
-import well_monster
 import time
+
+import well_monster
+from game_generators import thunder_attack
 from game_clear_function import clearConsole
 
 

@@ -1,5 +1,6 @@
 import random
 from enum import Enum
+
 from game_character import player_equipment
 from game_character import player_backpack
 

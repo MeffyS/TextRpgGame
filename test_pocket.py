@@ -1,6 +1,7 @@
+from enum import Enum, auto
+
 from game_character import player_backpack
 from game_character import player
-from enum import Enum, auto
 from items import SP, MP, HP
 
 
@@ -26,7 +27,7 @@ class PlayerPotionPocket:
 
     @classmethod
     def pocket(cls, move):
-        if move == "POCKET":
+        if move == "P":
             while True:
                 useable = []
                 print("In your pocket u have a: ")

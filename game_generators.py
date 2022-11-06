@@ -1,5 +1,4 @@
 import random
-import time
 
 from game_character import Character
 

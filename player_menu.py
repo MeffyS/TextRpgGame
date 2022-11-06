@@ -1,9 +1,8 @@
 from enum import Enum
+
 from game_character import (
     player_backpack,
-    player_equipment,
     player_informations,
-    player_statistic,
 )
 from game_add_points import player_attributes
 from game_stage_chest_open import chest

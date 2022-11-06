@@ -1,9 +1,11 @@
 import time
-from enum import Enum, auto
+import random
+from enum import Enum
+
 from game_character import player
 from game_stage_chest_open import OpenChest
 from test_pocket import player_pocket
-import random
+
 
 
 class ExploreOptions(Enum):

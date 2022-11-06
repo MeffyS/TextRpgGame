@@ -1,23 +1,21 @@
 import random
 
+import game_well
 from game_character import player
 from game_character import player_level_up
-
-
+from game_character import player_backpack
+from test_pocket import player_pocket
 from game_clear_function import clearConsole
-import game_well
-# import game_player_atributes
-
-from game_informations import your_equipment
-from game_informations import GameAttributes
 from game_drop_system import drop_item as drop
 
 
-
 def monster():
-    monster_file_part_one = 'D:/PythonGra/TextRpgGame-01.07.2022/nazwa_potwora/nazwa_potwora_1.txt'
-    monster_file_part_two = 'D:/PythonGra/TextRpgGame-01.07.2022/nazwa_potwora/nazwa_potwora_2.txt'
-    
+    monster_file_part_one = (
+        "D:/PythonGra/TextRpgGame-01.07.2022/nazwa_potwora/nazwa_potwora_1.txt"
+    )
+    monster_file_part_two = (
+        "D:/PythonGra/TextRpgGame-01.07.2022/nazwa_potwora/nazwa_potwora_2.txt"
+    )
 
     with open(monster_file_part_one) as file, open(monster_file_part_two) as file2:
         file_one_contents = file.readlines()
@@ -30,22 +28,31 @@ def monster():
             print(f'{100 * "="}')
 
     if animals == "Rat":
-        print('RAAT')
+        print("RAAT")
 
     elif animals == "Wolf":
-        print('RAAT')
+        print("RAAT")
 
     elif animals == "Bear":
-        print('RAAT')
+        print("RAAT")
     elif animals == "Tiger":
-        print('RAAT')
+        print("RAAT")
 
     return animals
 
 
 class Monster:
-
-    def __init__(self, health=2500, mana=0, defence=0, attack_min=0, attack_max=0, magic=0, experience=0, coins=0):
+    def __init__(
+        self,
+        health=2500,
+        mana=0,
+        defence=0,
+        attack_min=0,
+        attack_max=0,
+        magic=0,
+        experience=0,
+        coins=0,
+    ):
         self.health = health
         self.mana = 0
         self.defence = 0
@@ -65,36 +72,51 @@ def fight(self, *args, **kwargs):
             player.skill_count = 2
             player.min_attack = player.max_attack
             print("YOU ARE DEAD, MONSTER IS DEAD")
-            church()
+            # church()
         elif self.health > 0 and player.health > 0:
             print(
-                "What do you want to do?[A-Attack][S-Skill][P-Pocket][Q-Exit] ".center(100))
+                "What do you want to do?[A-Attack][S-Skill][P-Pocket][Q-Exit] ".center(
+                    100
+                )
+            )
             what_to_do = input("".center(50)).upper()
-            if what_to_do == 'A':
+            if what_to_do == "A":
                 draw_attack = random.randint(minimal_atak, maximal_atak)
                 round_attack = round(draw_attack, 0)
                 self.health -= round_attack
                 clearConsole()
                 print(f'{100*"="}')
                 print(
-                    f'The normal attack took the monster {round_attack} health points. LEFT {self.health} monster Health Points'.center(100))
+                    f"The normal attack took the monster {round_attack} health points. LEFT {self.health} monster Health Points".center(
+                        100
+                    )
+                )
                 print(f'{100*"="}')
-                monster_hit = round(random.randint(
-                    self.attack_min, self.attack_max)) / player.defence
+                monster_hit = (
+                    round(random.randint(self.attack_min, self.attack_max))
+                    / player.defence
+                )
                 player.health -= monster_hit
                 print(
-                    f'The monster attack took YOU {round(monster_hit)} health points. LEFT {round(player.health)} player Health Points'.center(100))
+                    f"The monster attack took YOU {round(monster_hit)} health points. LEFT {round(player.health)} player Health Points".center(
+                        100
+                    )
+                )
                 print(f'{100*"="}')
-            elif what_to_do == 'S':
+            elif what_to_do == "S":
                 from player_skills import used_skill
+
                 clearConsole()
                 used_skill(self, *args, **kwargs)
-            elif what_to_do == 'P':
-                your_equipment()
+            elif what_to_do == "P":
+                player_pocket.pocket(what_to_do)
             elif what_to_do == "Q":
                 print(f'{100*"="}')
                 print(
-                    f"Do you want escape? Your stamina will be reduced by 50 points. Your stamine state is {player.stamina}/{player.max_stamina} [Y][N]".center(100))
+                    f"Do you want escape? Your stamina will be reduced by 50 points. Your stamine state is {player.stamina}/{player.max_stamina} [Y][N]".center(
+                        100
+                    )
+                )
                 print(f'{100*"="}')
                 escape = input(f"".center(50)).upper()
                 if escape == "Y":
@@ -106,23 +128,29 @@ def fight(self, *args, **kwargs):
                         break
                     else:
                         print(
-                            f"You dont have enough stamine {player.stamina}/50. You must continue a fight!".center(100))
+                            f"You dont have enough stamine {player.stamina}/50. You must continue a fight!".center(
+                                100
+                            )
+                        )
                 elif escape == "N":
                     continue
         elif self.health <= 0:
-            print(f'The monster is dead'.center(100))
-            print(100*'=')
+            print(f"The monster is dead".center(100))
+            print(100 * "=")
             player.skill_count = 2
             player.min_attack = player.max_attack
             player.experience += self.experience
-            GameAttributes.Coins += self.coins
+            player_backpack.coins += (
+                self.coins
+            )  # changed GameAttriubtes.cois on player_backpack.coins
             print(
-                f'You got from the monster +{self.experience} experience and +{self.coins} coins ')
+                f"You got from the monster +{self.experience} experience and +{self.coins} coins "
+            )
             player_level_up.level_up()
             drop()
             while True:
                 leaving_the_well = input("Exit[Q] ").upper()
-                if leaving_the_well == 'Q':
+                if leaving_the_well == "Q":
                     game_well.well_leave(leaving_the_well)
                     break
                 else:
@@ -133,7 +161,6 @@ def fight(self, *args, **kwargs):
             player.min_attack = player.max_attack
             print("You are dead")
             break
-            
 
 
 def draw_monster(self):
@@ -170,13 +197,24 @@ def draw_monster(self):
         mob_attack_min = tiger.attack_min
         mob_attack_max = tiger.attack_max
         mob_defence = tiger.defence
-        fight(tiger, mob_health,mob_attack_min,mob_attack_max,mob_defence)
+        fight(tiger, mob_health, mob_attack_min, mob_attack_max, mob_defence)
 
 
 class Rat(Monster):
-    def __init__(self, health=0, mana=0, defence=0, attack_min=1, attack_max=4, magic=0, experience=0, coins=0):
-        super().__init__(health, mana, defence, attack_min,
-                         attack_max, magic, experience, coins)
+    def __init__(
+        self,
+        health=0,
+        mana=0,
+        defence=0,
+        attack_min=1,
+        attack_max=4,
+        magic=0,
+        experience=0,
+        coins=0,
+    ):
+        super().__init__(
+            health, mana, defence, attack_min, attack_max, magic, experience, coins
+        )
         self.attack_min = attack_min
         self.attack_max = attack_max
         self.attack = random.randint(self.attack_min, self.attack_max)
@@ -186,9 +224,20 @@ class Rat(Monster):
 
 
 class Wolf(Monster):
-    def __init__(self, health=0, mana=0, defence=0, attack_min=2, attack_max=10, magic=0, experience=0, coins=0):
-        super().__init__(health, mana, defence, attack_min,
-                         attack_max, magic, experience, coins)
+    def __init__(
+        self,
+        health=0,
+        mana=0,
+        defence=0,
+        attack_min=2,
+        attack_max=10,
+        magic=0,
+        experience=0,
+        coins=0,
+    ):
+        super().__init__(
+            health, mana, defence, attack_min, attack_max, magic, experience, coins
+        )
         self.attack_min = attack_min
         self.attack_max = attack_max
         self.attack = random.randint(self.attack_min, self.attack_max)
@@ -198,9 +247,20 @@ class Wolf(Monster):
 
 
 class Bear(Monster):
-    def __init__(self, health=0, mana=0, defence=0, attack_min=5, attack_max=20, magic=0, experience=0, coins=0):
-        super().__init__(health, mana, defence, attack_min,
-                         attack_max, magic, experience, coins)
+    def __init__(
+        self,
+        health=0,
+        mana=0,
+        defence=0,
+        attack_min=5,
+        attack_max=20,
+        magic=0,
+        experience=0,
+        coins=0,
+    ):
+        super().__init__(
+            health, mana, defence, attack_min, attack_max, magic, experience, coins
+        )
         self.attack_min = attack_min
         self.attack_max = attack_max
         self.attack = random.randint(self.attack_min, self.attack_max)
@@ -210,12 +270,25 @@ class Bear(Monster):
 
 
 class Tiger(Monster):
-    def __init__(self, health=0, mana=0, defence=0, attack_min=8, attack_max=25, magic=0, experience=0, coins=0):
-        super().__init__(health, mana, defence, attack_min,
-                         attack_max, magic, experience, coins)
+    def __init__(
+        self,
+        health=0,
+        mana=0,
+        defence=0,
+        attack_min=8,
+        attack_max=25,
+        magic=0,
+        experience=0,
+        coins=0,
+    ):
+        super().__init__(
+            health, mana, defence, attack_min, attack_max, magic, experience, coins
+        )
         self.attack_min = attack_min
         self.attack_max = attack_max
         self.attack = random.randint(self.attack_min, self.attack_max)
         self.health = 60
         self.experience = 70
         self.coins = random.randint(20, 25)
+
+

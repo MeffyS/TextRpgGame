@@ -1,6 +1,7 @@
 import random
 import time
 from enum import Enum, auto
+
 from game_character import player_backpack
 from game_character import player
 from game_merchant import Merchant

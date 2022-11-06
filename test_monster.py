@@ -1,8 +1,9 @@
 import random
+
 from game_character import player
 from game_character import player_backpack
 from game_character import player_level_up
-from game_informations import your_equipment
+from test_pocket import player_pocket
 from game_drop_system import drop_item
 from game_church import church
 
@@ -202,7 +203,7 @@ class FightWithMonster:
                     church()
                     break
             elif fight == "P":
-                your_equipment()
+                player_pocket.pocket(fight)
             elif fight == "Q":
                 player_escape = input(
                     "Do u want escape? You lose 50 points of stamine [Q] "

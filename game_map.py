@@ -1,4 +1,3 @@
-import random
 from game_character import player
 from game_character import player_level_up
 from game_character import player_informations

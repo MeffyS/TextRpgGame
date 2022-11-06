@@ -1,12 +1,14 @@
-from enum import Enum
 import random
 import time
+from enum import Enum
+
+import well_monster
+import game_church
 from gold_chances_variables import coins_in_chest
 from game_clear_function import clearConsole
-import well_monster
 from game_character import player
 from game_character import player_backpack
-import game_church
+
 
 
 

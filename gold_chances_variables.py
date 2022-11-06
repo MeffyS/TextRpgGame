@@ -1,5 +1,6 @@
-from enum import Enum
 import random
+from enum import Enum
+
 
 
 coins_in_chest = Enum('coins', ('gray', 'blue',

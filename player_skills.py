@@ -1,13 +1,12 @@
 
-from game_character import player
-from well_monster import Monster
-import well_monster
 import random
+
+from game_character import player
+import well_monster
 from game_decorators import skill_name
 from game_decorators import thunder_attack_generator
 from game_clear_function import clearConsole
 from game_drop_system import draw_items
-import game_church
 
 
 class PlayerSkill():

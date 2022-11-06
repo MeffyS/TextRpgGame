@@ -1,5 +1,7 @@
-from game_character import player_backpack
 from enum import Enum, auto
+
+from game_character import player_backpack
+
 
 
 class BankOptions(Enum):

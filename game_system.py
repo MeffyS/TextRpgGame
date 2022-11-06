@@ -1,6 +1,5 @@
 from game_add_points import player_attributes
 from game_map import up_move
-from game_character import player_informations
 from test_change_eq import change_eq
 from game_stage_chest_open import chest
 from test_pocket import player_pocket
