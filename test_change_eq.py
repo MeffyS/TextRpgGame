@@ -1,21 +1,22 @@
 from enum import Enum
 from game_character import player_backpack
 from game_character import player_equipment
+from game_character import player
 
 
 class ChangeEqOptions(Enum):
-    INVENTORY = '1'
-    EQUIPMENT = '2'
-    CHANGE = '3'
-    QUIT = 'Q'
+    INVENTORY = "1"
+    EQUIPMENT = "2"
+    CHANGE = "3"
+    QUIT = "Q"
 
 
 class PlayerChangeEquipment:
 
+    used_items_by_player = player_equipment.equipment.items()
+
     item_name_list = [
-        item_name
-        for item in player_backpack.inventory
-        for item_name, _ in item.items()
+        item_name for item in player_backpack.inventory for item_name, _ in item.items()
     ]
 
     @staticmethod
@@ -48,9 +49,13 @@ class PlayerChangeEquipment:
                         if item in one_type_item_list:
                             (
                                 player_equipment.equipment[type_of_item],
-                                one_type_item_list[int(enter_item_number)][type_of_item],
+                                one_type_item_list[int(enter_item_number)][
+                                    type_of_item
+                                ],
                             ) = (
-                                one_type_item_list[int(enter_item_number)][type_of_item],
+                                one_type_item_list[int(enter_item_number)][
+                                    type_of_item
+                                ],
                                 player_equipment.equipment[type_of_item],
                             )
 
@@ -62,10 +67,12 @@ class PlayerChangeEquipment:
                 except IndexError:
                     print("You entered incorrect number")
             else:
-                if type_of_item in ['q','Q']:
+                if type_of_item in ["q", "Q"]:
                     break
                 else:
-                    print(f"{type_of_item.upper()!r} item is not available in inventory")
+                    print(
+                        f"{type_of_item.upper()!r} item is not available in inventory"
+                    )
 
     def player_change_eq_options(self):
         while True:
@@ -90,12 +97,41 @@ class PlayerChangeEquipment:
                     PlayerChangeEquipment.change_of_items(self)
 
                 elif (
-                    equipment_choice == ChangeEqOptions.QUIT.name 
+                    equipment_choice == ChangeEqOptions.QUIT.name
                     or equipment_choice == ChangeEqOptions.QUIT.value
-                    ):
-                        break
+                ):
+                    break
             except ValueError:
                 print("You cannot enter a letters except [Q]")
 
+    def main_equipment(self):
+        summed_attributes_values = {}
+        if player_equipment.equipment == {}:
+            pass
+            # print("Actually you dont have a items")
+            # print(summed_attributes_values)
+        else:
+            for _, item_list in PlayerChangeEquipment.used_items_by_player:
+                for (
+                    item,
+                    count,
+                ) in item_list:
+                    if item in summed_attributes_values:
+                        summed_attributes_values[item] += count
+                        continue
+                    else:
+                        summed_attributes_values[item] = count
+            try:
+                player.max_attack += summed_attributes_values["Attack"]
+                player.defence += summed_attributes_values["Defence"]
+                player.max_health += summed_attributes_values["Health"]
+                player.max_mana += summed_attributes_values["Mana"]
+                player.max_stamina += summed_attributes_values["Stamina"]
+            except KeyError:
+                pass
+
+
 
 change_eq = PlayerChangeEquipment()
+
+

@@ -1,7 +1,7 @@
 
 class Character:
     
-    def __init__(self, health=200, max_health=2500, mana=200, max_mana=2500, stamina=13, max_stamina=100, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=97, points=20, skill_count=2):
+    def __init__(self, health=200, max_health=2500, mana=200, max_mana=3500, stamina=13, max_stamina=100, min_attack=50, max_attack=50, defence=1, magic=11, lucky=2, level=1, experience=97, points=20, skill_count=2):
         self.health = health
         self.max_health = max_health
         self.mana = mana
@@ -117,7 +117,7 @@ class CharacterLevelUp:
             player.max_attack = player.getMaxAttack() + (player.getLevel())
             player.health = player.getHealth() + (25*player.getLevel())
             player.max_health = player.getMaxHealth() + (25*player.getLevel())
-            player.max_mana = player.getMana() + (25*player.getLevel())
+            player.max_mana = player.getMaxMana() + (25*player.getLevel())
             player.max_stamina = player.getStamina() + 10
             player.level = player.getLevel() + 1
             player.points = player.getPoints() + 5
@@ -145,12 +145,12 @@ class CharacterBackpack:
 class CharacterEquipment:
     
     equipment = {
-    'Bow': [('Magic', 3), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
-    'Earrings': [('Defence', 8123), ('Experience', 2), ('Attack', 4)],
-    'Helmet': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
-    'Gloves': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
-    'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
-    'Boots': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    # 'Bow': [('Magic', 30000), ('Mana', 3), ('Lucky', 4), ('Health', 3), ('Attack', 26)], 
+    # 'Earrings': [('Defence', 8123), ('Experience', 2), ('Attack', 4)],
+    # 'Helmet': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    # 'Gloves': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    # 'Chest': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
+    # 'Boots': [('Defence', 8), ('Experience', 2), ('Attack', 4)],
     }
 
     backpack = {'Golden Coin':120,'Diamond':20}
@@ -170,7 +170,7 @@ class CharacterInformation:
 
     def informations(self):
         character_info = (
-            f"PLAYER ATTRIBUTES \n Health:[{player.health}/{player.max_health}] \n Mana:[{player.mana}/{player.max_mana}] \n Stamina:[{player.stamina}/{player.stamina}] \
+            f"PLAYER ATTRIBUTES \n Health:[{player.health}/{player.max_health}] \n Mana:[{player.mana}/{player.max_mana}] \n Stamina:[{player.stamina}/{player.max_stamina}] \
             \n Defence:[{player.defence}] \n Attack:[MIN|{player.min_attack}/{player.max_attack}|MAX] \n Magic:[{player.magic}] \n Lucky:[{player.lucky}] \n Experience:[{player.experience}]".upper())
         print(f"PLAYER INFORMATIONS")
         print(f"USERNAME: ")

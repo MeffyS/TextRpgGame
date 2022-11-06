@@ -2,7 +2,7 @@
 from game_character import player
 from game_character import player_equipment
 from game_clear_function import clearConsole
-from test_change_eq import PlayerChangeEquipment
+
 
 
 class GameAttributes:

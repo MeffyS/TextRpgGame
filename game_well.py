@@ -19,8 +19,8 @@ chance_well_drop = {
     well_drop.NOTHING: 0,
     well_drop.POSITIVE_HEALTH: 0,
     well_drop.NEGATIVE_HEALTH: 0,
-    well_drop.CHESTS: 100,
-    well_drop.DEATH: 0,
+    well_drop.CHESTS: 0,
+    well_drop.DEATH: 100,
 
 
 }
