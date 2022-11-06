@@ -181,7 +181,7 @@ def draw_items(equipment, inventory, item_name, item_attribute):
     drop_chance_value = list(drop_chance.values())
     
     draw_chance_on_drop = random.choices(drop_chance_key,drop_chance_value)[0]
-    search_monster_body = input("Do u want search monster body?[Y][Q] ")
+    search_monster_body = input("Do u want search monster body?[Y][Q] ").upper()
     if search_monster_body == "Y":
         if draw_chance_on_drop == drop.DROP:
             add_item(equipment, inventory, item_name, item_attribute)

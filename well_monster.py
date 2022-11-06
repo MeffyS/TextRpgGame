@@ -120,8 +120,13 @@ def fight(self, *args, **kwargs):
                 f'You got from the monster +{self.experience} experience and +{self.coins} coins ')
             player_level_up.level_up()
             drop()
-            leaving_the_well = input("Exit[Q] ").upper()
-            game_well.well_leave(leaving_the_well)
+            while True:
+                leaving_the_well = input("Exit[Q] ").upper()
+                if leaving_the_well == 'Q':
+                    game_well.well_leave(leaving_the_well)
+                    break
+                else:
+                    continue
             break
         elif player.health <= 0:
             player.skill_count = 2

@@ -277,9 +277,22 @@ class CityCampfire(Enum):
     CAMPFIRE_MAX = auto()
     CAMPFIRE_QUIT = "Q"
 
+    def bonus_stamine_regeneration():
+        if player.stamina % 10 == 0 and player.stamina != 0:
+            bonus_regen_mana = random.randint(1, 10)
+            bonus_regen_health = random.randint(1, 10)
+            player.health += bonus_regen_health
+            player.mana += bonus_regen_mana
+            if player.mana > player.max_mana:
+                player.mana = player.max_mana
+            elif player.health > player.max_health:
+                player.health = player.max_health
+            print(f"BONUS REGENERATE HEALTH +{bonus_regen_health}, MANA +{bonus_regen_mana}")
+
+    @staticmethod
     def campfire():
-        stamine_to_regeneration = player.max_stamina - player.stamina
         while True:
+            stamine_to_regeneration = player.max_stamina - player.stamina
             for campfire in CityCampfire:
                 print(f'[{campfire.value}] to use a {campfire.name.replace("_"," ")}')
             try:
@@ -288,10 +301,12 @@ class CityCampfire(Enum):
                     stamine_regen == "COUNT"
                     or int(stamine_regen) == CityCampfire.CAMPFIRE_COUNT.value
                 ):
+                    
                     while True:
+                        
                         stamine_count = input(
                             f"Enter stamine count. You can regenerate {stamine_to_regeneration} points "
-                        )
+                        ).upper()
                         try:
                             if int(stamine_count) < 0:
                                 print("You cannot regenerate stamine less than 1 point")
@@ -302,10 +317,13 @@ class CityCampfire(Enum):
                                     f"You cannot regenerate stamine greate than {stamine_to_regeneration} points"
                                 )
                             elif int(stamine_count) <= stamine_to_regeneration:
-                                for regeneration in range(int(stamine_count))[::-1]:
-                                    time.sleep(0.5)
-                                    print(regeneration)
-                                player.stamina += int(stamine_count)
+                                for _ in range(int(stamine_count))[::-1]:
+                                    print(f"STAMINE REGENERATION {player.stamina}/{player.max_stamina}")
+                                    time.sleep(0.02)
+                                    player.stamina += 1
+                                        
+                                return stamine_to_regeneration, player.health, player.mana    
+                                
                         except ValueError:
                             if stamine_count == "Q":
                                 break
@@ -315,17 +333,23 @@ class CityCampfire(Enum):
                     stamine_regen == "HALF"
                     or int(stamine_regen) == CityCampfire.CAMPFIRE_HALF.value
                 ):
-                    for regeneration in range(int(stamine_to_regeneration / 2))[::-1]:
-                        time.sleep(0.5)
-                        print(regeneration)
-                    player.stamina += stamine_to_regeneration / 2
+                    for _ in range(int(stamine_to_regeneration / 2))[::-1]:
+                        time.sleep(0.01)
+                        print(f"STAMINE REGENERATION {player.stamina}/{player.max_stamina}")
+                        player.stamina += 1
+                        CityCampfire.bonus_stamine_regeneration()
+                    return stamine_to_regeneration 
                 elif (
                     stamine_regen == "MAX"
                     or int(stamine_regen) == CityCampfire.CAMPFIRE_MAX.value
                 ):
-                    for regeneration in range(int(stamine_to_regeneration))[::-1]:
-                        time.sleep(0.5)
-                        print(regeneration)
+                    for _ in range(int(stamine_to_regeneration))[::-1]:
+                        time.sleep(0.01)
+                        print(f"STAMINE REGENERATION {player.stamina}/{player.max_stamina}")
+                        player.stamina += 1
+                        CityCampfire.bonus_stamine_regeneration()
+                    return stamine_to_regeneration 
+                        
                 elif (
                     stamine_regen == "QUIT"
                     or int(stamine_regen) == CityCampfire.CAMPFIRE_QUIT.value
@@ -340,6 +364,7 @@ class CityCampfire(Enum):
 
 
 class City:
+
     def city(self):
         print('welcome in elvarion city!'.upper())
         services = input(
